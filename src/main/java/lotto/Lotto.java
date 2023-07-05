@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,20 +14,25 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]" + " 중복되지 않게 수를 입력하세요. generateWinningLotteryNumber error");
         }
     }
-
-    // TODO: 추가 기능 구현
-
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
+    private List<Integer> deepCopy(List<Integer> numbers) {
+        List<Integer> copy = new ArrayList<>();
+        copy.addAll(numbers);
+        return copy;
+    }
+
     @Override
     public String toString() {
-        Collections.sort(numbers);
-        return numbers.toString();
+        List<Integer> deepCopy = deepCopy(numbers); // immutable
+        Collections.sort(deepCopy);
+        return deepCopy.toString();
     }
+
 }
