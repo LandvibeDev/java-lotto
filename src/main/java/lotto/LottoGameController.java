@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LottoGameController {
 
-    private List<Integer> generateOne() {
+    private Lotto generateOne() {
         List<Integer> lotto = new ArrayList<>();
 
         for (int i = 0; i < 6; i++) {
@@ -19,7 +19,7 @@ public class LottoGameController {
             lotto.add(number);
         }
 
-        return lotto;
+        return new Lotto(lotto);
     }
 
     private ArrayList<Lotto> generateLottoList(int money) {
@@ -27,8 +27,9 @@ public class LottoGameController {
 
         int count = money / 1000;
         for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(generateOne());
+            lottoList.add(generateOne());
         }
+
         return lottoList;
     }
 
@@ -49,10 +50,50 @@ public class LottoGameController {
         }
     }
 
+    private String readInputWinningLotteryNumber() {
+        String lottoNumbers = Console.readLine();
+        return lottoNumbers;
+    }
+
+    private int readInputBonusNumber() throws IllegalArgumentException {
+        try {
+            int bonus = Integer.parseInt(Console.readLine());
+            return bonus;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Lotto generateWinningLotteryNumber(String winningLotteryStr) {
+        List<Integer> lotto = new ArrayList<>();
+
+        String[] numbers = winningLotteryStr.split(",");
+
+        for (String str : numbers) {
+            try {
+                int number = Integer.parseInt(str);
+                if (!lotto.contains(number)) {
+                    lotto.add(number);
+                }
+            } catch (NumberFormatException numberFormatException) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        return new Lotto(lotto);
+    }
+
     public void play() {
         int money = readInputMoney();
         checkValidMoney(money);
 
         ArrayList<Lotto> lottoList = generateLottoList(money);
+
+        String winningLotteryStr = readInputWinningLotteryNumber();
+        Lotto winningLotteryNumber = generateWinningLotteryNumber(winningLotteryStr);
+
+        int bonusNumber = readInputBonusNumber();
+
+
     }
 }
