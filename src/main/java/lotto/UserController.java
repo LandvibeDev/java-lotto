@@ -11,16 +11,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class UserController {
 
 	Lotto winningLotto;
-	List<Integer> winningNums;
-	int winPoint;
+
 
 	UserController() {
-		inputWinningNumbers();
+		List<Integer> winningNums = inputWinningNumbers();
 		winningLotto = new Lotto(winningNums);
 	}
 
-	public void inputWinningNumbers() {
-		winningNums = new ArrayList<Integer>();
+	public List<Integer> inputWinningNumbers() {
+		List<Integer> winningNums = new ArrayList<Integer>();
 		String inStr = Console.readLine();
 		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
 		while (tokenizedInStr.hasMoreTokens()) {
@@ -30,6 +29,7 @@ public class UserController {
 		for (int a : winningNums) { // debug
 			System.out.println(a);
 		}
+		return winningNums;
 	}
 
 	public Lotto purchaseALotto() {
@@ -38,5 +38,23 @@ public class UserController {
 		return lotto;
 	}
 
+	public void purchaseLotto(int numOfLotto) {
+		int winPoint = 0;
+		for (int i = 0; i < numOfLotto; i++) {
+			Lotto lotto = purchaseALotto();
+			winPoint = compare(lotto);
+		}
+	}
+
+	public int compare(Lotto lotto) {
+		int winPoint = 0;
+		List<Integer> userNums = lotto.getLottoNums();
+		for (Integer cur : userNums){
+			if(winningLotto.getLottoNums().contains(cur)){
+				winPoint++;
+			}
+		}
+		return winPoint;
+	}
 
 }
