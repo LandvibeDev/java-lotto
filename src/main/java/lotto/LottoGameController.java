@@ -53,11 +53,14 @@ public class LottoGameController {
     }
 
     private String readInputWinningLotteryNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String lottoNumbers = Console.readLine();
         return lottoNumbers;
     }
 
     private int readInputBonusNumber() throws IllegalArgumentException {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+
         try {
             int bonus = Integer.parseInt(Console.readLine());
             return bonus;
@@ -92,6 +95,25 @@ public class LottoGameController {
         }
     }
 
+    public Score calculate(ArrayList<Lotto> lottoList, Lotto winningLotteryNumber, int bonusNumber, int money) {
+        List<Integer> winningNumbers = winningLotteryNumber.getNumbers();
+        List<Integer> counts = new ArrayList<>();
+
+        for (Lotto lotto : lottoList) {
+            List<Integer> numbers = lotto.getNumbers();
+            int count = 0;
+
+            for (Integer num : numbers) {
+                if (winningNumbers.contains(num))
+                    count++;
+            }
+            if (count >= 3) {
+                counts.add(count);
+            }
+        }
+        return new Score(counts, money);
+    }
+
     public void play() {
         int money = readInputMoney();
         checkValidMoney(money);
@@ -103,7 +125,7 @@ public class LottoGameController {
         Lotto winningLotteryNumber = generateWinningLotteryNumber(winningLotteryStr);
 
         int bonusNumber = readInputBonusNumber();
-
-
+        Score score = calculate(lottoList, winningLotteryNumber, bonusNumber, money);
+        System.out.println(score.toString());
     }
 }
