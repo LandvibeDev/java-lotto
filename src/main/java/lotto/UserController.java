@@ -32,4 +32,11 @@ public class UserController {
 		}
 	}
 
+	public Lotto purchaseALotto() {
+		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+		Lotto lotto = new Lotto(numbers);
+		return lotto;
+	}
+
+
 }
