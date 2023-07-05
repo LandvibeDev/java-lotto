@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoGameController {
@@ -35,6 +36,7 @@ public class LottoGameController {
 
     private int readInputMoney() throws IllegalArgumentException {
         try {
+            System.out.println("구입금액을 입력해 주세요.");
             int money = Integer.parseInt(Console.readLine());
             return money;
         } catch (NumberFormatException numberFormatException) {
@@ -83,11 +85,19 @@ public class LottoGameController {
         return new Lotto(lotto);
     }
 
+    public void printLottoList(ArrayList<Lotto> lottoList) {
+        System.out.println("\n" + lottoList.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottoList) {
+            System.out.println(lotto.toString());
+        }
+    }
+
     public void play() {
         int money = readInputMoney();
         checkValidMoney(money);
 
         ArrayList<Lotto> lottoList = generateLottoList(money);
+        printLottoList(lottoList);
 
         String winningLotteryStr = readInputWinningLotteryNumber();
         Lotto winningLotteryNumber = generateWinningLotteryNumber(winningLotteryStr);
