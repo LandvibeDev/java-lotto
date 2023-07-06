@@ -1,13 +1,9 @@
 package lotto;
 
-import static lotto.Constant.*;
 import static lotto.Constant.Rule.*;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
-
-import lotto.Constant.ResponseMessage;
 
 public class LottoGameAnalyzer {
 
