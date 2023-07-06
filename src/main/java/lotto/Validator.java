@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constant.ErrorMessage.*;
 import static lotto.Constant.Rule.*;
 
 import java.util.ArrayList;
@@ -11,18 +12,18 @@ public class Validator {
 	public void validatePurchaseMoney(String input) {
 		for (char digit : input.toCharArray()) {
 			if (!Character.isDigit(digit)) {
-				throw new IllegalArgumentException("[ERROR]" + " 숫자만 입력해 주세요.");
+				throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE.get());
 			}
 		}
 
 		int purchaseMoney = Integer.parseInt(input);
 
 		if (purchaseMoney < LOTTO_PRICE.get()) {
-			throw new IllegalArgumentException("[ERROR] " + purchaseMoney + "원으로 로또를 구매할 수 없습니다.");
+			throw new IllegalArgumentException(INVALID_PRICE_MESSAGE.get());
 		}
 
 		if (purchaseMoney % LOTTO_PRICE.get() != 0) {
-			throw new IllegalArgumentException("[ERROR] 로또 가격 단위로 로또를 구매할 수 없습니다.");
+			throw new IllegalArgumentException(INVALID_PRICE_MESSAGE.get());
 		}
 	}
 
@@ -33,16 +34,16 @@ public class Validator {
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
 		} catch (Exception e) {
-			throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해 주세요.");
+			throw new IllegalArgumentException(INVALID_FORMAT_MESSAGE.get());
 		}
 
 		if (winningNumbers.size() != NUMBER_SIZE.get()) {
-			throw new IllegalArgumentException("[ERROR] 올바른 개수의 번호를 입력해 주세요");
+			throw new IllegalArgumentException(INVALID_NUMBER_COUNT_MESSAGE.get());
 		}
 
 		for (int number : winningNumbers) {
 			if (number < START_NUMBER.get() || number > END_NUMBER.get()) {
-				throw new IllegalArgumentException("[ERROR] 올바른 범위의 번호를 입력해 주세요");
+				throw new IllegalArgumentException(INVALID_RANGE_MESSAGE.get());
 			}
 		}
 	}
@@ -51,12 +52,12 @@ public class Validator {
 		try {
 			Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR]" + " 숫자만 입력해 주세요.");
+			throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE.get());
 		}
 
 		int bonusNumber = Integer.parseInt(input);
 		if (bonusNumber < START_NUMBER.get() || bonusNumber > END_NUMBER.get()) {
-			throw new IllegalArgumentException("[ERROR] 올바른 범위의 번호를 입력해 주세요");
+			throw new IllegalArgumentException(INVALID_RANGE_MESSAGE.get());
 		}
 	}
 
