@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constant.*;
 import static lotto.Constant.Rule.*;
 
 import java.text.DecimalFormat;
@@ -64,7 +65,7 @@ public class LottoGameAnalyzer {
 	}
 
 	public String formatNumber(int amountOfMoney) {
-		DecimalFormat decimalFormat = new DecimalFormat("#,###");
+		DecimalFormat decimalFormat = new DecimalFormat(Format.DECIMAL_PATTERN.get());
 		String formattedNumber = decimalFormat.format(amountOfMoney);
 		return formattedNumber;
 	}
