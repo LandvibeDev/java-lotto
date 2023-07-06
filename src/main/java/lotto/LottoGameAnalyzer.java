@@ -2,8 +2,11 @@ package lotto;
 
 import static lotto.Constant.Rule.*;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
+
+import lotto.Constant.ResponseMessage;
 
 public class LottoGameAnalyzer {
 
@@ -42,15 +45,31 @@ public class LottoGameAnalyzer {
 	}
 
 	public void printWinningStatistics(Score score) {
-		System.out.println("\n당첨 통계\n---");
-		System.out.println("3개 일치 (5,000원) - " + score.getWinFifthPlace() + "개");
-		System.out.println("4개 일치 (50,000원) - " + score.getWinFourthPlace() + "개");
-		System.out.println("5개 일치 (1,500,000원) - " + score.getWinThirdPlace() + "개");
-		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + score.getWinSecondPlace() + "개");
-		System.out.println("6개 일치 (2,000,000,000원) - " + score.getWinFirstPlace() + "개");
+		System.out.println(ResponseMessage.WINNING_STATISTICS_MESSAGE);
+
+		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_5th.get(),
+			formatNumber(AMOUNT_OF_MONEY_5th.get()), score.getWinFifthPlace()));
+
+		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_4th.get(),
+			formatNumber(AMOUNT_OF_MONEY_4th.get()), score.getWinFourthPlace()));
+
+		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_3rd.get(),
+			formatNumber(AMOUNT_OF_MONEY_3rd.get()), score.getWinThirdPlace()));
+
+		System.out.println(ResponseMessage.MATCH_MESSAGE_WITH_BONUS.getMatchMessage(MATCH_COUNT_2nd.get(),
+			formatNumber(AMOUNT_OF_MONEY_2nd.get()), score.getWinSecondPlace()));
+
+		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_1st.get(),
+			formatNumber(AMOUNT_OF_MONEY_1st.get()), score.getWinFirstPlace()));
+	}
+
+	public String formatNumber(int amountOfMoney) {
+		DecimalFormat decimalFormat = new DecimalFormat("#,###");
+		String formattedNumber = decimalFormat.format(amountOfMoney);
+		return formattedNumber;
 	}
 
 	public void printRateOfReturn(double rateOfReturn) {
-		System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+		System.out.println(ResponseMessage.RATE_OF_RETURN_MESSAGE.getMessage(rateOfReturn));
 	}
 }
