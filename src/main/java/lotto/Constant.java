@@ -12,6 +12,11 @@ public class Constant {
 		AMOUNT_OF_MONEY_3rd(1500000),
 		AMOUNT_OF_MONEY_4th(50000),
 		AMOUNT_OF_MONEY_5th(5000),
+		MATCH_COUNT_1st(6),
+		MATCH_COUNT_2nd(5),
+		MATCH_COUNT_3rd(5),
+		MATCH_COUNT_4th(4),
+		MATCH_COUNT_5th(3),
 		ZERO(0),
 		ONE(1),
 		HUNDRED(100);
@@ -41,6 +46,37 @@ public class Constant {
 		public String toString() {
 			return requestMessage;
 		}
+	}
+
+	public enum ResponseMessage {
+		LOTTO_COUNT_MESSAGE("\n%d개를 구매했습니다."),
+		WINNING_STATISTICS_MESSAGE("\n당첨 통계\n---"),
+		MATCH_MESSAGE("%d개 일치 (%s원) - %d개"),
+		MATCH_MESSAGE_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
+		RATE_OF_RETURN_MESSAGE("총 수익률은 %.1f%%입니다.");
+		private final String responseMessage;
+
+		ResponseMessage(String responseMessage) {
+			this.responseMessage = responseMessage;
+		}
+
+		@Override
+		public String toString() {
+			return responseMessage;
+		}
+
+		public String getMessage(int lottoCount) {
+			return String.format(responseMessage, lottoCount);
+		}
+
+		public String getMessage(double rateOfReturn) {
+			return String.format(responseMessage, rateOfReturn);
+		}
+
+		public String getMatchMessage(int lottoCount, String price, int matchCount) {
+			return String.format(responseMessage, lottoCount, price, matchCount);
+		}
+
 	}
 
 }
