@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
 import game.NumberGame;
 
 public class LottoGame implements NumberGame {
@@ -26,5 +27,12 @@ public class LottoGame implements NumberGame {
 
 	@Override
 	public void play() {
+		inputPurchaseMoney();
+	}
+
+	private void inputPurchaseMoney() {
+		System.out.println("구입금액을 입력해 주세요.");
+		String input = Console.readLine();
+		purchaseMoney = Integer.parseInt(input);
 	}
 }
