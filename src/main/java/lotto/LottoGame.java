@@ -35,6 +35,7 @@ public class LottoGame implements NumberGame {
 		printIssuedLottoList();
 		inputWinningLotto();
 		inputBonusNumber();
+		lottoGameAnalyzer.analyze(winningLotto, bonusNumber, lottoList, purchaseMoney);
 	}
 
 	private void inputPurchaseMoney() {
