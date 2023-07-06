@@ -34,6 +34,7 @@ public class LottoGame implements NumberGame {
 		issueLotto();
 		printIssuedLottoList();
 		inputWinningLotto();
+		inputBonusNumber();
 	}
 
 	private void inputPurchaseMoney() {
@@ -68,5 +69,11 @@ public class LottoGame implements NumberGame {
 			.collect(Collectors.toList());
 
 		winningLotto = new Lotto(winningNumbers);
+	}
+
+	private void inputBonusNumber() {
+		System.out.println("\n보너스 번호를 입력해 주세요.");
+		String input = Console.readLine();
+		bonusNumber = Integer.parseInt(input);
 	}
 }
