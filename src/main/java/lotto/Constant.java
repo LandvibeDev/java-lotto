@@ -79,4 +79,22 @@ public class Constant {
 
 	}
 
+	public enum ErrorMessage {
+		ONLY_NUMBER_MESSAGE("숫자만 입력해 주세요."),
+		INVALID_PRICE_MESSAGE("로또 가격 단위로 로또를 구매할 수 없습니다."),
+		INVALID_FORMAT_MESSAGE("올바른 형식으로 입력해 주세요."),
+		INVALID_NUMBER_COUNT_MESSAGE("올바른 개수의 번호를 입력해 주세요"),
+		INVALID_RANGE_MESSAGE("올바른 범위의 번호를 입력해 주세요");
+
+		private final String errorMessage;
+
+		ErrorMessage(String errorMessage) {
+			this.errorMessage = errorMessage;
+		}
+
+		public String get() {
+			return "[ERROR] " + errorMessage;
+		}
+	}
+
 }
