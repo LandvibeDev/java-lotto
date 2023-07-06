@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Constant.Format;
 
 public class Lotto {
 	private final List<Integer> numbers;
@@ -29,7 +30,7 @@ public class Lotto {
 		return numbers.stream()
 			.sorted()
 			.map(Object::toString)
-			.collect(Collectors.joining(", ", "[", "]"));
+			.collect(Collectors.joining(Format.DELIMITER.get(), Format.PREFIX.get(), Format.SUFFIX.get()));
 	}
 
 	public List<Integer> getNumbers() {
