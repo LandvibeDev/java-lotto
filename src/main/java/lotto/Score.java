@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Score {
 	int winFirstPlace;
 	int winSecondPlace;
@@ -31,6 +34,10 @@ public class Score {
 		if (matchCount == 3) {
 			winFifthPlace++;
 		}
+	}
+
+	public List<Integer> getScoresAsList() {
+		return Arrays.asList(winFirstPlace, winSecondPlace, winThirdPlace, winFourthPlace, winFifthPlace);
 	}
 
 }
