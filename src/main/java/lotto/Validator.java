@@ -45,4 +45,17 @@ public class Validator {
 		}
 	}
 
+	public void validateBonusNumber(String input) {
+		try {
+			Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR]" + " 숫자만 입력해 주세요.");
+		}
+
+		int bonusNumber = Integer.parseInt(input);
+		if (bonusNumber < 1 || bonusNumber > 45) {
+			throw new IllegalArgumentException("[ERROR] 올바른 범위의 번호를 입력해 주세요");
+		}
+	}
+
 }
