@@ -12,7 +12,8 @@ public class UserController {
 	Lotto winningLotto;
 	int bonusNum;
 	int[] rankings;
-	int [] rewards;
+	int[] rewards;
+	long totalReward;
 
 	UserController() {
 		List<Integer> winningNums = inputWinningNumbers();
@@ -51,6 +52,7 @@ public class UserController {
 			Lotto lotto = autoLotto();
 			winPoint = compare(lotto);
 			ranking = rank(winPoint);
+			totalReward += rewards[ranking];
 		}
 	}
 
@@ -72,10 +74,14 @@ public class UserController {
 
 	public int rank(int winPoint) {
 		int ranking = 8 - winPoint;
-		rankings[ranking]++;
-		return ranking;
+		if (ranking >= 5) {
+			rankings[ranking]++;
+			return ranking;
+		}
+		return 0;
 	}
-	public void initReward(){
+
+	public void initReward() {
 		rewards[0] = 0;
 		rewards[1] = 2000000000;
 		rewards[2] = 30000000;
@@ -83,5 +89,6 @@ public class UserController {
 		rewards[4] = 50000;
 		rewards[5] = 5000;
 	}
+
 
 }
