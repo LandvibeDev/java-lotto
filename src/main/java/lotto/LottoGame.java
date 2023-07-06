@@ -29,6 +29,7 @@ public class LottoGame implements NumberGame {
 	public void play() {
 		inputPurchaseMoney();
 		calculateLottoCount();
+		issueLotto();
 	}
 
 	private void inputPurchaseMoney() {
@@ -39,5 +40,11 @@ public class LottoGame implements NumberGame {
 
 	private void calculateLottoCount() {
 		lottoCount = purchaseMoney / 1000;
+	}
+
+	private void issueLotto() {
+		for (int iterator = 0; iterator < lottoCount; iterator++) {
+			lottoList.add(new Lotto(lottoGameRule));
+		}
 	}
 }
