@@ -16,6 +16,7 @@ public class LottoGame implements NumberGame {
 	private Lotto winningLotto;
 	private int bonusNumber;
 	private LottoGameAnalyzer lottoGameAnalyzer;
+	private Validator validator;
 
 	public LottoGame(Rule lottoGameRule) {
 		purchaseMoney = 0;
@@ -25,22 +26,28 @@ public class LottoGame implements NumberGame {
 		winningLotto = new Lotto();
 		bonusNumber = 0;
 		lottoGameAnalyzer = new LottoGameAnalyzer();
+		validator = new Validator();
 	}
 
 	@Override
 	public void play() {
-		inputPurchaseMoney();
-		calculateLottoCount();
-		issueLotto();
-		printIssuedLottoList();
-		inputWinningLotto();
-		inputBonusNumber();
-		lottoGameAnalyzer.analyze(winningLotto, bonusNumber, lottoList, purchaseMoney);
+		try {
+			inputPurchaseMoney();
+			calculateLottoCount();
+			issueLotto();
+			printIssuedLottoList();
+			inputWinningLotto();
+			inputBonusNumber();
+			lottoGameAnalyzer.analyze(winningLotto, bonusNumber, lottoList, purchaseMoney);
+		} catch (IllegalArgumentException exception){
+			System.out.println(exception.getMessage());
+		}
 	}
 
 	private void inputPurchaseMoney() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String input = Console.readLine();
+		validator.validatePurchaseMoney(input);
 		purchaseMoney = Integer.parseInt(input);
 	}
 
