@@ -10,9 +10,7 @@ public class Application {
     public static void main(String[] args) throws IllegalArgumentException{
         // TODO: 프로그램 구현
         Input input=new Input();
-        int purchacePrice=0;
-        Game game=new Game(new RandomNumber(),new Input());
-
+        Game game=new Game(new RandomNumber(),new Input(),new Print());
         try {
             game.run();
         }catch (Exception e){

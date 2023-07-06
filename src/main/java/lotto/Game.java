@@ -4,81 +4,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    /*
-    int firstPlace;
-    int secondPlace;
-    int thirdPlace;
-    int fourthPlace;
-    int fifthPlace;
 
-     */
-    int [] place;
 
     private final RandomNumber randomNumber;
     private final Input input;
-    private int amount;
-    private int price;
-    Print print;
+    private final Print print;
 
 
-    Game(RandomNumber randomNumber,Input input){
+    Game(RandomNumber randomNumber,Input input,Print print){
         this.randomNumber=randomNumber;
         this.input=input;
-        /*
-        firstPlace=0;
-        secondPlace=0;
-        thirdPlace=0;
-        fourthPlace=0;
-        fifthPlace=0;
-         */
-        place=new int[5];
-        this.print=new Print();
+        this.print=print;
     }
 
+    private List<List<Integer>> getRandomNumbers(int amount) {
+        List<List<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            List<Integer> randomNumbers = randomNumber.getRandomNumber();
+            list.add(randomNumbers);
+        }
+        return list;
+    }
+    private void calculateWinCounts(int[] place, int idx, List<int[]> winCounts){
+        if(winCounts.get(idx)[0]==6){
+            place[0]++;
+            return;
+        }
+        if(winCounts.get(idx)[0]==5){
+            if(winCounts.get(idx)[1]==1){
+                place[1]++;
+                return;
+            }
+            place[2]++;
+            return;
+        }
+        if(winCounts.get(idx)[0]==4){
+            place[3]++;
+            return;
+        }
+        if(winCounts.get(idx)[0]==3){
+            place[4]++;
+        }
+    }
+    private int[] getWinCounts(List<int[]> winCounts){
+        int [] place=new int[5];
+        for(int i=0;i<winCounts.size();i++){
+            calculateWinCounts(place,i,winCounts);
+        }
+        return place;
+    }
     public void run(){
         List<int[]> winCounts=new ArrayList<>();
-        List<List<Integer>> list=new ArrayList<>();
-        price=input.getPurchacePrice();
-        amount =price/1000;
+        int price=input.getPurchacePrice();
+        int amount =price/1000;
+        List<List<Integer>> list=getRandomNumbers(amount);
         print.printAmount(amount);
+        List<Integer> winningNumber=input.getWiningNumber();
         for(int i = 0; i< amount; i++){
-            List<Integer> randomNumbers=randomNumber.getRandomNumber();
-            list.add(randomNumbers);
-            //Compare compare=new Compare(input.getInput(),randomNumbers);
-            //winCounts.add(compare.winCount(compare.compare()));
-        }
-        List<Integer> a=input.getWiningNumber();
-        for(int i = 0; i< amount; i++){
-            Compare compare=new Compare(a,list.get(i));
+            Compare compare=new Compare(winningNumber,list.get(i));
             winCounts.add(compare.winCount(compare.compare()));
         }
-        for(int i=0;i<winCounts.size();i++){
-            if(winCounts.get(i)[0]==6){
-                //firstPlace++;
-                place[0]++;
-                continue;
-            }
-            if(winCounts.get(i)[0]==5){
-                if(winCounts.get(i)[1]==1){
-                  //  secondPlace++;
-                    place[1]++;
-                    continue;
-                }
-                //thirdPlace++;
-                place[2]++;
-                continue;
-            }
-            if(winCounts.get(i)[0]==4){
-                //fourthPlace++;
-                place[3]++;
-                continue;
-            }
-            if(winCounts.get(i)[0]==3){
-                //fifthPlace++;
-                place[4]++;
-            }
-        }
+        int[] place=getWinCounts(winCounts);
         print.printResult(place,price);
     }
-
 }

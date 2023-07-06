@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.Constant.*;
+
 public class Compare {
 
     private final List<Integer> input;
@@ -16,12 +18,13 @@ public class Compare {
     }
     public List<Integer> compare() {
         List<Integer> result=new ArrayList<>();
-        for(int i=0;i<Constant.DIGITS;i++){
-            if(randomNumber.contains(input.get(i))){
+        for(int i = 0; i< DIGITS; i++){
+            Integer a=input.get(i);
+            if(randomNumber.contains(a)){
                 result.add(1);
             }
         }
-        if(randomNumber.contains(input.get(Constant.DIGITS))){
+        if(randomNumber.contains(input.get(DIGITS))){
             result.add(2);
         }
         return result;
