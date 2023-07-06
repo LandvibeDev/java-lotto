@@ -97,4 +97,22 @@ public class Constant {
 		}
 	}
 
+	public enum Format {
+
+		DELIMITER(", "),
+		PREFIX("["),
+		SUFFIX("]"),
+		REGEX(","),
+		DECIMAL_PATTERN("#,###");
+		private final String format;
+
+		Format(String format) {
+			this.format = format;
+		}
+
+		public String get() {
+			return format;
+		}
+	}
+
 }
