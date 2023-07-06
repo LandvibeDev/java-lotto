@@ -12,6 +12,7 @@ public class RandomNumber {
         while(result.size()< Constant.DIGITS){
             int randomNumber=Randoms.pickNumberInRange(Constant.MIN_BOUND,Constant.MAX_BOUND);
             result.add(randomNumber);
+
         }
         return result;
     }
