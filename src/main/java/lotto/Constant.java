@@ -60,11 +60,6 @@ public class Constant {
 			this.responseMessage = responseMessage;
 		}
 
-		@Override
-		public String toString() {
-			return responseMessage;
-		}
-
 		public String getMessage(int lottoCount) {
 			return String.format(responseMessage, lottoCount);
 		}
