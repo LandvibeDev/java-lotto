@@ -71,6 +71,7 @@ public class LottoGame implements NumberGame {
 	private void inputWinningLotto() {
 		System.out.println("\n당첨 번호를 입력해 주세요.");
 		String input = Console.readLine();
+		validator.validateWinningLotto(input);
 
 		List<Integer> winningNumbers = Arrays.stream(input.split(","))
 			.map(Integer::parseInt)
