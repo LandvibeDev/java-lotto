@@ -30,6 +30,7 @@ public class LottoGame implements NumberGame {
 		inputPurchaseMoney();
 		calculateLottoCount();
 		issueLotto();
+		printIssuedLottoList();
 	}
 
 	private void inputPurchaseMoney() {
@@ -45,6 +46,13 @@ public class LottoGame implements NumberGame {
 	private void issueLotto() {
 		for (int iterator = 0; iterator < lottoCount; iterator++) {
 			lottoList.add(new Lotto(lottoGameRule));
+		}
+	}
+
+	private void printIssuedLottoList() {
+		System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+		for (Lotto lotto : lottoList) {
+			System.out.println(lotto);
 		}
 	}
 }
