@@ -11,16 +11,14 @@ public class UserController {
 
 	Lotto winningLotto;
 	int bonusNum;
-	int first;
-	int second;
-	int third;
-	int fourth;
-	int fifth;
+
+	int[] rankings;
 
 	UserController() {
 		List<Integer> winningNums = inputWinningNumbers();
 		inputBonusNum();
 		winningLotto = new Lotto(winningNums);
+		rankings = new int[6];
 	}
 
 	public List<Integer> inputWinningNumbers() {
@@ -47,9 +45,11 @@ public class UserController {
 
 	public void purchaseLotto(int numOfLotto) {
 		int winPoint = 0;
+		int ranking = 0;
 		for (int i = 0; i < numOfLotto; i++) {
 			Lotto lotto = autoLotto();
 			winPoint = compare(lotto);
+			ranking = rank(winPoint);
 		}
 	}
 
@@ -57,14 +57,22 @@ public class UserController {
 		int winPoint = 0;
 		List<Integer> userNums = userLotto.getLottoNums();
 		List<Integer> winningNums = winningLotto.getLottoNums();
-		for (Integer cur : winningNums ) {
+		for (Integer cur : winningNums) {
 			if (userNums.contains(cur)) {
 				winPoint++;
 			}
 		}
-		if(winPoint == 6) return 7;
-		if(winPoint == 5 && userNums.contains(bonusNum)) return 6;
+		if (winPoint == 6)
+			return 7;
+		if (winPoint == 5 && userNums.contains(bonusNum))
+			return 6;
 		return winPoint;
+	}
+
+	public int rank(int winPoint) {
+		int ranking = 8 - winPoint;
+		rankings[ranking]++;
+		return ranking;
 	}
 
 }
