@@ -2,9 +2,10 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -21,7 +22,7 @@ public class UserController {
 
 	UserController() {
 		rankings = new int[6];
-		rewards = new int[] {0, 5000,50000,1500000,30000000,2000000000};
+		rewards = new int[] {0, 2000000000, 30000000, 1500000, 50000, 5000};
 		userLottos = new ArrayList<>();
 		purchaseLotto();
 		List<Integer> winningNums = inputWinningNumbers();
@@ -47,20 +48,26 @@ public class UserController {
 		System.out.println("보너스 번호를 입력해 주세요.");
 		String inStr = Console.readLine();
 		bonusNum = Integer.parseInt(inStr);
+		List<Integer> winningNums = winningLotto.getLottoNums();
+		if (winningNums.contains(bonusNum)) {
+			throw new IllegalArgumentException("[ERROR]");
+		}
 	}
 
 	public Lotto autoLotto() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-		Collections.sort(numbers);
-		System.out.println(Arrays.toString(numbers.toArray()));
-		Lotto lotto = new Lotto(numbers);
+		List<Integer> sortedNumbers = numbers.stream()
+			.sorted(Comparator.comparing(Integer::intValue))
+			.collect(Collectors.toList());
+		System.out.println(Arrays.toString(sortedNumbers.toArray()));
+		Lotto lotto = new Lotto(sortedNumbers);
 		return lotto;
 	}
 
 	public void purchaseLotto() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String inStr = Console.readLine();
-		purchaseAmount = Integer.parseInt(inStr);
+		purchaseAmount = Long.parseLong(inStr);
 		if (purchaseAmount % 1000 != 0)
 			throw new IllegalArgumentException("[ERROR]");
 		int numOfLotto = (int)(purchaseAmount / 1000L);
@@ -72,7 +79,7 @@ public class UserController {
 		}
 	}
 
-	public void checkUserLotto(){
+	public void checkUserLotto() {
 		int winPoint;
 		int ranking;
 		for (Lotto lotto : userLottos) {
@@ -81,6 +88,7 @@ public class UserController {
 			totalReward += rewards[ranking];
 		}
 	}
+
 	public int compare(Lotto userLotto) {
 		int winPoint = 0;
 		List<Integer> userNums = userLotto.getLottoNums();
@@ -106,6 +114,14 @@ public class UserController {
 		return 0;
 	}
 
+	public boolean isInteger(String inStr) {
+		for (char c : inStr.toCharArray()) {
+			if (c < '0' || c > '9')
+				return false;
+		}
+		return true;
+	}
+
 	public void printResult() {
 		double profitRatio = 0;
 		System.out.println("당첨 통계\n" + "---");
@@ -119,8 +135,8 @@ public class UserController {
 		System.out.println(rankings[2] + "개");
 		System.out.print("6개 일치 (2,000,000,000원) - ");
 		System.out.println(rankings[1] + "개");
-		profitRatio = totalReward / purchaseAmount;
-		System.out.printf("총 수익률은 %.1f", profitRatio );
+		profitRatio = ((double)totalReward / (double)purchaseAmount) * 100.0;
+		System.out.printf("총 수익률은 %.1f", profitRatio);
 		System.out.println("%입니다.");
 
 	}
