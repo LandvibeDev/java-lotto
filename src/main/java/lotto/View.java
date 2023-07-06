@@ -27,6 +27,7 @@ public class View {
 	public void printRequestBonusNumber() {
 		System.out.println(RequestMessage.REQUEST_INPUT_BONUS_NUMBER);
 	}
+
 	public void printWinningStatistics(Score score) {
 		System.out.println(ResponseMessage.WINNING_STATISTICS_MESSAGE);
 
