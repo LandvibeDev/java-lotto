@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import game.NumberGame;
@@ -31,6 +33,7 @@ public class LottoGame implements NumberGame {
 		calculateLottoCount();
 		issueLotto();
 		printIssuedLottoList();
+		inputWinningLotto();
 	}
 
 	private void inputPurchaseMoney() {
@@ -54,5 +57,16 @@ public class LottoGame implements NumberGame {
 		for (Lotto lotto : lottoList) {
 			System.out.println(lotto);
 		}
+	}
+
+	private void inputWinningLotto() {
+		System.out.println("\n당첨 번호를 입력해 주세요.");
+		String input = Console.readLine();
+
+		List<Integer> winningNumbers = Arrays.stream(input.split(","))
+			.map(Integer::parseInt)
+			.collect(Collectors.toList());
+
+		winningLotto = new Lotto(winningNumbers);
 	}
 }
