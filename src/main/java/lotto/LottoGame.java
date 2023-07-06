@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constant.Rule.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,12 +22,14 @@ public class LottoGame implements NumberGame {
 	private Validator validator;
 
 	public LottoGame(Rule lottoGameRule) {
-		purchaseMoney = 0;
-		lottoCount = 0;
-		lottoList = new ArrayList<>();
 		this.lottoGameRule = lottoGameRule;
+
+		purchaseMoney = ZERO.get();
+		lottoCount = ZERO.get();
+		bonusNumber = ZERO.get();
+
+		lottoList = new ArrayList<>();
 		winningLotto = new Lotto();
-		bonusNumber = 0;
 		lottoGameAnalyzer = new LottoGameAnalyzer();
 		validator = new Validator();
 	}
@@ -53,11 +57,11 @@ public class LottoGame implements NumberGame {
 	}
 
 	private void calculateLottoCount() {
-		lottoCount = purchaseMoney / 1000;
+		lottoCount = purchaseMoney / LOTTO_PRICE.get();
 	}
 
 	private void issueLotto() {
-		for (int iterator = 0; iterator < lottoCount; iterator++) {
+		for (int iterator = ZERO.get(); iterator < lottoCount; iterator++) {
 			lottoList.add(new Lotto(lottoGameRule));
 		}
 	}
