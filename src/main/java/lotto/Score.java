@@ -40,4 +40,23 @@ public class Score {
 		return Arrays.asList(winFirstPlace, winSecondPlace, winThirdPlace, winFourthPlace, winFifthPlace);
 	}
 
+	public int getWinFirstPlace() {
+		return winFirstPlace;
+	}
+
+	public int getWinSecondPlace() {
+		return winSecondPlace;
+	}
+
+	public int getWinThirdPlace() {
+		return winThirdPlace;
+	}
+
+	public int getWinFourthPlace() {
+		return winFourthPlace;
+	}
+
+	public int getWinFifthPlace() {
+		return winFifthPlace;
+	}
 }
