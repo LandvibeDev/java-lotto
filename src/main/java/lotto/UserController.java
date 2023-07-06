@@ -11,14 +11,15 @@ public class UserController {
 
 	Lotto winningLotto;
 	int bonusNum;
-
 	int[] rankings;
+	int [] rewards;
 
 	UserController() {
 		List<Integer> winningNums = inputWinningNumbers();
 		inputBonusNum();
 		winningLotto = new Lotto(winningNums);
 		rankings = new int[6];
+		initReward();
 	}
 
 	public List<Integer> inputWinningNumbers() {
@@ -73,6 +74,14 @@ public class UserController {
 		int ranking = 8 - winPoint;
 		rankings[ranking]++;
 		return ranking;
+	}
+	public void initReward(){
+		rewards[0] = 0;
+		rewards[1] = 2000000000;
+		rewards[2] = 30000000;
+		rewards[3] = 1500000;
+		rewards[4] = 50000;
+		rewards[5] = 5000;
 	}
 
 }
