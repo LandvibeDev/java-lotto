@@ -3,6 +3,14 @@ package lotto;
 import static lotto.Message.*;
 
 public class Print {
+    private static Print print;
+    private Print(){
+        print=new Print();
+    }
+    public static Print getInstance() {
+        return print;
+    }
+
     public int printSix(int value) {
         System.out.println(EQUAL_SIX.getValue() + value + "개");
         return 2000000000 * value;

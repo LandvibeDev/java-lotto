@@ -9,9 +9,15 @@ import static lotto.Constant.*;
 
 public class Input {
     private final Print print;
+    public static Input input;
 
-    Input() {
-        print = new Print();
+    private Input() {
+        print=Print.getInstance();
+        input=new Input();
+    }
+
+    public static Input getInstance(){
+        return input;
     }
 
     public int getPurchacePrice() {
