@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constant.Rule.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,27 +13,27 @@ public class Score {
 	int winFifthPlace;
 
 	public Score() {
-		this.winFirstPlace = 0;
-		this.winSecondPlace = 0;
-		this.winThirdPlace = 0;
-		this.winFourthPlace = 0;
-		this.winFifthPlace = 0;
+		this.winFirstPlace = ZERO.get();
+		this.winSecondPlace = ZERO.get();
+		this.winThirdPlace = ZERO.get();
+		this.winFourthPlace = ZERO.get();
+		this.winFifthPlace = ZERO.get();
 	}
 
 	public void increaseScore(int matchCount, boolean isBonusNumberMatch) {
-		if (matchCount == 6) {
+		if (matchCount == MATCH_COUNT_1st.get()) {
 			winFirstPlace++;
 		}
-		if (matchCount == 5 && isBonusNumberMatch) {
+		if (matchCount == MATCH_COUNT_2nd.get() && isBonusNumberMatch) {
 			winSecondPlace++;
 		}
-		if (matchCount == 5) {
+		if (matchCount == MATCH_COUNT_3rd.get()) {
 			winThirdPlace++;
 		}
-		if (matchCount == 4) {
+		if (matchCount == MATCH_COUNT_4th.get()) {
 			winFourthPlace++;
 		}
-		if (matchCount == 3) {
+		if (matchCount == MATCH_COUNT_5th.get()) {
 			winFifthPlace++;
 		}
 	}
