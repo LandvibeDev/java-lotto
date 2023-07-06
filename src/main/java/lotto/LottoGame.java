@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import game.NumberGame;
+import lotto.Constant.Format;
 import lotto.Constant.RequestMessage;
 import lotto.Constant.ResponseMessage;
 
@@ -80,7 +81,7 @@ public class LottoGame implements NumberGame {
 		String input = Console.readLine();
 		validator.validateWinningLotto(input);
 
-		List<Integer> winningNumbers = Arrays.stream(input.split(","))
+		List<Integer> winningNumbers = Arrays.stream(input.split(Format.REGEX.get()))
 			.map(Integer::parseInt)
 			.collect(Collectors.toList());
 
