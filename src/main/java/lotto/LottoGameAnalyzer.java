@@ -8,6 +8,8 @@ public class LottoGameAnalyzer {
 	public void analyze(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int purchaseMoney){
 		Score score = calculateScore(winningLotto, bonusNumber, lottoList);
 		double rateOfReturn = calculateReteOfReturn(purchaseMoney, score);
+		printWinningStatistics(score);
+		printRateOfReturn(rateOfReturn);
 	}
 
 	private Score calculateScore(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList) {
