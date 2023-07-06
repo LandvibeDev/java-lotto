@@ -37,13 +37,13 @@ public class LottoGameAnalyzer {
 	}
 
 	private double calculateReteOfReturn(int purchaseMoney, Score score) {
-		List<Integer> priceList = Arrays.asList(AMOUNT_OF_MONEY_1st.get(), AMOUNT_OF_MONEY_2nd.get(),
+		List<Integer> prizeList = Arrays.asList(AMOUNT_OF_MONEY_1st.get(), AMOUNT_OF_MONEY_2nd.get(),
 			AMOUNT_OF_MONEY_3rd.get(), AMOUNT_OF_MONEY_4th.get(), AMOUNT_OF_MONEY_5th.get());
 		List<Integer> scoreList = score.getScoresAsList();
 		long totalWonMoney = ZERO.get();
 
 		for (int iterator = ZERO.get(); iterator < WINNING_RANGE.get(); iterator++) {
-			totalWonMoney += scoreList.get(iterator) * priceList.get(iterator);
+			totalWonMoney += scoreList.get(iterator) * prizeList.get(iterator);
 		}
 
 		double rateOfReturn = ((double)totalWonMoney / (double)purchaseMoney) * HUNDRED.get();
