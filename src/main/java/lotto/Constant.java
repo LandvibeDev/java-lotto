@@ -6,7 +6,15 @@ public class Constant {
 		END_NUMBER(45),
 		NUMBER_SIZE(6),
 		LOTTO_PRICE(1000),
-		;
+		WINNING_RANGE(5),
+		AMOUNT_OF_MONEY_1st(2000000000),
+		AMOUNT_OF_MONEY_2nd(30000000),
+		AMOUNT_OF_MONEY_3rd(1500000),
+		AMOUNT_OF_MONEY_4th(50000),
+		AMOUNT_OF_MONEY_5th(5000),
+		ZERO(0),
+		ONE(1),
+		HUNDRED(100);
 
 		private final int number;
 
