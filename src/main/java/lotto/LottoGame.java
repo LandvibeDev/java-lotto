@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
 import game.NumberGame;
 import lotto.Constant.RequestMessage;
+import lotto.Constant.ResponseMessage;
 
 public class LottoGame implements NumberGame {
 	private int purchaseMoney;
@@ -67,7 +68,8 @@ public class LottoGame implements NumberGame {
 	}
 
 	private void printIssuedLottoList() {
-		System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+		System.out.println(ResponseMessage.LOTTO_COUNT_MESSAGE.getMessage(lottoCount));
+
 		for (Lotto lotto : lottoList) {
 			System.out.println(lotto);
 		}
