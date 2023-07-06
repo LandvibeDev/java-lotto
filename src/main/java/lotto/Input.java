@@ -12,7 +12,7 @@ public class Input {
         print=new Print();
     }
 
-    public int getPurchacePrice()throws IllegalArgumentException{
+    public int getPurchacePrice(){
         print.printGetPrice();
         String input=Console.readLine();
         validatePrice(input);
@@ -20,7 +20,7 @@ public class Input {
         return result;
     }
 
-    public List<Integer> getWiningNumber()throws IllegalArgumentException{
+    public List<Integer> getWiningNumber(){
         print.printWinningNumber();
         String input=Console.readLine();
         String[] splitResult=input.split(",");
@@ -36,15 +36,14 @@ public class Input {
         validateWinningNumber(result);
         return result;
     }
-    public void validatePrice(String input) throws IllegalArgumentException{
+    public void validatePrice(String input) {
         for(int i=0;i<input.length();i++){
             if(input.charAt(i)<Constant.MIN_BOUND_CHAR||input.charAt(i)>Constant.MAX_BOUND_CHAR){
-                System.out.println("[ERROR]");
                 throw new IllegalArgumentException("[ERROR]");
             }
         }
     }
-    public void validateWinningNumber(List<Integer> input) throws IllegalArgumentException{
+    public void validateWinningNumber(List<Integer> input) {
         for(int i=0;i<input.size();i++){
             if(input.get(i)<Constant.MIN_BOUND||input.get(i)>Constant.MAX_BOUND){
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

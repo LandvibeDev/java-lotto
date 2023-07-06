@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Game {
     /*
@@ -17,7 +16,7 @@ public class Game {
 
     private final RandomNumber randomNumber;
     private final Input input;
-    private int count;
+    private int amount;
     private int price;
     Print print;
 
@@ -31,7 +30,6 @@ public class Game {
         thirdPlace=0;
         fourthPlace=0;
         fifthPlace=0;
-
          */
         place=new int[5];
         this.print=new Print();
@@ -41,15 +39,16 @@ public class Game {
         List<int[]> winCounts=new ArrayList<>();
         List<List<Integer>> list=new ArrayList<>();
         price=input.getPurchacePrice();
-        count=price/1000;
-        for(int i=0;i<count;i++){
+        amount =price/1000;
+        print.printAmount(amount);
+        for(int i = 0; i< amount; i++){
             List<Integer> randomNumbers=randomNumber.getRandomNumber();
             list.add(randomNumbers);
             //Compare compare=new Compare(input.getInput(),randomNumbers);
             //winCounts.add(compare.winCount(compare.compare()));
         }
         List<Integer> a=input.getWiningNumber();
-        for(int i=0;i<count;i++){
+        for(int i = 0; i< amount; i++){
             Compare compare=new Compare(a,list.get(i));
             winCounts.add(compare.winCount(compare.compare()));
         }

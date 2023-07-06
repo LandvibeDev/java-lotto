@@ -4,7 +4,7 @@ public enum Message {
 
 
     INPUT_PRICE("구입 금액을 입력해 주세요."),
-    OUTPUT_AMOUNT("개를 구매했습니다"),
+    OUTPUT_AMOUNT("개를 구매했습니다."),
     INPUT_NUMBER("당첨 번호를 입력해 주세요"),
     INPUT_BONUS("보너스 번호를 입력해 주세요"),
     WINNING_RESULT("당첨 통계\n___"),

@@ -12,9 +12,11 @@ public class Application {
         Input input=new Input();
         int purchacePrice=0;
         Game game=new Game(new RandomNumber(),new Input());
+
         try {
             game.run();
         }catch (Exception e){
+            System.out.println(11);
             System.out.println(e.getMessage());
         }
     }

@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class RandomNumber {
@@ -22,7 +19,7 @@ public class RandomNumber {
 
      */
     public List<Integer> getRandomNumber(){
-        List<Integer> randomNumber=Randoms.pickUniqueNumbersInRange(Constant.MIN_BOUND,Constant.MAX_BOUND,Constant.DIGITS);
+        List<Integer> randomNumber= new ArrayList<>(Randoms.pickUniqueNumbersInRange(Constant.MIN_BOUND,Constant.MAX_BOUND,Constant.DIGITS));
         Collections.sort(randomNumber);
         System.out.println(randomNumber);
         return randomNumber;
