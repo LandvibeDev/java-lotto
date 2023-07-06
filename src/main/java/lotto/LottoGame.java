@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
 import game.NumberGame;
 import lotto.Constant.Format;
-import lotto.Constant.RequestMessage;
-import lotto.Constant.ResponseMessage;
 
 public class LottoGame implements NumberGame {
 	private int purchaseMoney;
@@ -22,6 +20,7 @@ public class LottoGame implements NumberGame {
 	private int bonusNumber;
 	private LottoGameAnalyzer lottoGameAnalyzer;
 	private Validator validator;
+	private View view;
 
 	public LottoGame(Rule lottoGameRule) {
 		this.lottoGameRule = lottoGameRule;
@@ -34,6 +33,7 @@ public class LottoGame implements NumberGame {
 		winningLotto = new Lotto();
 		lottoGameAnalyzer = new LottoGameAnalyzer();
 		validator = new Validator();
+		view = new View();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class LottoGame implements NumberGame {
 			inputPurchaseMoney();
 			calculateLottoCount();
 			issueLotto();
-			printIssuedLottoList();
+			view.printIssuedLottoList(lottoCount, lottoList);
 			inputWinningLotto();
 			inputBonusNumber();
 			lottoGameAnalyzer.analyze(winningLotto, bonusNumber, lottoList, purchaseMoney);
@@ -52,7 +52,7 @@ public class LottoGame implements NumberGame {
 	}
 
 	private void inputPurchaseMoney() {
-		System.out.println(RequestMessage.REQUEST_INPUT_PURCHASE_MONEY);
+		view.printRequestPurchaseMoney();
 		String input = Console.readLine();
 		validator.validatePurchaseMoney(input);
 		purchaseMoney = Integer.parseInt(input);
@@ -68,16 +68,8 @@ public class LottoGame implements NumberGame {
 		}
 	}
 
-	private void printIssuedLottoList() {
-		System.out.println(ResponseMessage.LOTTO_COUNT_MESSAGE.getMessage(lottoCount));
-
-		for (Lotto lotto : lottoList) {
-			System.out.println(lotto);
-		}
-	}
-
 	private void inputWinningLotto() {
-		System.out.println(RequestMessage.REQUEST_INPUT_WINNING_LOTTO);
+		view.printRequestWinningLotto();
 		String input = Console.readLine();
 		validator.validateWinningLotto(input);
 
@@ -89,7 +81,7 @@ public class LottoGame implements NumberGame {
 	}
 
 	private void inputBonusNumber() {
-		System.out.println(RequestMessage.REQUEST_INPUT_BONUS_NUMBER);
+		view.printRequestBonusNumber();
 		String input = Console.readLine();
 		validator.validateBonusNumber(input);
 		bonusNumber = Integer.parseInt(input);

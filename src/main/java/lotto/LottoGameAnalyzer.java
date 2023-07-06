@@ -11,11 +11,17 @@ import lotto.Constant.ResponseMessage;
 
 public class LottoGameAnalyzer {
 
+	private View view;
+
+	public LottoGameAnalyzer() {
+		view = new View();
+	}
+
 	public void analyze(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int purchaseMoney) {
 		Score score = calculateScore(winningLotto, bonusNumber, lottoList);
 		double rateOfReturn = calculateReteOfReturn(purchaseMoney, score);
-		printWinningStatistics(score);
-		printRateOfReturn(rateOfReturn);
+		view.printWinningStatistics(score);
+		view.printRateOfReturn(rateOfReturn);
 	}
 
 	private Score calculateScore(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList) {
@@ -43,34 +49,5 @@ public class LottoGameAnalyzer {
 		double rateOfReturn = ((double)totalWonMoney / (double)purchaseMoney) * HUNDRED.get();
 
 		return rateOfReturn;
-	}
-
-	public void printWinningStatistics(Score score) {
-		System.out.println(ResponseMessage.WINNING_STATISTICS_MESSAGE);
-
-		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_5th.get(),
-			formatNumber(AMOUNT_OF_MONEY_5th.get()), score.getWinFifthPlace()));
-
-		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_4th.get(),
-			formatNumber(AMOUNT_OF_MONEY_4th.get()), score.getWinFourthPlace()));
-
-		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_3rd.get(),
-			formatNumber(AMOUNT_OF_MONEY_3rd.get()), score.getWinThirdPlace()));
-
-		System.out.println(ResponseMessage.MATCH_MESSAGE_WITH_BONUS.getMatchMessage(MATCH_COUNT_2nd.get(),
-			formatNumber(AMOUNT_OF_MONEY_2nd.get()), score.getWinSecondPlace()));
-
-		System.out.println(ResponseMessage.MATCH_MESSAGE.getMatchMessage(MATCH_COUNT_1st.get(),
-			formatNumber(AMOUNT_OF_MONEY_1st.get()), score.getWinFirstPlace()));
-	}
-
-	public String formatNumber(int amountOfMoney) {
-		DecimalFormat decimalFormat = new DecimalFormat(Format.DECIMAL_PATTERN.get());
-		String formattedNumber = decimalFormat.format(amountOfMoney);
-		return formattedNumber;
-	}
-
-	public void printRateOfReturn(double rateOfReturn) {
-		System.out.println(ResponseMessage.RATE_OF_RETURN_MESSAGE.getMessage(rateOfReturn));
 	}
 }
