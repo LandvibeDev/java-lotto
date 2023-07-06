@@ -15,6 +15,24 @@ public class Constant {
 		public int get() {
 			return number;
 		}
-
 	}
+
+	public enum RequestMessage {
+		REQUEST_INPUT_PURCHASE_MONEY("구입금액을 입력해 주세요."),
+		REQUEST_INPUT_WINNING_LOTTO("\n당첨 번호를 입력해 주세요."),
+		REQUEST_INPUT_BONUS_NUMBER("\n보너스 번호를 입력해 주세요.")
+		;
+		private final String requestMessage;
+
+		RequestMessage(String message) {
+			this.requestMessage = message;
+		}
+
+		@Override
+		public String toString() {
+			return requestMessage;
+		}
+	}
+
+
 }
