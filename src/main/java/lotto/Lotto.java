@@ -23,4 +23,12 @@ public class Lotto {
 	public Lotto() {
 		numbers = new ArrayList<>();
 	}
+
+	@Override
+	public String toString() {
+		return numbers.stream()
+			.sorted()
+			.map(Object::toString)
+			.collect(Collectors.joining(", ", "[", "]"));
+	}
 }
