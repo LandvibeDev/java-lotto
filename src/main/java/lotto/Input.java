@@ -8,6 +8,7 @@ import java.util.List;
 public class Input {
 
     public List<Integer> getInput(){
+        System.out.println(Message.INPUT_NUMBER.getValue());
         String input=Console.readLine();
         String[] splitResult=input.split(",");
         List<Integer> result=new ArrayList<>();
@@ -15,6 +16,10 @@ public class Input {
             int oneInput=Integer.parseInt(a);
             result.add(oneInput);
         }
+        validate(result);
+        System.out.println(Message.INPUT_BONUS.getValue());
+        input=Console.readLine();
+        result.add(Integer.parseInt(input));
         validate(result);
         return result;
     }
