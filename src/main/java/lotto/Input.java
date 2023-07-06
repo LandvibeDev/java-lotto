@@ -6,9 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
+    private final Print print;
 
-    public List<Integer> getInput(){
-        System.out.println(Message.INPUT_NUMBER.getValue());
+    Input(){
+        print=new Print();
+    }
+
+    public int getPurchacePrice()throws IllegalArgumentException{
+        print.printGetPrice();
+        String input=Console.readLine();
+        validatePrice(input);
+        int result=Integer.parseInt(input);
+        return result;
+    }
+
+    public List<Integer> getWiningNumber()throws IllegalArgumentException{
+        print.printWinningNumber();
         String input=Console.readLine();
         String[] splitResult=input.split(",");
         List<Integer> result=new ArrayList<>();
@@ -16,18 +29,28 @@ public class Input {
             int oneInput=Integer.parseInt(a);
             result.add(oneInput);
         }
-        validate(result);
-        System.out.println(Message.INPUT_BONUS.getValue());
+        validateWinningNumber(result);
+        print.printBonusNumber();
         input=Console.readLine();
         result.add(Integer.parseInt(input));
-        validate(result);
+        validateWinningNumber(result);
         return result;
     }
-    public void validate(List<Integer> input){
-        for(int i=0;i<input.size();i++){
-            if(input.get(i)<Constant.MIN_BOUND||input.get(i)>Constant.MAX_BOUND){
-                throw new IllegalArgumentException();
+    public void validatePrice(String input) throws IllegalArgumentException{
+        for(int i=0;i<input.length();i++){
+            if(input.charAt(i)<Constant.MIN_BOUND_CHAR||input.charAt(i)>Constant.MAX_BOUND_CHAR){
+                System.out.println("[ERROR]");
+                throw new IllegalArgumentException("[ERROR]");
             }
         }
     }
+    public void validateWinningNumber(List<Integer> input) throws IllegalArgumentException{
+        for(int i=0;i<input.size();i++){
+            if(input.get(i)<Constant.MIN_BOUND||input.get(i)>Constant.MAX_BOUND){
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }
+    }
+
 }

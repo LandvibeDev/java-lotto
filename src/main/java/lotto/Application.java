@@ -7,15 +7,15 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException{
         // TODO: 프로그램 구현
-        System.out.println(Message.INPUT_PRICE.getValue());
-        RandomNumber randomNumber=new RandomNumber();
-        Print print=new Print();
         Input input=new Input();
-        int price= Integer.parseInt(Console.readLine());
-        print.printAmount(price/1000);
-        Game game=new Game(randomNumber,input,price);
-        game.run();
+        int purchacePrice=0;
+        Game game=new Game(new RandomNumber(),new Input());
+        try {
+            game.run();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

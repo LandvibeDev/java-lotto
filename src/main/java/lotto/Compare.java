@@ -8,13 +8,12 @@ import java.util.Set;
 public class Compare {
 
     private final List<Integer> input;
-    private final Set<Integer> randomNumber;
+    private final List<Integer> randomNumber;
 
-    Compare(List<Integer> input, Set<Integer> randomNumber) {
+    Compare(List<Integer> input, List<Integer> randomNumber) {
         this.input = input;
         this.randomNumber = randomNumber;
     }
-
     public List<Integer> compare() {
         List<Integer> result=new ArrayList<>();
         for(int i=0;i<Constant.DIGITS;i++){

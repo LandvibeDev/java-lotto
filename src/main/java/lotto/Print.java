@@ -21,10 +21,28 @@ public class Print {
         System.out.println(Message.EQUAL_THREE.getValue()+value+" 개");
         return 5000*value;
     }
-    public void printResult(int result,int price){
-        System.out.println("총 수익률은 "+(double)result/price+"입니다.");
+    public void printProfitResult(int result, int price){
+        System.out.println("총 수익률은 "+(double)result/price+"%입니다.");
     }
     public void printAmount(int amount){
         System.out.println(amount+Message.OUTPUT_AMOUNT.getValue());
+    }
+    public void printGetPrice(){
+        System.out.println(Message.INPUT_PRICE.getValue());
+    }
+    public void printWinningNumber(){
+        System.out.println(Message.INPUT_NUMBER.getValue());
+    }
+    public void printBonusNumber(){
+        System.out.println(Message.INPUT_BONUS.getValue());
+    }
+    public void printResult(int[] place,int price){
+        int result=0;
+        result+=printThree(place[4]);
+        result+=printFour(place[3]);
+        result+=printFive(place[2]);
+        result+=printFiveBonus(place[1]);
+        result+=printSix(place[0]);
+        printProfitResult(result,price);
     }
 }
