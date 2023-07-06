@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constant.*;
 import static lotto.Constant.ErrorMessage.*;
 import static lotto.Constant.Rule.*;
 
@@ -30,7 +31,7 @@ public class Validator {
 	public void validateWinningLotto(String input) {
 		List<Integer> winningNumbers = new ArrayList<>();
 		try {
-			winningNumbers = Arrays.stream(input.split(","))
+			winningNumbers = Arrays.stream(input.split(Format.REGEX.get()))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
 		} catch (Exception e) {
