@@ -12,11 +12,11 @@ public class Lotto {
 
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
+			throw new IllegalArgumentException("[ERROR]");
 		}
 		for (int n : numbers) {
 			if (n < 1 || n > 45) {
-				throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1~45 입니다. ");
+				throw new IllegalArgumentException("[ERROR]");
 			}
 		}
 	}

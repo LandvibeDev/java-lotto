@@ -1,6 +1,5 @@
 package lotto;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -11,10 +10,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class UserController {
 
 	Lotto winningLotto;
-
+	int bonusNum;
+	int first;
+	int second;
+	int third;
+	int fourth;
+	int fifth;
 
 	UserController() {
 		List<Integer> winningNums = inputWinningNumbers();
+		inputBonusNum();
 		winningLotto = new Lotto(winningNums);
 	}
 
@@ -26,13 +31,15 @@ public class UserController {
 			Integer cur = Integer.parseInt(tokenizedInStr.nextToken());
 			winningNums.add(cur);
 		}
-		for (int a : winningNums) { // debug
-			System.out.println(a);
-		}
 		return winningNums;
 	}
 
-	public Lotto purchaseALotto() {
+	public void inputBonusNum() {
+		String inStr = Console.readLine();
+		bonusNum = Integer.parseInt(inStr);
+	}
+
+	public Lotto autoLotto() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 		Lotto lotto = new Lotto(numbers);
 		return lotto;
@@ -41,19 +48,22 @@ public class UserController {
 	public void purchaseLotto(int numOfLotto) {
 		int winPoint = 0;
 		for (int i = 0; i < numOfLotto; i++) {
-			Lotto lotto = purchaseALotto();
+			Lotto lotto = autoLotto();
 			winPoint = compare(lotto);
 		}
 	}
 
-	public int compare(Lotto lotto) {
+	public int compare(Lotto userLotto) {
 		int winPoint = 0;
-		List<Integer> userNums = lotto.getLottoNums();
-		for (Integer cur : userNums){
-			if(winningLotto.getLottoNums().contains(cur)){
+		List<Integer> userNums = userLotto.getLottoNums();
+		List<Integer> winningNums = winningLotto.getLottoNums();
+		for (Integer cur : winningNums ) {
+			if (userNums.contains(cur)) {
 				winPoint++;
 			}
 		}
+		if(winPoint == 6) return 7;
+		if(winPoint == 5 && userNums.contains(bonusNum)) return 6;
 		return winPoint;
 	}
 
