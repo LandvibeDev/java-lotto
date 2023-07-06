@@ -22,7 +22,7 @@ public class Validator {
 			throw new IllegalArgumentException(INVALID_PRICE_MESSAGE.get());
 		}
 
-		if (purchaseMoney % LOTTO_PRICE.get() != 0) {
+		if (purchaseMoney % LOTTO_PRICE.get() != ZERO.get()) {
 			throw new IllegalArgumentException(INVALID_PRICE_MESSAGE.get());
 		}
 	}
