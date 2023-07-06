@@ -16,23 +16,25 @@ public class Compare {
         this.input = input;
         this.randomNumber = randomNumber;
     }
+
     public List<Integer> compare() {
-        List<Integer> result=new ArrayList<>();
-        for(int i = 0; i< DIGITS; i++){
-            Integer a=input.get(i);
-            if(randomNumber.contains(a)){
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < DIGITS; i++) {
+            Integer a = input.get(i);
+            if (randomNumber.contains(a)) {
                 result.add(1);
             }
         }
-        if(randomNumber.contains(input.get(DIGITS))){
+        if (randomNumber.contains(input.get(DIGITS))) {
             result.add(2);
         }
         return result;
     }
-    public int [] winCount(List<Integer> list){
-        int [] result=new int[2];
-        result[0]=Collections.frequency(list,1);
-        result[1]=Collections.frequency(list,2);
+
+    public int[] winCount(List<Integer> list) {
+        int[] result = new int[2];
+        result[0] = Collections.frequency(list, 1);
+        result[1] = Collections.frequency(list, 2);
         return result;
     }
 }

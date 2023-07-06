@@ -7,14 +7,13 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Application {
-    public static void main(String[] args) throws IllegalArgumentException{
+    public static void main(String[] args) throws IllegalArgumentException {
         // TODO: 프로그램 구현
-        Input input=new Input();
-        Game game=new Game(new RandomNumber(),new Input(),new Print());
+        Input input = new Input();
+        Game game = new Game(new RandomNumber(), new Input(), new Print());
         try {
             game.run();
-        }catch (Exception e){
-            System.out.println(11);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

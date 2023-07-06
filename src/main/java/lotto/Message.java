@@ -15,6 +15,12 @@ public enum Message {
     EQUAL_SIX("6개 일치 (2,000,000,000원) - ");
 
     private final String value;
-    Message(String value) { this.value = value; }
-    public String getValue() { return value; }
+
+    Message(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
