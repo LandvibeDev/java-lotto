@@ -38,6 +38,9 @@ public class UserController {
 		String inStr = Console.readLine();
 		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
 		while (tokenizedInStr.hasMoreTokens()) {
+			if (!isInteger(tokenizedInStr.nextToken())) {
+				throw new IllegalArgumentException("[ERROR]");
+			}
 			Integer cur = Integer.parseInt(tokenizedInStr.nextToken());
 			winningNums.add(cur);
 		}
@@ -47,6 +50,10 @@ public class UserController {
 	public void inputBonusNum() {
 		System.out.println("보너스 번호를 입력해 주세요.");
 		String inStr = Console.readLine();
+		if (!isInteger(inStr)) {
+			throw new IllegalArgumentException("[ERROR]");
+
+		}
 		bonusNum = Integer.parseInt(inStr);
 		List<Integer> winningNums = winningLotto.getLottoNums();
 		if (winningNums.contains(bonusNum)) {
@@ -67,6 +74,9 @@ public class UserController {
 	public void purchaseLotto() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String inStr = Console.readLine();
+		if (!isInteger(inStr)) {
+			throw new IllegalArgumentException("[ERROR]");
+		}
 		purchaseAmount = Long.parseLong(inStr);
 		if (purchaseAmount % 1000 != 0)
 			throw new IllegalArgumentException("[ERROR]");
