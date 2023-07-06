@@ -1,11 +1,13 @@
 package lotto;
 
+import static lotto.Constant.Rule.*;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoGameAnalyzer {
 
-	public void analyze(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int purchaseMoney){
+	public void analyze(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int purchaseMoney) {
 		Score score = calculateScore(winningLotto, bonusNumber, lottoList);
 		double rateOfReturn = calculateReteOfReturn(purchaseMoney, score);
 		printWinningStatistics(score);
@@ -25,15 +27,16 @@ public class LottoGameAnalyzer {
 	}
 
 	private double calculateReteOfReturn(int purchaseMoney, Score score) {
-		List<Integer> priceList = Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000);
+		List<Integer> priceList = Arrays.asList(AMOUNT_OF_MONEY_1st.get(), AMOUNT_OF_MONEY_2nd.get(),
+			AMOUNT_OF_MONEY_3rd.get(), AMOUNT_OF_MONEY_4th.get(), AMOUNT_OF_MONEY_5th.get());
 		List<Integer> scoreList = score.getScoresAsList();
-		long totalWonMoney = 0;
+		long totalWonMoney = ZERO.get();
 
-		for (int iterator = 0; iterator < 5; iterator++) {
+		for (int iterator = ZERO.get(); iterator < WINNING_RANGE.get(); iterator++) {
 			totalWonMoney += scoreList.get(iterator) * priceList.get(iterator);
 		}
 
-		double rateOfReturn = ((double)totalWonMoney / (double)purchaseMoney) * 100;
+		double rateOfReturn = ((double)totalWonMoney / (double)purchaseMoney) * HUNDRED.get();
 
 		return rateOfReturn;
 	}
@@ -47,7 +50,7 @@ public class LottoGameAnalyzer {
 		System.out.println("6개 일치 (2,000,000,000원) - " + score.getWinFirstPlace() + "개");
 	}
 
-	public void printRateOfReturn(double rateOfReturn){
+	public void printRateOfReturn(double rateOfReturn) {
 		System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
 	}
 }
