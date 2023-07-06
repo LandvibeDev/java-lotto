@@ -9,10 +9,11 @@ import static lotto.Constant.*;
 
 public class RandomNumber {
     private static RandomNumber randomNumber;
-    private RandomNumber(){
-        randomNumber=new RandomNumber();
-    }
+    private RandomNumber(){}
     public static RandomNumber getInstance() {
+        if(randomNumber==null){
+            randomNumber=new RandomNumber();
+        }
         return randomNumber;
     }
     public List<Integer> getRandomNumber() {

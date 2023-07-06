@@ -13,10 +13,12 @@ public class Input {
 
     private Input() {
         print=Print.getInstance();
-        input=new Input();
     }
 
     public static Input getInstance(){
+        if(input==null){
+            input=new Input();
+        }
         return input;
     }
 

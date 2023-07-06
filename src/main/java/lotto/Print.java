@@ -4,10 +4,11 @@ import static lotto.Message.*;
 
 public class Print {
     private static Print print;
-    private Print(){
-        print=new Print();
-    }
+    private Print(){}
     public static Print getInstance() {
+        if(print==null){
+            print=new Print();
+        }
         return print;
     }
 
