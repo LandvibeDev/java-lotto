@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
     }
 
     @Override
@@ -26,5 +26,19 @@ public class Lotto {
         return numbers.toString();
     }
 
-    // TODO: 추가 기능 구현
+    public int calculateCorrectCount(List<Integer> correctNumberList){
+        int correct=0;
+        for(int i=0; i<correctNumberList.size(); i++){
+            if(this.numbers.contains(correctNumberList.get(i))){
+                correct++;
+            }
+        }
+        return correct;
+    }
+
+    public boolean calculateBonusNumber(int bonusNumber){
+        if(this.numbers.contains(bonusNumber)) return true;
+
+        return false;
+    }
 }
