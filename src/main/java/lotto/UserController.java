@@ -38,10 +38,11 @@ public class UserController {
 		String inStr = Console.readLine();
 		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
 		while (tokenizedInStr.hasMoreTokens()) {
-			if (!isInteger(tokenizedInStr.nextToken())) {
+			String nextNum = tokenizedInStr.nextToken();
+			if (!isInteger(nextNum)) {
 				throw new IllegalArgumentException("[ERROR]");
 			}
-			Integer cur = Integer.parseInt(tokenizedInStr.nextToken());
+			Integer cur = Integer.parseInt(nextNum);
 			winningNums.add(cur);
 		}
 		return winningNums;
