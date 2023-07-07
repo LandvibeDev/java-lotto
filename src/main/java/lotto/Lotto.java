@@ -26,7 +26,7 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public int calculateCorrectCount(List<Integer> correctNumberList){
+    /*public int calculateCorrectCount(List<Integer> correctNumberList){
         int correct=0;
         for(int i=0; i<correctNumberList.size(); i++){
             if(this.numbers.contains(correctNumberList.get(i))){
@@ -40,5 +40,5 @@ public class Lotto {
         if(this.numbers.contains(bonusNumber)) return true;
 
         return false;
-    }
+    }*/
 }
