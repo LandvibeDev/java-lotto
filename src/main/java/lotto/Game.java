@@ -58,7 +58,7 @@ public class Game {
 
     public void run() {
         List<int[]> winCounts = new ArrayList<>();
-        int price = input.getPurchacePrice();
+        int price = input.getPurchasePrice();
         int amount = price / 1000;
         List<List<Integer>> list = getRandomNumbers(amount);
         print.printAmountMessage(amount);

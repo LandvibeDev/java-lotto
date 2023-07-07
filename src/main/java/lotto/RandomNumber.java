@@ -9,13 +9,17 @@ import static lotto.Constant.*;
 
 public class RandomNumber {
     private static RandomNumber randomNumber;
-    private RandomNumber(){}
+
+    private RandomNumber() {
+    }
+
     public static RandomNumber getInstance() {
-        if(randomNumber==null){
-            randomNumber=new RandomNumber();
+        if (randomNumber == null) {
+            randomNumber = new RandomNumber();
         }
         return randomNumber;
     }
+
     public List<Integer> getRandomNumber() {
         List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_BOUND, MAX_BOUND, DIGITS));
         Collections.sort(randomNumber);

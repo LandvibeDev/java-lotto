@@ -12,17 +12,17 @@ public class Input {
     public static Input input;
 
     private Input() {
-        print=Print.getInstance();
+        print = Print.getInstance();
     }
 
-    public static Input getInstance(){
-        if(input==null){
-            input=new Input();
+    public static Input getInstance() {
+        if (input == null) {
+            input = new Input();
         }
         return input;
     }
 
-    public int getPurchacePrice() {
+    public int getPurchasePrice() {
         print.printGetPriceMessage();
         String input = Console.readLine();
         validatePrice(input);

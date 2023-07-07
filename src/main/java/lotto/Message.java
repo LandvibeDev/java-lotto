@@ -12,7 +12,8 @@ public enum Message {
     EQUAL_FOUR("4개 일치 (50,000원) - "),
     EQUAL_FIVE("5개 일치 (1,500,000원) - "),
     EQUAL_FIVE_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    EQUAL_SIX("6개 일치 (2,000,000,000원) - ");
+    EQUAL_SIX("6개 일치 (2,000,000,000원) - "),
+    PROFIT_RESULT("총 수익률은 ");
 
     private final String value;
 
@@ -22,5 +23,13 @@ public enum Message {
 
     public String getValue() {
         return value;
+    }
+
+    public String getEqualValue(int x) {
+        return value + x + "개";
+    }
+
+    public String getProfitValue(int result, int price) {
+        return value + 100 * ((double) result / price) + "%입니다.";
     }
 }

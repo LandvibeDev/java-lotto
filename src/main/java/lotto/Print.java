@@ -4,41 +4,44 @@ import static lotto.Message.*;
 
 public class Print {
     private static Print print;
-    private Print(){}
+
+    private Print() {
+    }
+
     public static Print getInstance() {
-        if(print==null){
-            print=new Print();
+        if (print == null) {
+            print = new Print();
         }
         return print;
     }
 
     public int printSix(int value) {
-        System.out.println(EQUAL_SIX.getValue() + value + "개");
+        System.out.println(EQUAL_SIX.getEqualValue(value));
         return 2000000000 * value;
     }
 
     public int printFive(int value) {
-        System.out.println(EQUAL_FIVE.getValue() + value + "개");
+        System.out.println(EQUAL_FIVE.getEqualValue(value));
         return 1500000 * value;
     }
 
     public int printFiveBonus(int value) {
-        System.out.println(EQUAL_FIVE_BONUS.getValue() + value + "개");
+        System.out.println(EQUAL_FIVE_BONUS.getEqualValue(value));
         return 30000000 * value;
     }
 
     public int printFour(int value) {
-        System.out.println(EQUAL_FOUR.getValue() + value + "개");
+        System.out.println(EQUAL_FOUR.getEqualValue(value));
         return 50000 * value;
     }
 
     public int printThree(int value) {
-        System.out.println(EQUAL_THREE.getValue() + value + "개");
+        System.out.println(EQUAL_THREE.getEqualValue(value));
         return 5000 * value;
     }
 
     public void printProfitResultMessage(int result, int price) {
-        System.out.println("총 수익률은 " + 100 * ((double) result / price) + "%입니다.");
+        System.out.println(PROFIT_RESULT.getProfitValue(result, price));
     }
 
     public void printAmountMessage(int amount) {
