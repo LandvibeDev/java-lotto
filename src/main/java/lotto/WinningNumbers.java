@@ -38,6 +38,13 @@ public class WinningNumbers {
 
     private void setBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = Integer.parseInt(Console.readLine());
+        String bonusNumberstr = Console.readLine();
+        int bonusNumberint = Integer.parseInt(bonusNumberstr);
+
+        ExceptionController.noValidAmountException(bonusNumberstr);
+        ExceptionController.noIntegerValueException(bonusNumberstr);
+        ExceptionController.overlapNumberException(winningNumberslist, bonusNumberint);
+
+        bonusNumber = bonusNumberint;
     }
 }
