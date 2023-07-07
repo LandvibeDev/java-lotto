@@ -79,8 +79,9 @@ public class UserController {
 			throw new IllegalArgumentException("[ERROR]");
 		}
 		purchaseAmount = Long.parseLong(inStr);
-		if (purchaseAmount % 1000 != 0)
+		if (purchaseAmount % 1000 != 0) {
 			throw new IllegalArgumentException("[ERROR]");
+		}
 		int numOfLotto = (int)(purchaseAmount / 1000L);
 
 		System.out.println(numOfLotto + "개를 구매했습니다.");
