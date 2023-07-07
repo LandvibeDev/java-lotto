@@ -20,5 +20,9 @@ public class LottoGame {
     public void run(){
         lottoList = new LottoList(coin);
         winningNumbers = new WinningNumbers();
+
+        Calculator calculator = new Calculator(lottoList, winningNumbers);
+        calculator.printResult();
+        calculator.printIncomeRate(coin);
     }
 }
