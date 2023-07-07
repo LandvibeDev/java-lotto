@@ -1,4 +1,4 @@
-package lotto;
+package lotto.number;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]" + " 중복되지 않게 수를 입력하세요. generateWinningLotteryNumber error");
+            throw new IllegalArgumentException("[ERROR]" + " 중복되지 않게 수를 입력하세요.");
         }
     }
 

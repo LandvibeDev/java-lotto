@@ -1,7 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.number.Lotto;
+import lotto.number.NumberManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,22 +10,13 @@ import java.util.List;
 
 public class LottoGameController implements GameController {
 
-    public Lotto generateOne() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(lotto);
+    private final NumberManager numberManager;
+
+    public LottoGameController(NumberManager numberManager) {
+        this.numberManager = numberManager;
     }
 
-    public List<Lotto> generateLottoList(int money) {
-        List<Lotto> lottoList = new ArrayList<>();
-
-        int count = money / 1000;
-        for (int i = 0; i < count; i++) {
-            lottoList.add(generateOne());
-        }
-
-        return lottoList;
-    }
-
+    @Override
     public String readInput(String message) {
         System.out.println(message);
 
@@ -37,15 +29,16 @@ public class LottoGameController implements GameController {
         try {
             money = Integer.parseInt(moneyString);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR]" + " 정수를 입력하세요.");
-        }
+            throw new IllegalArgumentException("[ERROR]" + " 정수를 입력하세요."); // error enum class 만들기
+        } // NumberValidator - interface - 여기 따로 빼기
 
-        if (money % 1000 != 0) {
+        if (money % 1000 != 0) { // (로또 가격) -> enum
             throw new IllegalArgumentException("[ERROR]" + "  1000원 단위로 구입 금액을 입력하세요.");
-        }
+        } // 구체 클래스에 구현 ? - dip 깨지는데 ..
         return money;
     }
 
+    //parseInput 클래스로 바꾸기 + valid 따로 빼기
     public Lotto generateWinningLotteryNumber(String winningLotteryStr) throws IllegalArgumentException {
         List<Integer> lotto = new ArrayList<>();
         String[] numbers = winningLotteryStr.split(",");
@@ -69,6 +62,7 @@ public class LottoGameController implements GameController {
         return new Lotto(lotto);
     }
 
+    // readInput으로 바꾸고, 숫자로 변환하는 함수로 하나 따로 빼고, valid 로직 따로 빼기
     public int readInputBonusNumber(List<Lotto> lottoList) throws IllegalArgumentException {
         System.out.println("\n보너스 번호를 입력해 주세요.");
 
@@ -98,6 +92,7 @@ public class LottoGameController implements GameController {
         }
     }
 
+    //numberManager - interface - 비교대상, int ...
     public Score calculate(List<Lotto> lottoList, Lotto winningLotteryNumber, int bonusNumber, int money) {
         List<Integer> winningNumbers = winningLotteryNumber.getNumbers();
         ArrayList<Integer> counts = new ArrayList<>(Collections.nCopies(10, 0));
@@ -140,7 +135,7 @@ public class LottoGameController implements GameController {
             return;
         }
 
-        List<Lotto> lottoList = generateLottoList(money);
+        List<Lotto> lottoList = numberManager.generateList(1, 45, 6, money / 1000); // enum
         printLottoList(lottoList);
 
         String winningLotteryStr = readInput("\n당첨 번호를 입력해 주세요.");
