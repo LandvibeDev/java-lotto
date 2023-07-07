@@ -1,16 +1,14 @@
 package lotto;
 
+import static lotto.SettingValues.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
-public class UserController {
+public class UserController implements Machine {
 
 	Lotto winningLotto;
 	List<Lotto> userLottos;
@@ -19,11 +17,18 @@ public class UserController {
 	int[] rankings;
 	int[] rewards;
 	long totalReward;
+	AutoLottoMachine autoLottoMachine;
 
 	UserController() {
 		rankings = new int[6];
 		rewards = new int[] {0, 2000000000, 30000000, 1500000, 50000, 5000};
 		userLottos = new ArrayList<>();
+		autoLottoMachine = new AutoLottoMachine();
+	}
+
+	@Override
+	public void run(){
+		autoLottoMachine.run();
 		purchaseLotto();
 		List<Integer> winningNums = inputWinningNumbers();
 		winningLotto = new Lotto(winningNums);
@@ -31,7 +36,6 @@ public class UserController {
 		checkUserLotto();
 		printResult();
 	}
-
 	public List<Integer> inputWinningNumbers() {
 		System.out.println("당첨 번호를 입력해 주세요.");
 		List<Integer> winningNums = new ArrayList<Integer>();
@@ -39,7 +43,7 @@ public class UserController {
 		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
 		while (tokenizedInStr.hasMoreTokens()) {
 			String nextNum = tokenizedInStr.nextToken();
-			if (!isInteger(nextNum)) {
+			if (isNotInteger(nextNum)) {
 				throw new IllegalArgumentException("[ERROR]");
 			}
 			Integer cur = Integer.parseInt(nextNum);
@@ -51,7 +55,7 @@ public class UserController {
 	public void inputBonusNum() {
 		System.out.println("보너스 번호를 입력해 주세요.");
 		String inStr = Console.readLine();
-		if (!isInteger(inStr)) {
+		if (isNotInteger(inStr)) {
 			throw new IllegalArgumentException("[ERROR]");
 
 		}
@@ -62,31 +66,23 @@ public class UserController {
 		}
 	}
 
-	public Lotto autoLotto() {
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-		List<Integer> sortedNumbers = numbers.stream()
-			.sorted(Comparator.comparing(Integer::intValue))
-			.collect(Collectors.toList());
-		System.out.println(Arrays.toString(sortedNumbers.toArray()));
-		Lotto lotto = new Lotto(sortedNumbers);
-		return lotto;
-	}
+
 
 	public void purchaseLotto() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String inStr = Console.readLine();
-		if (!isInteger(inStr)) {
+		if (isNotInteger(inStr)) {
 			throw new IllegalArgumentException("[ERROR]");
 		}
 		purchaseAmount = Long.parseLong(inStr);
-		if (purchaseAmount % 1000 != 0) {
+		if (purchaseAmount % PRICE_OF_LOTTO.get() != 0) {
 			throw new IllegalArgumentException("[ERROR]");
 		}
 		int numOfLotto = (int)(purchaseAmount / 1000L);
 
 		System.out.println(numOfLotto + "개를 구매했습니다.");
 		for (int i = 0; i < numOfLotto; i++) {
-			Lotto lotto = autoLotto();
+			Lotto lotto = autoLottoMachine.getAutoLotto();
 			userLottos.add(lotto);
 		}
 	}
@@ -126,12 +122,12 @@ public class UserController {
 		return 0;
 	}
 
-	public boolean isInteger(String inStr) {
+	public boolean isNotInteger(String inStr) {
 		for (char c : inStr.toCharArray()) {
 			if (c < '0' || c > '9')
-				return false;
+				return true;
 		}
-		return true;
+		return false;
 	}
 
 	public void printResult() {
