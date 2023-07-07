@@ -6,62 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.Constant.*;
+import static lotto.Constant.MAX_BOUND;
 
-public class Input {
-    private final Print print;
-    public static Input input;
+public interface Input {
 
-    private Input() {
-        print = Print.getInstance();
-    }
+    public int getPurchasePrice();
 
-    public static Input getInstance() {
-        if (input == null) {
-            input = new Input();
-        }
-        return input;
-    }
+    public List<Integer> getWiningNumber();
 
-    public int getPurchasePrice() {
-        print.printGetPriceMessage();
-        String input = Console.readLine();
-        validatePrice(input);
-        int result = Integer.parseInt(input);
-        return result;
-    }
+    public void validatePrice(String input);
 
-    public List<Integer> getWiningNumber() {
-        print.printWinningNumberMessage();
-        String input = Console.readLine();
-        String[] splitResult = input.split(",");
-        List<Integer> result = new ArrayList<>();
-        for (String oneSplitResult : splitResult) {
-            int oneInput = Integer.parseInt(oneSplitResult);
-            result.add(oneInput);
-        }
-        validateWinningNumber(result);
-        print.printBonusNumberMessage();
-        input = Console.readLine();
-        result.add(Integer.parseInt(input));
-        validateWinningNumber(result);
-        return result;
-    }
-
-    private void validatePrice(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) < MIN_BOUND_CHAR || input.charAt(i) > MAX_BOUND_CHAR) {
-                throw new IllegalArgumentException("[ERROR]");
-            }
-        }
-    }
-
-    private void validateWinningNumber(List<Integer> input) {
-        for (int i = 0; i < input.size(); i++) {
-            if (input.get(i) < MIN_BOUND || input.get(i) > MAX_BOUND) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                throw new IllegalArgumentException("[ERROR]");
-            }
-        }
-    }
-
+    public void validateWinningNumber(List<Integer> input);
 }
