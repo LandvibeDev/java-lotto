@@ -7,13 +7,15 @@ import java.util.List;
 
 public class WinningNumbers {
     List<Integer> winningNumberslist = new ArrayList<>();
+    int bonusNumber;
 
     WinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbers = Console.readLine();
         setWinningNumberslist(winningNumbers);
+        setBonusNumber();
     }
-    public void setWinningNumberslist(String winningNumbers){
+    private void setWinningNumberslist(String winningNumbers){
         String correctString = "";
 
         for(int i=0; i<winningNumbers.length(); i++){
@@ -32,5 +34,10 @@ public class WinningNumbers {
             correctString += tmp;
             ExceptionController.noIntegerValueException(correctString);
         }
+    }
+
+    private void setBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
     }
 }
