@@ -3,23 +3,22 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoGame {
-    ExceptionController exceptionController = new ExceptionController();
-    public void run(){
-        int amount = getPurchaseAmount();
-        LottoList lottoList = new LottoList(amount/1000);
-        lottoList.setLottoList();
-    }
+    LottoList lottoList;
+    WinningNumbers winningNumbers;
+    int coin;
 
-    public int getPurchaseAmount(){
+    LottoGame(){
         System.out.println("구입금액을 입력해 주세요.");
-
         String amount = Console.readLine();
-        exceptionController.noIntegerValueExeption(amount);
-        exceptionController.noValidAmount(amount);
 
-        return Integer.parseInt(amount);
+        ExceptionController.noIntegerValueException(amount);
+        ExceptionController.noValidAmountException(amount);
+
+        coin = Integer.parseInt(amount)/1000;
     }
 
-
-
+    public void run(){
+        lottoList = new LottoList(coin);
+        winningNumbers = new WinningNumbers();
+    }
 }
