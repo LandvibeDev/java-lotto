@@ -1,15 +1,15 @@
 package lotto.print;
 
 public interface Print {
-    public int printSix(int value);
+    public int printSixMatch(int value);
 
-    public int printFive(int value);
+    public int printFiveMatch(int value);
 
-    public int printFiveBonus(int value);
+    public int printFiveBonusMatch(int value);
 
-    public int printFour(int value);
+    public int printFourMatch(int value);
 
-    public int printThree(int value);
+    public int printThreeMatch(int value);
 
     public void printProfitResultMessage(int result, int price);
 

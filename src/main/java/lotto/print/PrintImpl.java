@@ -1,5 +1,8 @@
 package lotto.print;
 
+import lotto.constant.Constant;
+
+import static lotto.constant.Constant.*;
 import static lotto.constant.Message.*;
 
 public class PrintImpl implements Print {
@@ -17,32 +20,32 @@ public class PrintImpl implements Print {
     }
 
     @Override
-    public int printSix(int value) {
-        System.out.println(EQUAL_SIX.getEqualValue(value));
+    public int printSixMatch(int value) {
+        System.out.println(MATCH_SIX.getMATCHValue(value));
         return 2000000000 * value;
     }
 
     @Override
-    public int printFive(int value) {
-        System.out.println(EQUAL_FIVE.getEqualValue(value));
+    public int printFiveMatch(int value) {
+        System.out.println(MATCH_FIVE.getMATCHValue(value));
         return 1500000 * value;
     }
 
     @Override
-    public int printFiveBonus(int value) {
-        System.out.println(EQUAL_FIVE_BONUS.getEqualValue(value));
+    public int printFiveBonusMatch(int value) {
+        System.out.println(MATCH_FIVE_BONUS.getMATCHValue(value));
         return 30000000 * value;
     }
 
     @Override
-    public int printFour(int value) {
-        System.out.println(EQUAL_FOUR.getEqualValue(value));
+    public int printFourMatch(int value) {
+        System.out.println(MATCH_FOUR.getMATCHValue(value));
         return 50000 * value;
     }
 
     @Override
-    public int printThree(int value) {
-        System.out.println(EQUAL_THREE.getEqualValue(value));
+    public int printThreeMatch(int value) {
+        System.out.println(MATCH_THREE.getMATCHValue(value));
         return 5000 * value;
     }
 
@@ -74,11 +77,11 @@ public class PrintImpl implements Print {
     @Override
     public void printResult(int[] place, int price) {
         int result = 0;
-        result += printThree(place[4]);
-        result += printFour(place[3]);
-        result += printFive(place[2]);
-        result += printFiveBonus(place[1]);
-        result += printSix(place[0]);
+        result += printThreeMatch(place[FIFTH_PLACE_IDX]);
+        result += printFourMatch(place[FOURTH_PLACE_IDX]);
+        result += printFiveMatch(place[THIRD_PLACE_IDX]);
+        result += printFiveBonusMatch(place[SECOND_PLACE_IDX]);
+        result += printSixMatch(place[FIRST_PLACE_IDX]);
         printProfitResultMessage(result, price);
     }
 

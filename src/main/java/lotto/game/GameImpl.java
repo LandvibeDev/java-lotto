@@ -2,12 +2,15 @@ package lotto.game;
 
 import lotto.compare.Compare;
 import lotto.compare.CompareImpl;
+import lotto.constant.Constant;
 import lotto.input.Input;
 import lotto.print.Print;
 import lotto.randomNumber.RandomNumber;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.constant.Constant.*;
 
 public class GameImpl implements Game {
 
@@ -36,27 +39,27 @@ public class GameImpl implements Game {
 
     @Override
     public int[] getWinCounts(List<List<Integer>> winCounts) {
-        int[] place = new int[5];
+        int[] place = new int[TOTAL_PLACES];
         for (List<Integer> winCount : winCounts) {
-            int count = winCount.get(0);
-            if (count == 6) {
-                place[0]++;
+            int count = winCount.get(MATCH_COUNT_IDX);//보너스 숫자 제외 맞춘 숫자 갯수
+            if (count == FIRST_PLACE_COUNT) {
+                place[FIRST_PLACE_IDX]++;
                 continue;
             }
-            if (count == 5) {
-                if (winCount.get(1) == 1) {
-                    place[1]++;
+            if (count == SECOND_PLACE_COUNT) {
+                if (winCount.get(BONUS_MATCH_COUNT_IDX) == BONUS_COUNT) {//보너스 숫자 맞춘 갯수
+                    place[SECOND_PLACE_IDX]++;
                     continue;
                 }
-                place[2]++;
+                place[THIRD_PLACE_IDX]++;
                 continue;
             }
-            if (count == 4) {
-                place[3]++;
+            if (count == FOURTH_PLACE_COUNT) {
+                place[FOURTH_PLACE_IDX]++;
                 continue;
             }
-            if (count == 3) {
-                place[4]++;
+            if (count == FIFTH_PLACE_COUNT) {
+                place[FIFTH_PLACE_IDX]++;
             }
         }
         return place;
@@ -73,7 +76,6 @@ public class GameImpl implements Game {
         for (List<Integer> randomNumber : randomNumberList) {
             compare = new CompareImpl(winningNumber, randomNumber);
             List<Integer> winCountResult = compare.compare();
-            ;
             winCounts.add(winCountResult);
         }
         int[] place = getWinCounts(winCounts);

@@ -38,8 +38,8 @@ public class CompareImpl implements Compare {
     @Override
     public int[] winCount(List<Integer> list) {
         int[] result = new int[2];
-        result[0] = Collections.frequency(list, 1);
-        result[1] = Collections.frequency(list, 2);
+        result[MATCH_COUNT_IDX] = Collections.frequency(list, MATCH_NUMBER);
+        result[BONUS_MATCH_COUNT_IDX] = Collections.frequency(list, BONUS_MATCH_NUMBER);
         return result;
     }
 }
