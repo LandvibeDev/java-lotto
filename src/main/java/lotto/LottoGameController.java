@@ -25,11 +25,11 @@ public class LottoGameController implements GameController {
         return lottoList;
     }
 
-    public String readInputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public String readInput(String message) {
+        System.out.println(message);
 
-        String inputMoneyString = Console.readLine();
-        return inputMoneyString;
+        String input = Console.readLine();
+        return input;
     }
 
     public int checkValidMoney(String moneyString) throws IllegalArgumentException {
@@ -44,13 +44,6 @@ public class LottoGameController implements GameController {
             throw new IllegalArgumentException("[ERROR]" + "  1000원 단위로 구입 금액을 입력하세요.");
         }
         return money;
-    }
-
-    public String readInputWinningLotteryNumber() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-
-        String lottoNumbers = Console.readLine();
-        return lottoNumbers;
     }
 
     public Lotto generateWinningLotteryNumber(String winningLotteryStr) throws IllegalArgumentException {
@@ -136,12 +129,12 @@ public class LottoGameController implements GameController {
 
     @Override
     public void play() {
-        String moneyString;
-        moneyString = readInputMoney();
+        String moneyStr;
+        moneyStr = readInput("구입금액을 입력해 주세요.");
 
         int money;
         try {
-            money = checkValidMoney(moneyString);
+            money = checkValidMoney(moneyStr);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return;
@@ -150,7 +143,7 @@ public class LottoGameController implements GameController {
         List<Lotto> lottoList = generateLottoList(money);
         printLottoList(lottoList);
 
-        String winningLotteryStr = readInputWinningLotteryNumber();
+        String winningLotteryStr = readInput("\n당첨 번호를 입력해 주세요.");
         Lotto winningLotteryNumber;
 
         try {
