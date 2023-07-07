@@ -6,13 +6,15 @@ import java.util.List;
 
 public class LottoList {
     Lotto[] lottos;
-    int coin;
+
     LottoList(int coin){
-        this.coin = coin;
+        System.out.println(coin + "개를 구매했습니다.");
+
         this.lottos = new Lotto[coin];
+        printLottoList(coin);
     }
 
-    public void setLottoList() {
+    public void printLottoList(int coin) {
         for (int i = 0; i < coin; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos[i] = new Lotto(numbers);
