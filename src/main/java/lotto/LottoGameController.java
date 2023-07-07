@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoGameController {
+public class LottoGameController implements GameController {
 
-    private Lotto generateOne() {
+    public Lotto generateOne() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lotto);
     }
 
-    public ArrayList<Lotto> generateLottoList(int money) {
-        ArrayList<Lotto> lottoList = new ArrayList<>();
+    public List<Lotto> generateLottoList(int money) {
+        List<Lotto> lottoList = new ArrayList<>();
 
         int count = money / 1000;
         for (int i = 0; i < count; i++) {
@@ -25,23 +25,25 @@ public class LottoGameController {
         return lottoList;
     }
 
-    public int readInputMoney() throws IllegalArgumentException {
+    public String readInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        int money;
-        try {
-            String str = Console.readLine();
-            money = Integer.parseInt(str);
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
-        }
-        return money;
+        String inputMoneyString = Console.readLine();
+        return inputMoneyString;
     }
 
-    public void checkValidMoney(int money) throws IllegalArgumentException {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException();
+    public int checkValidMoney(String moneyString) throws IllegalArgumentException {
+        int money;
+        try {
+            money = Integer.parseInt(moneyString);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR]" + " 정수를 입력하세요.");
         }
+
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR]" + "  1000원 단위로 구입 금액을 입력하세요.");
+        }
+        return money;
     }
 
     public String readInputWinningLotteryNumber() {
@@ -74,7 +76,7 @@ public class LottoGameController {
         return new Lotto(lotto);
     }
 
-    public int readInputBonusNumber(ArrayList<Lotto> lottoList) throws IllegalArgumentException {
+    public int readInputBonusNumber(List<Lotto> lottoList) throws IllegalArgumentException {
         System.out.println("\n보너스 번호를 입력해 주세요.");
 
         int bonus;
@@ -95,7 +97,7 @@ public class LottoGameController {
         return bonus;
     }
 
-    public void printLottoList(ArrayList<Lotto> lottoList) {
+    public void printLottoList(List<Lotto> lottoList) {
         System.out.println("\n" + lottoList.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoList) {
@@ -103,7 +105,7 @@ public class LottoGameController {
         }
     }
 
-    public Score calculate(ArrayList<Lotto> lottoList, Lotto winningLotteryNumber, int bonusNumber, int money) {
+    public Score calculate(List<Lotto> lottoList, Lotto winningLotteryNumber, int bonusNumber, int money) {
         List<Integer> winningNumbers = winningLotteryNumber.getNumbers();
         ArrayList<Integer> counts = new ArrayList<>(Collections.nCopies(10, 0));
 
@@ -132,24 +134,20 @@ public class LottoGameController {
         return new Score(counts, money);
     }
 
+    @Override
     public void play() {
+        String moneyString;
+        moneyString = readInputMoney();
+
         int money;
-
         try {
-            money = readInputMoney();
+            money = checkValidMoney(moneyString);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println("[ERROR]" + " 정수를 입력하세요. at readInputMoney ");
+            System.out.println(illegalArgumentException.getMessage());
             return;
         }
 
-        try {
-            checkValidMoney(money);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println("[ERROR]" + " 1000원 단위로 구입 금액을 입력하세요. checkValidMoney error");
-            return;
-        }
-
-        ArrayList<Lotto> lottoList = generateLottoList(money);
+        List<Lotto> lottoList = generateLottoList(money);
         printLottoList(lottoList);
 
         String winningLotteryStr = readInputWinningLotteryNumber();
@@ -173,4 +171,5 @@ public class LottoGameController {
         Score score = calculate(lottoList, winningLotteryNumber, bonusNumber, money);
         System.out.println(score.toString());
     }
+
 }
