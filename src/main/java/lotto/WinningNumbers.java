@@ -41,8 +41,8 @@ public class WinningNumbers {
         String bonusNumberstr = Console.readLine();
         int bonusNumberint = Integer.parseInt(bonusNumberstr);
 
-        ExceptionController.noValidAmountException(bonusNumberstr);
         ExceptionController.noIntegerValueException(bonusNumberstr);
+        ExceptionController.noValidLottoNumberException(bonusNumberint);
         ExceptionController.overlapNumberException(winningNumberslist, bonusNumberint);
 
         bonusNumber = bonusNumberint;
