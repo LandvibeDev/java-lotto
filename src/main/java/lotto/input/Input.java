@@ -1,12 +1,6 @@
-package lotto;
+package lotto.input;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import static lotto.Constant.*;
-import static lotto.Constant.MAX_BOUND;
 
 public interface Input {
 

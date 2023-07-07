@@ -1,8 +1,8 @@
-package lotto;
+package lotto.print;
 
-import static lotto.Message.*;
+import static lotto.constant.Message.*;
 
-public class PrintImpl implements Print{
+public class PrintImpl implements Print {
     private static PrintImpl print;
 
     private PrintImpl() {

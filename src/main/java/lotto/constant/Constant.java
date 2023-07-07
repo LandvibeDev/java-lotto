@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public class Constant {
     public final static int DIGITS = 6;

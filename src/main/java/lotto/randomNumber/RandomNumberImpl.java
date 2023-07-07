@@ -1,10 +1,10 @@
-package lotto;
+package lotto.randomNumber;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 
-import static lotto.Constant.*;
+import static lotto.constant.Constant.*;
 
 
 public class RandomNumberImpl implements RandomNumber {

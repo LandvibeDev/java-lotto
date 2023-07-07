@@ -1,11 +1,13 @@
-package lotto;
+package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.print.Print;
+import lotto.print.PrintImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.Constant.*;
+import static lotto.constant.Constant.*;
 
 public class InputImpl implements Input {
     private final Print print;
@@ -62,7 +64,7 @@ public class InputImpl implements Input {
     public void validateWinningNumber(List<Integer> input) {
         for (int i = 0; i < input.size(); i++) {
             if (input.get(i) < MIN_BOUND || input.get(i) > MAX_BOUND) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
                 throw new IllegalArgumentException("[ERROR]");
             }
         }

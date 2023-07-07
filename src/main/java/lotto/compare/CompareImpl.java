@@ -1,33 +1,37 @@
-package lotto;
+package lotto.compare;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Constant.*;
+import static lotto.constant.Constant.*;
 
 public class CompareImpl implements Compare {
 
     private final List<Integer> input;
     private final List<Integer> randomNumber;
 
-    CompareImpl(List<Integer> input, List<Integer> randomNumber) {
+    public CompareImpl(List<Integer> input, List<Integer> randomNumber) {
         this.input = input;
         this.randomNumber = randomNumber;
     }
 
     @Override
     public List<Integer> compare() {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result;
+        int correct = 0;
+        int bonus = 0;
         for (int i = 0; i < DIGITS; i++) {
             Integer a = input.get(i);
             if (randomNumber.contains(a)) {
-                result.add(1);
+                correct++;
             }
         }
         if (randomNumber.contains(input.get(DIGITS))) {
-            result.add(2);
+            bonus++;
         }
+        result = new ArrayList<>(Arrays.asList(correct, bonus));
         return result;
     }
 

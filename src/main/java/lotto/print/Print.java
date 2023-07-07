@@ -1,7 +1,4 @@
-package lotto;
-
-import static lotto.Message.*;
-import static lotto.Message.INPUT_BONUS;
+package lotto.print;
 
 public interface Print {
     public int printSix(int value);
