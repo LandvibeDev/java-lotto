@@ -1,6 +1,7 @@
 package lotto.game.money;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.checkexception.CheckCharException;
 
 public class BuyMoney {
     private final int buyMoney;
@@ -9,9 +10,8 @@ public class BuyMoney {
     public BuyMoney(){
         System.out.println("구입 금액을 입력해 주세요.");
         inputBuyMoney = Console.readLine();
-        for(int i = 0; i < inputBuyMoney.length(); i++){
-            checkError(inputBuyMoney.charAt(i));
-        }
+        CheckCharException checkCharException = new CheckCharException();
+        checkCharException.checkCharException(inputBuyMoney);
         buyMoney = Integer.parseInt(inputBuyMoney);
         if(buyMoney % 1000 != 0){
             throw new IllegalArgumentException("[ERROR]1000원 단위로 입력해 주세요.");
@@ -28,10 +28,4 @@ public class BuyMoney {
         return buyCount;
     }
 
-    private void checkError(char input){
-        if(input >= '0' && input <= '9'){
-            return;
-        }
-        throw new IllegalArgumentException("[ERROR]숫자만 입력하세요.");
-    }
 }
