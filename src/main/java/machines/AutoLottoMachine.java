@@ -1,6 +1,6 @@
-package lotto;
+package machines;
 
-import static lotto.SettingValues.*;
+import static config.SettingValues.*;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+import machines.interfaces.Machine;
 
 public class AutoLottoMachine implements Machine {
 	Lotto autoLotto;

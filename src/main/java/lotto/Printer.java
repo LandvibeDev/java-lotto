@@ -1,8 +1,7 @@
 package lotto;
 
-import static lotto.Messages.*;
-import static lotto.SettingValues.*;
-import static lotto.SharingVariables.*;
+import static config.Messages.*;
+import static config.LottoConfig.*;
 
 public class Printer {
 	public void printInputPurchaseAmountMessage() {
@@ -23,14 +22,14 @@ public class Printer {
 
 	public void printResult(double totalReward, double purchaseAmount) {
 		printReceiptTitle();
-		for (int i = FIRST.get(); i <= FIFTH.get(); i++) {
-			printRankingResult(i);
+		for (int ranking : getRankings()) {
+			printRankingResult(ranking);
 		}
 		printProfitRatio(totalReward, purchaseAmount);
 	}
 
 	public void printRankingResult(int i) {
-		System.out.printf(formats[i], points[i], rewadsStr[i], numOfRanking[i]);
+		System.out.printf(getFormat(i), getPoint(i), getRewardStr(i), getNumOfRanking(i));
 		System.out.println();
 	}
 
@@ -40,7 +39,7 @@ public class Printer {
 
 	public void printProfitRatio(double totalReward, double purchaseAmount) {
 		double profitRatio;
-		profitRatio = (totalReward / purchaseAmount) * PERCENTAGE;
+		profitRatio = (totalReward / purchaseAmount) * getPERCENTAGE();
 		System.out.printf(PROFIT_RATIO_MESSAGE_FORMAT1.get(), profitRatio);
 		System.out.print(PROFIT_RATIO_MESSAGE_FORMAT2.get());
 		System.out.println();

@@ -1,16 +1,17 @@
-package lotto;
+package machines;
 
-import static lotto.SettingValues.*;
-import static lotto.SharingVariables.*;
+import static config.SettingValues.*;
+import static config.LottoConfig.*;
 
-import java.util.List;
+import lotto.Lotto;
+import machines.interfaces.JudgeMachine;
 
-public class RewardMeasuringMachine implements Machine {
+public class RewardMeasuringMachine implements JudgeMachine {
 
 	LottoCompareMachine compareMachine;
 	long totalReward;
 
-	RewardMeasuringMachine() {
+	public RewardMeasuringMachine() {
 		compareMachine = new LottoCompareMachine();
 		totalReward = 0;
 	}
@@ -20,17 +21,18 @@ public class RewardMeasuringMachine implements Machine {
 		compareMachine.run();
 		int winPoint;
 		int ranking;
-		for (Lotto lotto : userLottos) {
-			winPoint = compareMachine.compare(lotto);
+		for (Lotto lotto : getUserLottos()) {
+			winPoint = compareMachine.compare(lotto.getLottoNums());
 			ranking = rank(winPoint);
-			totalReward += rewards[ranking];
+			totalReward += getReward(ranking);
 		}
 	}
 
+	@Override
 	public int rank(int winPoint) {
 		int ranking = 8 - winPoint;
 		if (ranking <= MIN_WINNING_RANKING.get()) {
-			numOfRanking[ranking]++;
+			increaseNumOfRanking(ranking);
 			return ranking;
 		}
 		return 0;
