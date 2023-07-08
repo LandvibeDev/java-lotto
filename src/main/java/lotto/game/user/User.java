@@ -14,7 +14,7 @@ public class User {
         return instance;
     }
 
-    public int refund;
+    private int refund;
 
     public void updateRefund(int plus){
         refund += plus;

@@ -13,8 +13,8 @@ public class Result {
         }
         return instance;
     }
-    public int[] result = new int[10];
-    public int bonusResult;
+    private int[] result = new int[10];
+    private int bonusResult;
 
     public void upCountResult(int idx){
         result[idx]++;
