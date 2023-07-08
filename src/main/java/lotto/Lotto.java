@@ -1,25 +1,25 @@
 package lotto;
 
-import static lotto.SettingValues.*;
+import static validate.ErrorMessages.*;
 
 import java.util.List;
 
+import validate.LottoValidator;
+
 public class Lotto {
 	private final List<Integer> numbers;
+	private LottoValidator validator;
 
 	public Lotto(List<Integer> numbers) {
+		validator = new LottoValidator();
 		validate(numbers);
 		this.numbers = numbers;
 	}
 
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != NUMBER_SIZE.get()) {
-			throw new IllegalArgumentException("[ERROR] 숫자는 6개");
-		}
+		validator.handleException(validator.isInvalidNumberSize(numbers.size()),INVALID_NUMBER_SIZE_MESSAGE.get());
 		for (int n : numbers) {
-			if (n < MIN_OF_RANGE.get() || n > MAX_OF_RANGE.get()) {
-				throw new IllegalArgumentException("[ERROR] 1 ~ 45");
-			}
+			validator.handleException(validator.isOutOfRange(n), OUT_OF_RANGE_MESSAGE.get());
 		}
 	}
 
