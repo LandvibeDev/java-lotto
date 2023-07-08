@@ -1,6 +1,7 @@
 package machines;
 
 import static config.LottoConfig.*;
+import static config.SettingValues.*;
 import static validate.ErrorMessages.*;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class LottoCompareMachine implements NumberCompareMachine {
 
 			Integer cur = Integer.parseInt(nextNum);
 
-			validator.handleException(validator.isDuplicatedNum(winningNums,cur), ALREADY_DRAWN_MESSAGE.get());
+			validator.handleException(validator.isDuplicatedNum(winningNums, cur), ALREADY_DRAWN_MESSAGE.get());
 
 			winningNums.add(cur);
 		}
@@ -66,23 +67,25 @@ public class LottoCompareMachine implements NumberCompareMachine {
 		bonusNum = Integer.parseInt(inStr);
 		List<Integer> winningNums = getWinningLotto().getLottoNums();
 
-		validator.handleException(validator.isDuplicatedNum(winningNums,bonusNum), ALREADY_DRAWN_MESSAGE.get());
+		validator.handleException(validator.isDuplicatedNum(winningNums, bonusNum), ALREADY_DRAWN_MESSAGE.get());
 
 		return bonusNum;
 	}
 
 	public int compare(List<Integer> userNums) {
-		int winPoint = 0;
+		int winPoint = ZERO.get();
 		List<Integer> winningNums = getWinningLotto().getLottoNums();
 		for (Integer cur : winningNums) {
 			if (userNums.contains(cur)) {
 				winPoint++;
 			}
 		}
-		if (winPoint == 6)
-			return 7;
-		if (winPoint == 5 && userNums.contains(getBonusNum()))
-			return 6;
+		if (winPoint == POINT_OF_FIRST.get()) {
+			return winPoint + EXTRA_POINT.get();
+		}
+		if (winPoint == POINT_OF_SECOND.get() && userNums.contains(getBonusNum())) {
+			return winPoint + EXTRA_POINT.get();
+		}
 		return winPoint;
 	}
 

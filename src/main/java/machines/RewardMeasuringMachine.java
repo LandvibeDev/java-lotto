@@ -30,14 +30,15 @@ public class RewardMeasuringMachine implements JudgeMachine {
 
 	@Override
 	public int rank(int winPoint) {
-		int ranking = 8 - winPoint;
+		int ranking = CALCULATOR.get() - winPoint;
 		if (ranking <= MIN_WINNING_RANKING.get()) {
 			increaseNumOfRanking(ranking);
 			return ranking;
 		}
 		return 0;
 	}
-	public long getTotalReward(){
+
+	public long getTotalReward() {
 		return totalReward;
 	}
 

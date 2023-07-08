@@ -1,6 +1,5 @@
 package lotto;
 
-import static config.SettingValues.*;
 import static config.LottoConfig.*;
 import static validate.ErrorMessages.*;
 
@@ -37,11 +36,14 @@ public class UserController implements Machine {
 	public void purchaseLotto() {
 		printer.printInputPurchaseAmountMessage();
 		String inStr = Console.readLine();
-		validator.handleException(validator.isNotInteger(inStr),ONLY_INTEGER_MESSAGE.get());
+
+		validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
 		purchaseAmount = Long.parseLong(inStr);
-		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get() );
+
+		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
 		int numOfLotto = (int)(purchaseAmount / getUnitOfPurchase());
 		printer.printNumberOfPurchaseMessage(numOfLotto);
+
 		for (int i = 0; i < numOfLotto; i++) {
 			autoLottoMachine.run();
 			Lotto lotto = autoLottoMachine.getAutoLotto();

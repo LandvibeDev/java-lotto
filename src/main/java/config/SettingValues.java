@@ -1,11 +1,13 @@
 package config;
 
 public enum SettingValues {
+	// config values
 	MIN_OF_RANGE(1),
 	MAX_OF_RANGE(45),
 	MIN_WINNING_RANKING(5),
 	NUMBER_SIZE(6),
 	PRICE_OF_LOTTO(1000),
+	// values about rankings
 	FIRST(1),
 	POINT_OF_FIRST(6),
 	REWARD_OF_FIRST(2000000000),
@@ -23,6 +25,7 @@ public enum SettingValues {
 	REWARD_OF_FIFTH(5000),
 
 	EXTRA_POINT(1),
+	CALCULATOR(8),
 	FAIL(0),
 	ZERO(0);
 

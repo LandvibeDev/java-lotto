@@ -17,7 +17,7 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-		validator.handleException(validator.isInvalidNumberSize(numbers.size()),INVALID_NUMBER_SIZE_MESSAGE.get());
+		validator.handleException(validator.isInvalidNumberSize(numbers.size()), INVALID_NUMBER_SIZE_MESSAGE.get());
 		for (int n : numbers) {
 			validator.handleException(validator.isOutOfRange(n), OUT_OF_RANGE_MESSAGE.get());
 		}
