@@ -10,6 +10,10 @@ import java.util.List;
 
 public class Print {
 
+    public static void printResultStart(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
     public static void printNumberList(List<Lotto> lottoList) {
         for (int i = 0; i < lottoList.size(); i++) {
             Lotto lotto = lottoList.get(i);

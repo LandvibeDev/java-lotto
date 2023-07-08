@@ -90,8 +90,8 @@ public class Game {
         Integer bonusNumber = input.getBonusNumber();
 
         // 6. 당첨통계
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        print.printResultStart();
+
         for(int i = 0; i<lottoList.size(); i++){
             // 카운팅은 매번 초기화 되어야한다.
             count.reset();
