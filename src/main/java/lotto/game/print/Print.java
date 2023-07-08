@@ -10,11 +10,11 @@ import java.util.List;
 
 public class Print {
 
-    public static void printResultStart(){
+    public void printResultStart(){
         System.out.println("당첨 통계");
         System.out.println("---");
     }
-    public static void printNumberList(List<Lotto> lottoList) {
+    public void printNumberList(List<Lotto> lottoList) {
         for (int i = 0; i < lottoList.size(); i++) {
             Lotto lotto = lottoList.get(i);
             System.out.println(lotto.getLottoNumber());
@@ -22,13 +22,13 @@ public class Print {
         System.out.println();
     }
 
-    public static void printRateOfReturn(Integer purchaseMoney, User user) {
+    public void printRateOfReturn(Integer purchaseMoney, User user) {
         double percent = (double) user.getRefund() / purchaseMoney * 100;
         double roundedPercent = Math.round(percent * 10.0) / 10.0;
         System.out.println("총 수익률은 " + roundedPercent+"%입니다.");
     }
 
-    public static void printResult(Awards awards, Result result) {
+    public void printResult(Awards awards, Result result) {
         for(int i = 3; i<=6; i++){
             String printMessage = "";
             printMessage += i+"개 일치 ";

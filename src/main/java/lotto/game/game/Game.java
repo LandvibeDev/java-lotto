@@ -1,7 +1,6 @@
 package lotto.game.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.game.input.CheckInput;
 import lotto.game.input.Input;
 import lotto.game.lotto.Lotto;
 import lotto.game.print.Print;
