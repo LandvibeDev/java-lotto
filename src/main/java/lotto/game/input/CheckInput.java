@@ -1,10 +1,8 @@
-package lotto.game.exception;
+package lotto.game.input;
 
-import java.util.ArrayList;
+public class CheckInput {
 
-public class Check {
-
-    public static void purchaseCheck(String str) {
+    static void purchaseCheck(String str) {
 
         int number;
         try {

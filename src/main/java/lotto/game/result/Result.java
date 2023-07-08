@@ -1,5 +1,6 @@
 package lotto.game.result;
 
+// strike ball count
 public class Result {
     public int[] result = new int[10];
     public int bonusResult;

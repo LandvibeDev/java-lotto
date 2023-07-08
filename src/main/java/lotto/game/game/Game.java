@@ -1,6 +1,7 @@
 package lotto.game.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.game.input.CheckInput;
 import lotto.game.input.Input;
 import lotto.game.lotto.Lotto;
 import lotto.game.print.Print;
@@ -21,6 +22,13 @@ public class Game {
     Awards awards = new Awards();
     Count count = new Count();
 
+    private Input input;
+    private Print print;
+
+    public Game(Input input, Print print){
+        this.input = input;
+        this.print = print;
+    }
 
     private void makeRandomLottoNumbers(int cycle) {
         for (int i = 0; i < cycle; i++) {
@@ -62,7 +70,7 @@ public class Game {
     }
     public void start() {
         // 1. 수량 입력받기
-        Integer purchaseMoney = Input.getPurchaseMoney();
+        Integer purchaseMoney = input.getPurchaseMoney();
         if(purchaseMoney==-1){
             return;
         }
@@ -75,11 +83,11 @@ public class Game {
         makeRandomLottoNumbers(cycle);
 
         // 4. 생성된 로또번호 보여주기
-        Print.printNumberList(lottoList);
+        print.printNumberList(lottoList);
 
         // 5. 당첨 번호, 보너스 번호 입력받기
-        ArrayList<Integer> winningNumber = Input.getWinningNumber();
-        Integer bonusNumber = Input.getBonusNumber();
+        ArrayList<Integer> winningNumber = input.getWinningNumber();
+        Integer bonusNumber = input.getBonusNumber();
 
         // 6. 당첨통계
         System.out.println("당첨 통계");
@@ -102,8 +110,8 @@ public class Game {
         }
 
         // 7. 결과 출력
-        Print.printResult(awards,result);
-        Print.printRateOfReturn(purchaseMoney, user);
+        print.printResult(awards,result);
+        print.printRateOfReturn(purchaseMoney,user);
     }
 
 

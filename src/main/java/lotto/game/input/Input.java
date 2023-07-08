@@ -1,7 +1,6 @@
 package lotto.game.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.game.exception.Check;
 
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ public class Input {
         String str = Console.readLine();
 
         try {
-            Check.purchaseCheck(str);
+            CheckInput.purchaseCheck(str);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return -1;
