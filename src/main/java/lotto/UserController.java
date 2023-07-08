@@ -23,8 +23,6 @@ public class UserController implements Machine {
 
 	UserController() {
 		rankings = new int[6];
-		rewards = new int[] {FAIL.get(), REWARD_OF_FIRST.get(), REWARD_OF_SECOND.get(),
-			REWARD_OF_THIRD.get(), REWARD_OF_FOURTH.get(), REWARD_OF_FIFTH.get()};
 		userLottos = new ArrayList<>();
 		autoLottoMachine = new AutoLottoMachine();
 		validator = new Validator();
@@ -100,7 +98,9 @@ public class UserController implements Machine {
 		profitRatio = ((double)totalReward / (double)purchaseAmount) * 100.0;
 		System.out.printf("총 수익률은 %.1f", profitRatio);
 		System.out.println("%입니다.");
-
+	}
+	public List<Lotto> getUserLottos(){
+		return userLottos;
 	}
 
 }
