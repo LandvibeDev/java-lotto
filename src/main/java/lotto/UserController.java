@@ -1,13 +1,18 @@
 package lotto;
 
-import static lotto.SettingValues.*;
-import static lotto.SharingVariables.*;
+import static config.SettingValues.*;
+import static config.LottoConfig.*;
+import static validate.ErrorMessages.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import machines.*;
+import machines.interfaces.Machine;
+import validate.LottoValidator;
+
 public class UserController implements Machine {
 
-	Validator validator;
+	LottoValidator validator;
 	long purchaseAmount;
 	long totalReward;
 	AutoLottoMachine autoLottoMachine;
@@ -15,7 +20,7 @@ public class UserController implements Machine {
 	Printer printer;
 
 	UserController() {
-		validator = new Validator();
+		validator = new LottoValidator();
 		printer = new Printer();
 		autoLottoMachine = new AutoLottoMachine();
 		rewardMeasuringMachine = new RewardMeasuringMachine();
@@ -32,19 +37,15 @@ public class UserController implements Machine {
 	public void purchaseLotto() {
 		printer.printInputPurchaseAmountMessage();
 		String inStr = Console.readLine();
-		if (validator.isNotInteger(inStr)) {
-			throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
-		}
+		validator.handleException(validator.isNotInteger(inStr),ONLY_INTEGER_MESSAGE.get());
 		purchaseAmount = Long.parseLong(inStr);
-		if (purchaseAmount % PRICE_OF_LOTTO.get() != 0) {
-			throw new IllegalArgumentException("[ERROR]");
-		}
-		int numOfLotto = (int)(purchaseAmount / UNIT_OF_PURCHASE);
+		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get() );
+		int numOfLotto = (int)(purchaseAmount / getUnitOfPurchase());
 		printer.printNumberOfPurchaseMessage(numOfLotto);
 		for (int i = 0; i < numOfLotto; i++) {
 			autoLottoMachine.run();
 			Lotto lotto = autoLottoMachine.getAutoLotto();
-			userLottos.add(lotto);
+			addLotto(lotto);
 		}
 	}
 
