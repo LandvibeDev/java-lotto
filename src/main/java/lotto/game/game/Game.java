@@ -89,27 +89,20 @@ public class Game {
         ArrayList<Integer> winningNumber = input.getWinningNumber();
         Integer bonusNumber = input.getBonusNumber();
 
-        // 6. 당첨통계
-        print.printResultStart();
-
-        for(int i = 0; i<lottoList.size(); i++){
+        // 6. 결과 집계
+        for(Lotto lotto : lottoList){
             // 카운팅은 매번 초기화 되어야한다.
             count.reset();
-
-            // 저장된 Lotto 객체 하나씩 빼오기
-            List<Integer> lottoNumber = lottoList.get(i).getLottoNumber();
-
+            // 저장된 list 하나씩 빼오기
+            List<Integer> lottoNumber = lotto.getLottoNumber();
             // 번호 일치여부 판별
-            // count 함수로 써야되나
             countMatchNumber(winningNumber, bonusNumber, lottoNumber);
-
             // user refund update
-            int cnt = count.getCnt();
-            int bonusCnt = count.getBonusCnt();
-            countMatchRefund(cnt, bonusCnt);
+            countMatchRefund(count.getCnt(), count.getBonusCnt());
         }
 
         // 7. 결과 출력
+        print.printResultStart();
         print.printResult(awards,result);
         print.printRateOfReturn(purchaseMoney,user);
     }
