@@ -1,6 +1,5 @@
 package lotto.game.game;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.game.input.Input;
 import lotto.game.lotto.Lotto;
 import lotto.game.print.Print;
@@ -14,47 +13,23 @@ import java.util.List;
 import static lotto.game.game.MakeNumber.makeRandomLottoNumbers;
 
 public class Game {
-    Result result = new Result();
-    User user = new User();
-    Awards awards = new Awards();
-    Count count = new Count();
+    Result result = Result.getInstance();
+    User user = User.getInstance();
+    Awards awards = Awards.getInstance();
+    Count count = Count.getInstance();
 
-    private Input input;
-    private Print print;
+    private final Input input;
+    private final Print print;
+    private final CountMatch countMatch;
     private List<Lotto>lottoList;
 
-    public Game(Input input, Print print){
+    public Game(Input input, Print print, CountMatch countMatch){
         this.input = input;
         this.print = print;
+        this.countMatch = countMatch;
         this.lottoList = new ArrayList<>();
     }
 
-    private void countMatchNumber(ArrayList<Integer> winningNumber, Integer bonusNumber, List<Integer> lottoNumber) {
-        for (Integer num : lottoNumber) {
-            if (winningNumber.contains(num)) {
-                count.countUp();
-            }
-        }
-        // 보너스 체크
-        if(lottoNumber.contains(bonusNumber)){
-            count.countUpBonus();
-        }
-    }
-    private void countMatchRefund(int cnt, int bonusCnt) {
-        result.upCountResult(cnt);
-        user.updateRefund(awards.getAwards()[cnt]);
-
-        if(cnt ==5){
-            if(bonusCnt ==1){
-                result.upCountBonusResult();
-                user.updateRefund(awards.getBonusAwards());
-            }
-            if(bonusCnt !=1){
-                result.downCountResult(cnt);
-                user.updateRefund(-awards.getAwards()[cnt]);
-            }
-        }
-    }
     public void start() {
         // 1. 수량 입력받기
         Integer purchaseMoney = input.getPurchaseMoney();
@@ -83,9 +58,9 @@ public class Game {
             // 저장된 list 하나씩 빼오기
             List<Integer> lottoNumber = lotto.getLottoNumber();
             // 번호 일치여부 판별
-            countMatchNumber(winningNumber, bonusNumber, lottoNumber);
+            countMatch.countMatchNumber(winningNumber, bonusNumber, lottoNumber);
             // user refund update
-            countMatchRefund(count.getCnt(), count.getBonusCnt());
+            countMatch.countMatchRefund(count.getCnt(), count.getBonusCnt());
         }
 
         // 7. 결과 출력
