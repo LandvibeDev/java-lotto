@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    // 로또 배열
-    List<Lotto>lottoList = new ArrayList<>();
     Result result = new Result();
 
     // user 내부에 awards 가지면 좋을듯
@@ -24,10 +22,12 @@ public class Game {
 
     private Input input;
     private Print print;
+    private List<Lotto>lottoList;
 
     public Game(Input input, Print print){
         this.input = input;
         this.print = print;
+        this.lottoList = new ArrayList<>();
     }
 
     private void makeRandomLottoNumbers(int cycle) {
