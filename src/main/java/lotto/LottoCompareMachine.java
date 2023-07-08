@@ -1,41 +1,53 @@
 package lotto;
 
+import static lotto.Messages.*;
+import static lotto.SharingVariables.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class LottoCompareMachine implements Machine{
+public class LottoCompareMachine implements Machine {
 	private Lotto winningLotto;
 	private Integer bonusNum;
 	Validator validator;
-	LottoCompareMachine(){
+	Printer printer;
+
+	LottoCompareMachine() {
 		validator = new Validator();
+		printer = new Printer();
 	}
+
 	@Override
-	public void run(){
+	public void run() {
 		winningLotto = new Lotto(inputWinningNumbers());
 		bonusNum = inputBonusNum();
 	}
+
 	public List<Integer> inputWinningNumbers() {
-		System.out.println("당첨 번호를 입력해 주세요.");
+		printer.printInputWinningNumMessage();
 		List<Integer> winningNums = new ArrayList<Integer>();
 		String inStr = Console.readLine();
-		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
+		if (validator.isThereSpace(inStr)){
+			throw new IllegalArgumentException("[ERROR] 공백없이 입력하세요");
+		}
+		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, DELIM);
 		while (tokenizedInStr.hasMoreTokens()) {
 			String nextNum = tokenizedInStr.nextToken();
 			if (validator.isNotInteger(nextNum)) {
-				throw new IllegalArgumentException("[ERROR]");
+				throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
 			}
 			Integer cur = Integer.parseInt(nextNum);
 			winningNums.add(cur);
 		}
 		return winningNums;
 	}
+
 	public int inputBonusNum() {
 		int bonusNum;
-		System.out.println("보너스 번호를 입력해 주세요.");
+		printer.printInputBonusNumMessage();
 		String inStr = Console.readLine();
 		if (validator.isNotInteger(inStr)) {
 			throw new IllegalArgumentException("[ERROR]");
@@ -48,6 +60,7 @@ public class LottoCompareMachine implements Machine{
 		}
 		return bonusNum;
 	}
+
 	public int compare(Lotto userLotto) {
 		int winPoint = 0;
 		List<Integer> userNums = userLotto.getLottoNums();
