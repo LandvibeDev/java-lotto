@@ -1,5 +1,7 @@
 package lotto.number;
 
+import lotto.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]" + " 중복되지 않게 수를 입력하세요.");
+        if (numbers.size() != Constants.NumberRange.COUNT) {
+            throw new IllegalArgumentException(Constants.Exception.ERROR_MESSAGE + Constants.Exception.NO_DUPLICATE);
         }
     }
 

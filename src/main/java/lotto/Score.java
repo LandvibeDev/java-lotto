@@ -18,26 +18,26 @@ public class Score {
         if (money == 0)
             return new BigDecimal("0.0");
 
-        BigDecimal profit = new BigDecimal("0");
+        BigDecimal profit = new BigDecimal("0.0");
 
-        BigDecimal first = new BigDecimal(counts.get(6) * 2000000000);
-        BigDecimal bonus = new BigDecimal(counts.get(0) * 30000000);
-        BigDecimal second = new BigDecimal(counts.get(5) * 1500000);
-        BigDecimal third = new BigDecimal(counts.get(4) * 50000);
-        BigDecimal fourth = new BigDecimal(counts.get(3) * 5000);
+        BigDecimal first = new BigDecimal(counts.get(Constants.Winning.FIRST) * Constants.Reward.FIRST_PRICE);
+        BigDecimal second = new BigDecimal(counts.get(Constants.Winning.SECOND) * Constants.Reward.SECOND_PRICE);
+        BigDecimal third = new BigDecimal(counts.get(Constants.Winning.THIRD) * Constants.Reward.THIRD_PRICE);
+        BigDecimal fourth = new BigDecimal(counts.get(Constants.Winning.FOURTH) * Constants.Reward.FOURTH_PRICE);
+        BigDecimal fifth = new BigDecimal(counts.get(Constants.Winning.FIFTH) * Constants.Reward.FIFTH_PRICE);
 
         profit = profit.add(first);
-        profit = profit.add(bonus);
         profit = profit.add(second);
         profit = profit.add(third);
         profit = profit.add(fourth);
+        profit = profit.add(fifth);
 
         BigDecimal money = new BigDecimal(this.money);
         BigDecimal percent = new BigDecimal(100);
 
         profit = profit.divide(money, MathContext.UNLIMITED);
         profit = profit.multiply(percent);
-        profit = profit.setScale(1, RoundingMode.HALF_UP);
+        profit = profit.setScale(Constants.Lotto.DECIMAL_PLACE, RoundingMode.HALF_UP);
 
         System.out.println(profit);
         return profit;
@@ -47,11 +47,11 @@ public class Score {
     public String toString() {
         return "\n당첨 통계\n" +
                 "---\n" +
-                "3개 일치 (5,000원) - " + counts.get(3) + "개\n" +
-                "4개 일치 (50,000원) - " + counts.get(4) + "개\n" +
-                "5개 일치 (1,500,000원) - " + counts.get(5) + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + counts.get(0) + "개\n" +
-                "6개 일치 (2,000,000,000원) - " + counts.get(6) + "개\n" +
+                "3개 일치 (5,000원) - " + counts.get(Constants.Winning.FIFTH) + "개\n" +
+                "4개 일치 (50,000원) - " + counts.get(Constants.Winning.FOURTH) + "개\n" +
+                "5개 일치 (1,500,000원) - " + counts.get(Constants.Winning.THIRD) + "개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + counts.get(Constants.Winning.SECOND) + "개\n" +
+                "6개 일치 (2,000,000,000원) - " + counts.get(Constants.Winning.FIRST) + "개\n" +
                 "총 수익률은 " + calculateProfit() + "%입니다.";
     }
 }
