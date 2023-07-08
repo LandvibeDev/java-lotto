@@ -8,7 +8,7 @@ public class LottoGame {
     int coin;
 
     LottoGame(){
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
         String amount = Console.readLine();
 
         ExceptionController.noIntegerValueException(amount);

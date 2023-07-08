@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import static lotto.Message.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class WinningNumbers {
     String winningNumbers;
 
     WinningNumbers(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_AMOUNT);
         winningNumbers = Console.readLine();
         setWinningNumberslist();
         validate(winningNumberslist);
@@ -39,6 +40,7 @@ public class WinningNumbers {
     private void putCorrectNumber(String correctString){
         int correctInteger = Integer.parseInt(correctString);
 
+        ExceptionController.noIntegerValueException(correctString);
         ExceptionController.noValidLottoNumberException(correctInteger);
         ExceptionController.overlapNumberException(winningNumberslist, correctInteger);
 
@@ -47,13 +49,13 @@ public class WinningNumbers {
 
     private void validate(List<Integer> winningNumberslist) {
         if (winningNumberslist.size() != 6) {
-            System.out.println("6자리 숫자를 입력해 주세요.");
+            System.out.println(INPUT_SIXDIGIT_NUMVER);
             throw new IllegalArgumentException();
         }
     }
 
     private void setBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER.getMessage());
         String bonusNumberstr = Console.readLine();
         int bonusNumberint = Integer.parseInt(bonusNumberstr);
 
