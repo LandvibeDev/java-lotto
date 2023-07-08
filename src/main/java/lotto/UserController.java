@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class UserController implements Machine {
 
+	Validator validator;
 	Lotto winningLotto;
 	List<Lotto> userLottos;
 	int bonusNum;
@@ -18,60 +19,33 @@ public class UserController implements Machine {
 	int[] rewards;
 	long totalReward;
 	AutoLottoMachine autoLottoMachine;
+	LottoCompareMachine compareMachine;
 
 	UserController() {
 		rankings = new int[6];
-		rewards = new int[] {0, 2000000000, 30000000, 1500000, 50000, 5000};
+		rewards = new int[] {FAIL.get(), REWARD_OF_FIRST.get(), REWARD_OF_SECOND.get(),
+			REWARD_OF_THIRD.get(), REWARD_OF_FOURTH.get(), REWARD_OF_FIFTH.get()};
 		userLottos = new ArrayList<>();
 		autoLottoMachine = new AutoLottoMachine();
+		validator = new Validator();
+		compareMachine = new LottoCompareMachine();
 	}
 
 	@Override
 	public void run(){
-		autoLottoMachine.run();
 		purchaseLotto();
-		List<Integer> winningNums = inputWinningNumbers();
-		winningLotto = new Lotto(winningNums);
-		inputBonusNum();
+		compareMachine.run();
+		winningLotto = compareMachine.getWinningLotto();
+		bonusNum = compareMachine.getBonusNum();
 		checkUserLotto();
 		printResult();
 	}
-	public List<Integer> inputWinningNumbers() {
-		System.out.println("당첨 번호를 입력해 주세요.");
-		List<Integer> winningNums = new ArrayList<Integer>();
-		String inStr = Console.readLine();
-		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, ",");
-		while (tokenizedInStr.hasMoreTokens()) {
-			String nextNum = tokenizedInStr.nextToken();
-			if (isNotInteger(nextNum)) {
-				throw new IllegalArgumentException("[ERROR]");
-			}
-			Integer cur = Integer.parseInt(nextNum);
-			winningNums.add(cur);
-		}
-		return winningNums;
-	}
-
-	public void inputBonusNum() {
-		System.out.println("보너스 번호를 입력해 주세요.");
-		String inStr = Console.readLine();
-		if (isNotInteger(inStr)) {
-			throw new IllegalArgumentException("[ERROR]");
-
-		}
-		bonusNum = Integer.parseInt(inStr);
-		List<Integer> winningNums = winningLotto.getLottoNums();
-		if (winningNums.contains(bonusNum)) {
-			throw new IllegalArgumentException("[ERROR]");
-		}
-	}
-
 
 
 	public void purchaseLotto() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String inStr = Console.readLine();
-		if (isNotInteger(inStr)) {
+		if (validator.isNotInteger(inStr)) {
 			throw new IllegalArgumentException("[ERROR]");
 		}
 		purchaseAmount = Long.parseLong(inStr);
@@ -82,6 +56,7 @@ public class UserController implements Machine {
 
 		System.out.println(numOfLotto + "개를 구매했습니다.");
 		for (int i = 0; i < numOfLotto; i++) {
+			autoLottoMachine.run();
 			Lotto lotto = autoLottoMachine.getAutoLotto();
 			userLottos.add(lotto);
 		}
@@ -91,27 +66,12 @@ public class UserController implements Machine {
 		int winPoint;
 		int ranking;
 		for (Lotto lotto : userLottos) {
-			winPoint = compare(lotto);
+			winPoint = compareMachine.compare(lotto);
 			ranking = rank(winPoint);
 			totalReward += rewards[ranking];
 		}
 	}
 
-	public int compare(Lotto userLotto) {
-		int winPoint = 0;
-		List<Integer> userNums = userLotto.getLottoNums();
-		List<Integer> winningNums = winningLotto.getLottoNums();
-		for (Integer cur : winningNums) {
-			if (userNums.contains(cur)) {
-				winPoint++;
-			}
-		}
-		if (winPoint == 6)
-			return 7;
-		if (winPoint == 5 && userNums.contains(bonusNum))
-			return 6;
-		return winPoint;
-	}
 
 	public int rank(int winPoint) {
 		int ranking = 8 - winPoint;
@@ -122,13 +82,7 @@ public class UserController implements Machine {
 		return 0;
 	}
 
-	public boolean isNotInteger(String inStr) {
-		for (char c : inStr.toCharArray()) {
-			if (c < '0' || c > '9')
-				return true;
-		}
-		return false;
-	}
+
 
 	public void printResult() {
 		double profitRatio = 0;
