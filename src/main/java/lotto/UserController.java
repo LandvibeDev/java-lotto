@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import machines.*;
 import machines.interfaces.Machine;
+
 import validate.LottoValidator;
 
 public class UserController implements Machine {
@@ -38,8 +39,8 @@ public class UserController implements Machine {
 		String inStr = Console.readLine();
 
 		validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
-		purchaseAmount = Long.parseLong(inStr);
 
+		purchaseAmount = Long.parseLong(inStr);
 		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
 		int numOfLotto = (int)(purchaseAmount / getUnitOfPurchase());
 		printer.printNumberOfPurchaseMessage(numOfLotto);

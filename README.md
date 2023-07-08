@@ -24,3 +24,30 @@
 
 #### 예외처리
     "[ERROR]" 로 시작하는 메시지와 함께 종료
+
+
+
+
+## 폴더링
+
+### config
+  - LottoConfig
+  - Message (enum)
+  - SettingValues (enum)
+### lotto
+  - Application
+  - Lotto
+  - Printer
+  - UserController
+### machines
+  - interfaces
+      - Machine (interface)
+      - JudgeMachine (interface)
+      - NumberCompareMachine (interface)
+  - AutoLottoMachine
+  - LottoCompareMachine
+  - RewardMeasuringMachine
+### validate
+  - ErrorMessages (enum)
+  - LottoValidator
+  - Validator (interface)
