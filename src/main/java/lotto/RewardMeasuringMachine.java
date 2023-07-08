@@ -1,23 +1,23 @@
 package lotto;
 
+import static lotto.SettingValues.*;
 import static lotto.SharingVariables.*;
 
 import java.util.List;
 
-public class RewardMeasuringMachine implements Machine{
+public class RewardMeasuringMachine implements Machine {
 
 	LottoCompareMachine compareMachine;
-	List<Lotto> userLottos;
-	UserController controller;
 	long totalReward;
-	RewardMeasuringMachine(){
+
+	RewardMeasuringMachine() {
 		compareMachine = new LottoCompareMachine();
-		controller = new UserController();
 		totalReward = 0;
 	}
+
 	@Override
-	public void run(){
-		userLottos = controller.getUserLottos();
+	public void run() {
+		compareMachine.run();
 		int winPoint;
 		int ranking;
 		for (Lotto lotto : userLottos) {
@@ -29,12 +29,14 @@ public class RewardMeasuringMachine implements Machine{
 
 	public int rank(int winPoint) {
 		int ranking = 8 - winPoint;
-		if (ranking <= 5) {
-			rankings[ranking]++;
+		if (ranking <= MIN_WINNING_RANKING.get()) {
+			numOfRanking[ranking]++;
 			return ranking;
 		}
 		return 0;
 	}
-
+	public long getTotalReward(){
+		return totalReward;
+	}
 
 }
