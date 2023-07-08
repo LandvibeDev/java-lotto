@@ -1,4 +1,4 @@
-package lotto;
+package config;
 
 public enum Messages {
 
