@@ -11,10 +11,10 @@ import lotto.game.user.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.game.game.MakeNumber.makeRandomLottoNumbers;
+
 public class Game {
     Result result = new Result();
-
-    // user 내부에 awards 가지면 좋을듯
     User user = new User();
     Awards awards = new Awards();
     Count count = new Count();
@@ -29,18 +29,6 @@ public class Game {
         this.lottoList = new ArrayList<>();
     }
 
-    private void makeRandomLottoNumbers(int cycle) {
-        for (int i = 0; i < cycle; i++) {
-            // 로또 번호 생성
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            // 오름차순 정렬
-            //Collections.sort(numbers);
-
-            // 로또 객체로 만들어 로또 리스트에 넣어주기
-            Lotto lotto = new Lotto(numbers);
-            lottoList.add(lotto);
-        }
-    }
     private void countMatchNumber(ArrayList<Integer> winningNumber, Integer bonusNumber, List<Integer> lottoNumber) {
         for (Integer num : lottoNumber) {
             if (winningNumber.contains(num)) {
@@ -79,7 +67,7 @@ public class Game {
         System.out.println(cycle + "개를 구매했습니다.");
 
         // 3. 수량만큼 로또 번호 생성
-        makeRandomLottoNumbers(cycle);
+        makeRandomLottoNumbers(cycle,lottoList);
 
         // 4. 생성된 로또번호 보여주기
         print.printNumberList(lottoList);
