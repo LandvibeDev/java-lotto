@@ -12,9 +12,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class AutoLottoMachine implements Machine {
 	Lotto autoLotto;
 	List<Integer> numbers;
+
 	@Override
 	public void run() {
-		numbers = Randoms.pickUniqueNumbersInRange(MIN_OF_RANGE.get(), MAX_OF_RANGE.get(), 6);
+		numbers = Randoms.pickUniqueNumbersInRange(MIN_OF_RANGE.get(), MAX_OF_RANGE.get(), NUMBER_SIZE.get());
 		numbers = numbers.stream()
 			.sorted(Comparator.comparing(Integer::intValue))
 			.collect(Collectors.toList());
