@@ -90,6 +90,12 @@ public class LottoManager {
         return lottoOneSet.getNumbers().contains(winnerLotto.bonusNumber);
     }
 
+    private void printResultLotto() {
+        System.out.println(Message.Output.RESULT_STAT);
+        System.out.println(Message.Output.RESULT_CONTENTS.toContentsFormat(resultLotto));
+        System.out.println(Message.Output.RESULT_RATE.toRateFormat(resultLotto.rate));
+    }
+
     // TODO: - 유효성 체크
     private void validatePurchaseMoney(String money) {
 
