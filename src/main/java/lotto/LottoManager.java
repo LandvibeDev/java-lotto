@@ -66,6 +66,16 @@ public class LottoManager {
         winnerLotto.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    private void calculateResultLotto() {
+        for (Lotto lottoOneSet : myLotto.lottoSet) {
+            int matchCount = countNumberOfLottoMatches(lottoOneSet);
+            boolean isBonusMatch = isMatchWithBonusNumber(lottoOneSet);
+            resultLotto.update(matchCount, isBonusMatch);
+        }
+        resultLotto.calculateProfit();
+        resultLotto.calculateRate(myLotto.money);
+    }
+    
     // TODO: - 유효성 체크
     private void validatePurchaseMoney(String money) {
 
