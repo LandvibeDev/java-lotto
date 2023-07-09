@@ -2,6 +2,7 @@ package machines;
 
 import static config.SettingValues.*;
 import static config.LottoConfig.*;
+import static lotto.UserValues.*;
 
 import lotto.Lotto;
 import machines.interfaces.JudgeMachine;

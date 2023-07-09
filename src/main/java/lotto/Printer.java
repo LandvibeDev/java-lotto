@@ -3,6 +3,7 @@ package lotto;
 import static config.Messages.*;
 import static config.LottoConfig.*;
 import static config.SettingValues.*;
+import static lotto.UserValues.*;
 
 import java.util.Arrays;
 import java.util.List;

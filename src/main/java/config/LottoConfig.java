@@ -3,13 +3,9 @@ package config;
 import static config.Messages.*;
 import static config.SettingValues.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import lotto.Lotto;
-
 public class LottoConfig {
-	private static final int[] numOfRanking = new int[6];
+
+
 	private static final String NOTHING = "";
 	private static final int[] rewards = {FAIL.get(), REWARD_OF_FIRST.get(), REWARD_OF_SECOND.get(),
 		REWARD_OF_THIRD.get(), REWARD_OF_FOURTH.get(), REWARD_OF_FIFTH.get()};
@@ -22,16 +18,9 @@ public class LottoConfig {
 		POINT_OF_FOURTH.get(), POINT_OF_FIFTH.get()};
 	private static final double PERCENTAGE = 100.0;
 	private static final long UNIT_OF_PURCHASE = 1000L;
-	private static final List<Lotto> userLottos = new ArrayList<>();
 	private static final String DELIM = ",";
 
-	public static int getNumOfRanking(int i) {
-		return numOfRanking[i];
-	}
 
-	public static void increaseNumOfRanking(int i) {
-		numOfRanking[i]++;
-	}
 
 	public static int getReward(int i) {
 		return rewards[i];
@@ -45,13 +34,7 @@ public class LottoConfig {
 		return UNIT_OF_PURCHASE;
 	}
 
-	public static List<Lotto> getUserLottos() {
-		return userLottos;
-	}
 
-	public static void addLotto(Lotto lotto) {
-		userLottos.add(lotto);
-	}
 
 	public static String getDELIM() {
 		return DELIM;

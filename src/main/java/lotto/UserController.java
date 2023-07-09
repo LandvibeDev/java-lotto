@@ -1,6 +1,7 @@
 package lotto;
 
 import static config.LottoConfig.*;
+import static lotto.UserValues.*;
 import static validate.ErrorMessages.*;
 
 import camp.nextstep.edu.missionutils.Console;
