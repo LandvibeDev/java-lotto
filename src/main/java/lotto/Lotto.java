@@ -24,6 +24,8 @@ public class Lotto {
 
     @Override
     public String toString() {
+        numbers.stream()
+                .sorted();
         return numbers.toString();
     }
 }
