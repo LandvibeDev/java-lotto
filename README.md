@@ -8,7 +8,7 @@
 
 - 천원 단위로 입력받아 *MyLottoData*의 *money*에 금액을 저장합니다.
 - 예외처리
--  **inputPurchasingMoney**(): void
+-  **inputPurchasingMoney()**: void
 
 <br>
 
@@ -16,7 +16,7 @@
 
 - 구입할 로또 금액으로부터 로또 개수를 계산해서 개수를 *MyLottoData*의 *quantity*에 저장합니다.
 - 개수만큼 로또를 여러개 발행해서 *MyLottoData*의 *lottoSet*에 저장합니다.
-- **issueLottoMultiSet**: void 
+- **issueLottoMultiSet()**: void 
 
 <br>
 
