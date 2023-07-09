@@ -16,9 +16,7 @@
 
 - 구입할 로또 금액으로부터 로또 개수를 계산해서 개수를 *MyLottoData*의 *quantity*에 저장합니다.
 - 개수만큼 로또를 여러개 발행해서 *MyLottoData*의 *lottoSet*에 저장합니다.
-- **issueLottoMultiSet**: void // 로또 여러개 발행
-  - **issueLottoOneSet**: void  // 로또 한장 발행 (숫자 6개)
-
+- **issueLottoMultiSet**: void 
 
 <br>
 
