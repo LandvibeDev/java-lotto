@@ -109,7 +109,9 @@ public class LottoGame implements NumberGame {
     }
 
     private double calculateEarningsRate() {
-
+        if (money == 0) {
+            throw new ArithmeticException("돈이 0원일 경우 수익률을 계산할 수 없습니다");
+        }
         return ((double)prize / money) * 100;
     }
 }
