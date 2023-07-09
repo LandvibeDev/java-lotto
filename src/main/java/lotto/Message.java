@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.DecimalFormat;
+
 public class Message {
     public enum Input {
         PURCHASE_MONEY("구입금액을 입력해 주세요."),
@@ -21,7 +23,7 @@ public class Message {
     public enum Output {
         PURCHASE_QUANTITY("\n%d개를 구매했습니다."),
         RESULT_STAT("\n당첨 통계\n---"),
-        RESULT_RATE("총 수익률은 %.1f%%입니다."),
+        RESULT_RATE("총 수익률은 %s%%입니다."),
         RESULT_CONTENTS("""
                 3개 일치 (%s원) - %d개
                 4개 일치 (%s원) - %d개
@@ -39,7 +41,9 @@ public class Message {
         }
 
         public String toRateFormat(double rate) {
-            return String.format(outputMessage, rate);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            String roundedNumber = decimalFormat.format(rate);
+            return String.format(outputMessage, roundedNumber);
         }
 
         public String toContentsFormat(ResultLottoData resultData) {
