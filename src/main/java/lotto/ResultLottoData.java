@@ -51,7 +51,7 @@ public class ResultLottoData {
     }
 
     public void calculateRate(int purchaseMoney) {
-        double rate = (this.totalProfit / purchaseMoney) * 100;
-        this.rate = Math.round(rate * 100.0) / 100.0;
+        double money = purchaseMoney;
+        this.rate = (this.totalProfit / money) * 100.0;
     }
 }
