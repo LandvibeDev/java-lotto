@@ -10,13 +10,14 @@ public class ConsoleMessages {
 
     public static void printResult(List<Integer> resultNumber) {
         DecimalFormat decFormat = new DecimalFormat("###,###");
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println(String.format("3개 일치 (%s원) - %d개", decFormat.format(FIFTH.prize) ,resultNumber.get(MIN_RANK-1)));
-        System.out.println(String.format("4개 일치 (%s원) - %d개", decFormat.format(FOURTH.prize), resultNumber.get(MIN_RANK-2)));
-        System.out.println(String.format("5개 일치 (%s원) - %d개", decFormat.format(THIRD.prize), resultNumber.get(MIN_RANK-3)));
-        System.out.println(String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개", decFormat.format(SECOND.prize), resultNumber.get(MIN_RANK-4)));
-        System.out.println(String.format("6개 일치 (%s원) - %d개", decFormat.format(FIRST.prize), resultNumber.get(MIN_RANK-5)));
+        String result = "당첨 통계\n";
+        result += "---\n";
+        result += String.format("3개 일치 (%s원) - %d개\n", decFormat.format(FIFTH.prize) ,resultNumber.get(MIN_RANK-1));
+        result += String.format("4개 일치 (%s원) - %d개\n", decFormat.format(FOURTH.prize), resultNumber.get(MIN_RANK-2));
+        result += String.format("5개 일치 (%s원) - %d개\n", decFormat.format(THIRD.prize), resultNumber.get(MIN_RANK-3));
+        result += String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", decFormat.format(SECOND.prize), resultNumber.get(MIN_RANK-4));
+        result += String.format("6개 일치 (%s원) - %d개", decFormat.format(FIRST.prize), resultNumber.get(MIN_RANK-5));
+        System.out.println(result);
     }
 
     public static void printEarningRate(double earningRate) {
