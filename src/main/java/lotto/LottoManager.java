@@ -52,8 +52,30 @@ public class LottoManager {
         }
     }
 
+    private void inputWinnerNumber() {
+        System.out.println(Message.Input.WINNER_NUMBER);
+        String winnerString = Console.readLine();
+        validateWinnerString(winnerString);
+        winnerLotto.parseWinnerNumber(winnerString);
+    }
+
+    private void inputBonusNumber() {
+        System.out.println(Message.Input.BONUS_NUMBER);
+        String bonusNumber = Console.readLine();
+        validateBonusNumber(bonusNumber);
+        winnerLotto.bonusNumber = Integer.parseInt(bonusNumber);
+    }
+
     // TODO: - 유효성 체크
     private void validatePurchaseMoney(String money) {
+
+    }
+
+    private void validateWinnerString(String input) {
+
+    }
+
+    private void validateBonusNumber(String input) {
 
     }
 }
