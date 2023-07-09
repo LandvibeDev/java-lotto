@@ -8,6 +8,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -50,9 +51,37 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("[ERROR]");
+        });
+
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains("로또는 천원 단위로 구매할 수 있습니다");
+        });
+
+        assertSimpleTest(() -> {
+            runException("123");
+            assertThat(output()).contains("로또는 천원 단위로 구매할 수 있습니다");
         });
     }
+
+    @Test
+    void 예외_테스트_범위밖숫자() {
+        assertSimpleTest(() -> {
+            runException("1000", "0,46,47,48,49,50" ,"1");
+            assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 예외_던지기() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1234"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+
 
     @Override
     public void runMain() {
