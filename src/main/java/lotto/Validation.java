@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.ErrorMessage.*;
+
 public class Validation {
 
     public void validateMoney(String money) {
@@ -20,12 +22,9 @@ public class Validation {
     private void mainNumberCharacterCheck(String mainNumbers) {
         String[] mainNumberList = mainNumbers.split(",");
         for (String mainNumber : mainNumberList) {
-            if(mainNumber == "0") {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_CHARACTER.message);
-            }
             for (Character character : mainNumber.toCharArray()) {
                 if (!Character.isDigit(character)) {
-                    throw new IllegalArgumentException(ErrorMessage.WRONG_CHARACTER.message);
+                    throw new IllegalArgumentException(WRONG_CHARACTER.message);
                 }
             }
         }
@@ -34,7 +33,7 @@ public class Validation {
     private void bonusNumberCharacterCheck(String bonusNumber) {
         for (Character character : bonusNumber.toCharArray()) {
             if (!Character.isDigit(character)) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_CHARACTER.message);
+                throw new IllegalArgumentException(WRONG_CHARACTER.message);
             }
         }
     }
@@ -46,21 +45,21 @@ public class Validation {
         }
         set.add(Integer.parseInt(inputBonusNumber));
         if (set.size() != Rule.COUNT + 1) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.message);
+            throw new IllegalArgumentException(DUPLICATION.message);
         }
     }
 
     private void moneyCharacterCheck(String money) {
         for (char character : money.toCharArray()) {
             if (!Character.isDigit(character)) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_CHARACTER.message);
+                throw new IllegalArgumentException(WRONG_MONEY.message);
             }
         }
     }
 
     private void checkAmountOfMoney(String money) {
         if(Integer.parseInt(money) % 1000 != 0 || Integer.parseInt(money) == 0) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_MONEY.message);
+            throw new IllegalArgumentException(WRONG_MONEY.message);
         }
     }
 }
