@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.ConsoleMessages.*;
@@ -46,10 +45,9 @@ public class LottoGame implements NumberGame {
 
     private void buyLotto() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        ArrayList<Integer> randomNumbers;
+        List<Integer> randomNumbers;
         for(int count = 0; count <lottoCount; count++) {
             randomNumbers = randomNumberGenerator.generateRandomNumbers();
-            Collections.sort(randomNumbers);
             Lotto lotto = new Lotto(randomNumbers);
             lottoList.add(lotto);
         }
@@ -111,6 +109,7 @@ public class LottoGame implements NumberGame {
     }
 
     private double calculateEarningsRate() {
+
         return ((double)prize / money) * 100;
     }
 }
