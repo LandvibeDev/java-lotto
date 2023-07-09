@@ -75,7 +75,21 @@ public class LottoManager {
         resultLotto.calculateProfit();
         resultLotto.calculateRate(myLotto.money);
     }
-    
+
+    private int countNumberOfLottoMatches(Lotto lottoOneSet) {
+        int matchCount = 0;
+        for (int number : lottoOneSet.getNumbers()) {
+            if (winnerLotto.number.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean isMatchWithBonusNumber(Lotto lottoOneSet) {
+        return lottoOneSet.getNumbers().contains(winnerLotto.bonusNumber);
+    }
+
     // TODO: - 유효성 체크
     private void validatePurchaseMoney(String money) {
 
