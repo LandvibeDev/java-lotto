@@ -4,6 +4,9 @@ import static config.Messages.*;
 import static config.LottoConfig.*;
 import static config.SettingValues.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Printer {
 	public void printInputPurchaseAmountMessage() {
 		System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE.get());
@@ -19,6 +22,12 @@ public class Printer {
 
 	public void printInputBonusNumMessage() {
 		System.out.println(INPUT_BONUS_NUM_MESSAGE.get());
+	}
+
+	public void printList(List<?> list){
+		String listToStr;
+		listToStr = Arrays.toString(list.toArray());
+		System.out.println(listToStr);
 	}
 
 	public void printResult(double totalReward, double purchaseAmount) {
