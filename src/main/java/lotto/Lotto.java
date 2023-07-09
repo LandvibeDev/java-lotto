@@ -8,7 +8,7 @@ import validate.LottoValidator;
 
 public class Lotto {
 	private final List<Integer> numbers;
-	private LottoValidator validator;
+	LottoValidator validator;
 
 	public Lotto(List<Integer> numbers) {
 		validator = new LottoValidator();
