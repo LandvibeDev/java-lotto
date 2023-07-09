@@ -95,16 +95,39 @@ public class LottoManager {
         System.out.println(Message.Output.RESULT_RATE.toRateFormat(resultLotto.rate));
     }
 
-    // TODO: - 유효성 체크
-    private void validatePurchaseMoney(String money) {
-
+    private void validatePurchaseMoney(String input) throws IllegalArgumentException {
+        for(char c : input.toCharArray()) {
+            if(c < '0' || c > '9') {
+                throw new IllegalArgumentException(Message.Error.PURCHASE_AMOUNT.toErrorFormat());
+            }
+        }
+        int purchaseMoney = Integer.parseInt(input);
+        if(purchaseMoney % Number.Rule.PRICE.toNumber() != 0) {
+            throw new IllegalArgumentException(Message.Error.PURCHASE_AMOUNT.toErrorFormat());
+        }
     }
 
     private void validateWinnerString(String input) {
-
+        try {
+            String[] stringArray = input.split(",");
+            for (String str : stringArray) {
+                int num = Integer.parseInt(str);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(Message.Error.LOTTO_NUMBER.toErrorFormat());
+        }
     }
 
     private void validateBonusNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.Error.BONUS_NUMBER.toErrorFormat());
+        }
 
+        int bonusNumber = Integer.parseInt(input);
+        if(bonusNumber < Number.Rule.MIN.toNumber() || bonusNumber > Number.Rule.MAX.toNumber()) {
+            throw new IllegalArgumentException(Message.Error.BONUS_NUMBER.toErrorFormat());
+        }
     }
 }
