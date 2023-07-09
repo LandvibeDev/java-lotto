@@ -17,6 +17,16 @@ public class LottoManager {
         resultLotto = new ResultLottoData();
     }
 
+    public void play() {
+        inputPurchaingMoney();
+        issueLottoMultiSet();
+        printPurchasedLotto();
+        inputWinnerNumber();
+        inputBonusNumber();
+        calculateResultLotto();
+        printResultLotto();
+    }
+
     private void inputPurchaingMoney() {
         System.out.println(Message.Input.PURCHASE_MONEY);
         String input = Console.readLine();
