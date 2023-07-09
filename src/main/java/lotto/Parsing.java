@@ -3,6 +3,8 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.ErrorMessage.*;
+
 public class Parsing {
 
     public static WinningNumbers parseInput(String mainNumbersString, String bonusNumberString) {
@@ -17,6 +19,9 @@ public class Parsing {
         String[] parsedString = inputString.split(",");
         for (String s : parsedString) {
             int parsedNumber = Integer.parseInt(s);
+            if(parsedNumber < 1 || parsedNumber > 45) {
+                throw new IllegalArgumentException(WRONG_CHARACTER.message);
+            }
             parsedNumbers.add(parsedNumber);
         }
         return parsedNumbers;
