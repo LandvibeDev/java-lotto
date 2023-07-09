@@ -15,12 +15,12 @@ public class ConsoleMessages {
         System.out.println(String.format("3개 일치 (%s원) - %d개", decFormat.format(FIFTH.prize) ,resultNumber.get(MIN_RANK-1)));
         System.out.println(String.format("4개 일치 (%s원) - %d개", decFormat.format(FOURTH.prize), resultNumber.get(MIN_RANK-2)));
         System.out.println(String.format("5개 일치 (%s원) - %d개", decFormat.format(THIRD.prize), resultNumber.get(MIN_RANK-3)));
-        System.out.println(String.format("5개 일치 (%s원) - %d개", decFormat.format(SECOND.prize), resultNumber.get(MIN_RANK-4)));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개", decFormat.format(SECOND.prize), resultNumber.get(MIN_RANK-4)));
         System.out.println(String.format("6개 일치 (%s원) - %d개", decFormat.format(FIRST.prize), resultNumber.get(MIN_RANK-5)));
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.println(String.format("총 수익률은 %.1f%% 입니다.", earningRate));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningRate));
     }
 
     public static void printEnterMoney() {
