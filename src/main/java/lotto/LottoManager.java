@@ -38,21 +38,10 @@ public class LottoManager {
     private void issueLottoMultiSet() {
         myLotto.quantity = myLotto.money / Number.Rule.PRICE.toNumber();
         while(myLotto.lottoSet.size() < myLotto.quantity) {
-            Lotto lottoOneSet = issueLottoOneSet();
+            List<Integer> lottoOneList = Randoms.pickUniqueNumbersInRange(Number.Rule.MIN.toNumber(), Number.Rule.MAX.toNumber(), Number.Rule.SIZE.toNumber());
+            Lotto lottoOneSet = new Lotto(lottoOneList);
             myLotto.lottoSet.add(lottoOneSet);
         }
-    }
-
-    private Lotto issueLottoOneSet() {
-        List<Integer> lottoOneList = new ArrayList<>();
-        while(lottoOneList.size() < Number.Rule.SIZE.toNumber()) {
-            int newNumber = Randoms.pickNumberInRange(Number.Rule.MIN.toNumber(), Number.Rule.MAX.toNumber());
-            if(lottoOneList.contains(newNumber)) {
-                continue;
-            }
-            lottoOneList.add(newNumber);
-        }
-        return new Lotto(lottoOneList);
     }
 
     private void printPurchasedLotto() {
