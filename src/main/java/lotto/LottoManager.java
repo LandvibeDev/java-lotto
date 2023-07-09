@@ -45,6 +45,13 @@ public class LottoManager {
         return new Lotto(lottoOneList);
     }
 
+    private void printPurchasedLotto() {
+        System.out.println(Message.Output.PURCHASE_QUANTITY.toQuantityFormat(myLotto.quantity));
+        for(Lotto lotto : myLotto.lottoSet) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
     // TODO: - 유효성 체크
     private void validatePurchaseMoney(String money) {
 
