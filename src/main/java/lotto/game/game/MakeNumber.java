@@ -2,15 +2,16 @@ package lotto.game.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.game.lotto.Lotto;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.game.constant.NumberRange.*;
+
 public class MakeNumber {
+
     public static List<Lotto> makeRandomLottoNumbers(int cycle, List<Lotto>lottoList) {
         for (int i = 0; i < cycle; i++) {
             // 로또 번호 생성
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANDOM_START.value(), RANDOM_END.value(), RANDOM_COUNT.value());
             // 오름차순 정렬
             //Collections.sort(numbers);
 

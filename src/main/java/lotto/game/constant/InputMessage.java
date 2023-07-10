@@ -1,4 +1,4 @@
-package lotto.game.input;
+package lotto.game.constant;
 
 public enum InputMessage {
 
@@ -12,7 +12,7 @@ public enum InputMessage {
         this.string = string;
     }
 
-    String getString(){
+    public String getString(){
         return string;
     }
 }

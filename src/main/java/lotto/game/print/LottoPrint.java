@@ -7,6 +7,7 @@ import lotto.game.user.User;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import static lotto.game.constant.NumberRange.*;
 
 public class LottoPrint implements Print{
 
@@ -32,7 +33,7 @@ public class LottoPrint implements Print{
 
     @Override
     public void printResult(Awards awards, Result result) {
-        for(int i = 3; i<=6; i++){
+        for(int i = RESULT_START.value(); i<= RESULT_END.value(); i++){
             String printMessage = "";
             printMessage += i+"개 일치 ";
             // 5000원

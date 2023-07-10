@@ -1,14 +1,15 @@
 package lotto.game.input;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
+
+import static lotto.game.constant.InputMessage.*;
 
 public class LottoInput implements Input {
 
     @Override
     public Integer getPurchaseMoney() {
-        System.out.println(InputMessage.INPUT_PURCHASE_PRICE.getString());
+        System.out.println(INPUT_PURCHASE_PRICE.getString());
         String str = Console.readLine();
 
         try {
@@ -25,13 +26,13 @@ public class LottoInput implements Input {
 
     @Override
     public ArrayList<Integer> getWinningNumbers() {
-        System.out.println(InputMessage.INPUT_NUMBERS.getString());
+        System.out.println(INPUT_NUMBERS.getString());
         String str = Console.readLine();
         String[] split = str.split(",");
 
         ArrayList<Integer>arrayList = new ArrayList<>();
-        for(int i = 0; i<split.length; i++){
-            arrayList.add(Integer.valueOf(split[i]));
+        for (String s : split) {
+            arrayList.add(Integer.valueOf(s));
         }
         System.out.println();
         return arrayList;
@@ -39,7 +40,7 @@ public class LottoInput implements Input {
 
     @Override
     public Integer getBonusNumber() {
-        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getString());
+        System.out.println(INPUT_BONUS_NUMBER.getString());
         Integer bonusNumber = Integer.valueOf(Console.readLine());
         System.out.println();
         return bonusNumber;
