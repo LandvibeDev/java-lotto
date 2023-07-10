@@ -7,7 +7,7 @@ import java.util.List;
 public class LottoValidator implements Validator {
 
 	@Override
-	public void handleException(boolean condition, String ErrorMessage) {
+	public void handleException(boolean condition, String ErrorMessage) throws IllegalArgumentException {
 		if (condition) {
 			throw new IllegalArgumentException(ErrorMessage);
 		}

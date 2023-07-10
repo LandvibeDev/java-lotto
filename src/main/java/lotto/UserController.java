@@ -35,20 +35,39 @@ public class UserController implements Machine {
 
 	@Override
 	public void run() {
-		purchaseLotto();
-		rewardMeasuringMachine.run();
+		try {
+			purchaseLotto();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+
+		try {
+			rewardMeasuringMachine.run();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 		totalReward = rewardMeasuringMachine.getTotalReward();
 		printer.printResult((double)totalReward, (double)purchaseAmount);
 	}
 
-	public void purchaseLotto() {
+	public void purchaseLotto() throws IllegalArgumentException {
 		printer.printInputPurchaseAmountMessage();
 		String inStr = Console.readLine();
 
-		validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
+		try {
+			validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
+		} catch (IllegalArgumentException e) {
+			throw e;
+		}
 
 		purchaseAmount = Long.parseLong(inStr);
-		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
+		try {
+			validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
+		} catch (IllegalArgumentException e) {
+			throw e;
+		}
 		int numOfLotto = (int)(purchaseAmount / getUnitOfPurchase());
 		printer.printNumberOfPurchaseMessage(numOfLotto);
 

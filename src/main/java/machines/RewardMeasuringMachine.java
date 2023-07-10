@@ -4,6 +4,7 @@ import static config.SettingValues.*;
 import static config.LottoConfig.*;
 import static lotto.UserController.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lotto.Lotto;
@@ -18,12 +19,18 @@ public class RewardMeasuringMachine implements JudgeMachine {
 	public RewardMeasuringMachine() {
 		compareMachine = new LottoCompareMachine();
 		totalReward = 0;
-		userLottos = getUserLottos();
+		userLottos = new ArrayList<>();
 	}
 
 	@Override
 	public void run() {
-		compareMachine.run();
+		userLottos = getUserLottos();
+		try {
+			compareMachine.run();
+		}catch (IllegalArgumentException e) {
+			throw e;
+		}
+
 		int winPoint;
 		int ranking;
 		for (Lotto lotto : userLottos) {
