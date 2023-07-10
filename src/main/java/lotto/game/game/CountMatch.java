@@ -1,5 +1,7 @@
 package lotto.game.game;
 
+import lotto.game.lotto.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,4 +10,5 @@ public interface CountMatch {
 
     void countMatchRefund(int cnt, int bonusCnt);
 
+    void countLottoResult(ArrayList<Integer> winningNumber, Integer bonusNumber, List<Lotto>lottoList);
 }

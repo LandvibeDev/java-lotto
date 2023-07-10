@@ -16,7 +16,6 @@ public class LottoGame implements Game{
     Result result = Result.getInstance();
     User user = User.getInstance();
     Awards awards = Awards.getInstance();
-    Count count = Count.getInstance();
 
     private final Input input;
     private final Print print;
@@ -41,7 +40,7 @@ public class LottoGame implements Game{
 
         // 2. 구매수량 check
         int cycle = purchaseMoney / 1000;
-        System.out.println(cycle + "개를 구매했습니다.");
+        print.printPurchaseCount(cycle);
 
         // 3. 수량만큼 로또 번호 생성
         makeRandomLottoNumbers(cycle,lottoList);
@@ -50,20 +49,11 @@ public class LottoGame implements Game{
         print.printNumberList(lottoList);
 
         // 5. 당첨 번호, 보너스 번호 입력받기
-        ArrayList<Integer> winningNumber = input.getWinningNumber();
+        ArrayList<Integer> winningNumber = input.getWinningNumbers();
         Integer bonusNumber = input.getBonusNumber();
 
         // 6. 결과 집계
-        for(Lotto lotto : lottoList){
-            // 카운팅은 매번 초기화 되어야한다.
-            count.reset();
-            // 저장된 list 하나씩 빼오기
-            List<Integer> lottoNumber = lotto.getLottoNumber();
-            // 번호 일치여부 판별
-            countMatch.countMatchNumber(winningNumber, bonusNumber, lottoNumber);
-            // user refund update
-            countMatch.countMatchRefund(count.getCnt(), count.getBonusCnt());
-        }
+        countMatch.countLottoResult(winningNumber, bonusNumber, lottoList);
 
         // 7. 결과 출력
         print.printResultStart();

@@ -15,4 +15,6 @@ public interface Print {
     void printResult(Awards awards, Result result);
 
     void printRateOfReturn(Integer purchaseMoney, User user);
+
+    void printPurchaseCount(int cnt);
 }
