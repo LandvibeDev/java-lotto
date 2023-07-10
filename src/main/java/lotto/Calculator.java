@@ -50,13 +50,13 @@ public class Calculator {
     }
 
     public void printResult(){
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + countThree + "개");
-        System.out.println("4개 일치 (50,000원) - " + countFour + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + countFive + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countFiveAndBonus + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + countSix + "개");
+        System.out.println("당첨 통계\n" +
+                            "---\n" +
+                            "3개 일치 (5,000원) - " + countThree + "개\n" +
+                            "4개 일치 (50,000원) - " + countFour + "개\n" +
+                            "5개 일치 (1,500,000원) - " + countFive + "개\n" +
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - " + countFiveAndBonus + "개\n" +
+                            "6개 일치 (2,000,000,000원) - " + countSix + "개");
     }
 
     public void printIncomeRate(int coin){
