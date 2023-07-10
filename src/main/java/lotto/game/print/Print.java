@@ -1,9 +1,7 @@
 package lotto.game.print;
 
 import lotto.game.lotto.Lotto;
-import lotto.game.result.Awards;
-import lotto.game.result.Result;
-import lotto.game.user.User;
+import lotto.game.result.LottoCount;
 
 import java.util.List;
 
@@ -12,9 +10,9 @@ public interface Print {
 
     void printResultStart();
 
-    void printResult(Awards awards, Result result);
+    void printResult(List<LottoCount>lottoCountList);
 
-    void printRateOfReturn(Integer purchaseMoney, User user);
+    void printRateOfReturn(Integer purchaseMoney, Integer rewards);
 
     void printPurchaseCount(int cnt);
 }

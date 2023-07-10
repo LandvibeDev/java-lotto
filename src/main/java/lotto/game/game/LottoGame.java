@@ -3,24 +3,19 @@ package lotto.game.game;
 import lotto.game.input.Input;
 import lotto.game.lotto.Lotto;
 import lotto.game.print.Print;
-import lotto.game.result.Awards;
-import lotto.game.result.Count;
-import lotto.game.result.Result;
-import lotto.game.user.User;
+import lotto.game.result.LottoCount;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.game.game.MakeNumber.makeRandomLottoNumbers;
 
 public class LottoGame implements Game{
-    Result result = Result.getInstance();
-    User user = User.getInstance();
-    Awards awards = Awards.getInstance();
 
     private final Input input;
     private final Print print;
     private final CountMatch countMatch;
-    private List<Lotto>lottoList;
+    private final List<Lotto>lottoList;
 
     public LottoGame(Input input, Print print, CountMatch countMatch){
         this.input = input;
@@ -53,12 +48,13 @@ public class LottoGame implements Game{
         Integer bonusNumber = input.getBonusNumber();
 
         // 6. 결과 집계
-        countMatch.countLottoResult(winningNumber, bonusNumber, lottoList);
+        List<LottoCount> lottoCountList = countMatch.countMatchNumber(winningNumber, bonusNumber, lottoList);
+        int reward = countMatch.countMatchReward(lottoCountList);
 
         // 7. 결과 출력
         print.printResultStart();
-        print.printResult(awards,result);
-        print.printRateOfReturn(purchaseMoney,user);
+        print.printResult(lottoCountList);
+        print.printRateOfReturn(purchaseMoney,reward);
     }
 
 
