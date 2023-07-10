@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.game.game.CountMatch;
 import lotto.game.game.Game;
+import lotto.game.game.LottoGame;
 import lotto.game.input.Input;
 import lotto.game.print.Print;
 
@@ -12,7 +13,7 @@ public class Application {
         Print print = new Print();
         CountMatch countMatch = new CountMatch();
 
-        Game game = new Game(input,print,countMatch);
-        game.start();
+        Game lottoGame = new LottoGame(input,print,countMatch);
+        lottoGame.start();
     }
 }

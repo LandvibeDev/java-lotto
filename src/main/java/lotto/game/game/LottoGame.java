@@ -12,7 +12,7 @@ import java.util.List;
 
 import static lotto.game.game.MakeNumber.makeRandomLottoNumbers;
 
-public class Game {
+public class LottoGame implements Game{
     Result result = Result.getInstance();
     User user = User.getInstance();
     Awards awards = Awards.getInstance();
@@ -23,17 +23,19 @@ public class Game {
     private final CountMatch countMatch;
     private List<Lotto>lottoList;
 
-    public Game(Input input, Print print, CountMatch countMatch){
+    public LottoGame(Input input, Print print, CountMatch countMatch){
         this.input = input;
         this.print = print;
         this.countMatch = countMatch;
         this.lottoList = new ArrayList<>();
     }
 
+    @Override
     public void start() {
         // 1. 수량 입력받기
         Integer purchaseMoney = input.getPurchaseMoney();
         if(purchaseMoney==-1){
+            // error 발생
             return;
         }
 
