@@ -1,8 +1,10 @@
 package lotto;
 
 import static config.LottoConfig.*;
-import static lotto.UserValues.*;
 import static validate.ErrorMessages.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -19,12 +21,16 @@ public class UserController implements Machine {
 	AutoLottoMachine autoLottoMachine;
 	RewardMeasuringMachine rewardMeasuringMachine;
 	Printer printer;
+	private static int[] numOfRanking;
+	private static List<Lotto> userLottos;
 
 	UserController() {
 		validator = new LottoValidator();
 		printer = new Printer();
 		autoLottoMachine = new AutoLottoMachine();
 		rewardMeasuringMachine = new RewardMeasuringMachine();
+		numOfRanking = new int[6];
+		userLottos = new ArrayList<>();
 	}
 
 	@Override
@@ -49,8 +55,24 @@ public class UserController implements Machine {
 		for (int i = 0; i < numOfLotto; i++) {
 			autoLottoMachine.run();
 			Lotto lotto = autoLottoMachine.getAutoLotto();
+
 			addLotto(lotto);
 		}
 	}
 
+	public static List<Lotto> getUserLottos() {
+		return userLottos;
+	}
+
+	public static void addLotto(Lotto lotto) {
+		userLottos.add(lotto);
+	}
+
+	public static int getNumOfRanking(int i) {
+		return numOfRanking[i];
+	}
+
+	public static void increaseNumOfRanking(int i) {
+		numOfRanking[i]++;
+	}
 }

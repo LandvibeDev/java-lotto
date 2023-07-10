@@ -16,7 +16,7 @@ public class AutoLottoMachine implements RandomNumsGenerator {
 	List<Integer> numbers;
 	Printer printer;
 
-	public AutoLottoMachine(){
+	public AutoLottoMachine() {
 		printer = new Printer();
 	}
 
@@ -26,13 +26,15 @@ public class AutoLottoMachine implements RandomNumsGenerator {
 		printer.printList(numbers);
 		autoLotto = new Lotto(numbers);
 	}
+
 	@Override
-	public List<Integer> createRandomNums(){
+	public List<Integer> createRandomNums() {
 		List<Integer> randomNums;
 		randomNums = Randoms.pickUniqueNumbersInRange(MIN_OF_RANGE.get(), MAX_OF_RANGE.get(), NUMBER_SIZE.get());
 		return randomNums;
 	}
-	public List<Integer> sortIntegers(List<Integer> numList){
+
+	public List<Integer> sortIntegers(List<Integer> numList) {
 		List<Integer> sortedNumList;
 		sortedNumList = numList.stream()
 			.sorted(Comparator.comparing(Integer::intValue))

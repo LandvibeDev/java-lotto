@@ -5,7 +5,6 @@ import static config.SettingValues.*;
 
 public class LottoConfig {
 
-
 	private static final String NOTHING = "";
 	private static final int[] rewards = {FAIL.get(), REWARD_OF_FIRST.get(), REWARD_OF_SECOND.get(),
 		REWARD_OF_THIRD.get(), REWARD_OF_FOURTH.get(), REWARD_OF_FIFTH.get()};
@@ -20,8 +19,6 @@ public class LottoConfig {
 	private static final long UNIT_OF_PURCHASE = 1000L;
 	private static final String DELIM = ",";
 
-
-
 	public static int getReward(int i) {
 		return rewards[i];
 	}
@@ -33,8 +30,6 @@ public class LottoConfig {
 	public static long getUnitOfPurchase() {
 		return UNIT_OF_PURCHASE;
 	}
-
-
 
 	public static String getDELIM() {
 		return DELIM;

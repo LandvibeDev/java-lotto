@@ -3,7 +3,7 @@ package lotto;
 import static config.Messages.*;
 import static config.LottoConfig.*;
 import static config.SettingValues.*;
-import static lotto.UserValues.*;
+import static lotto.UserController.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ public class Printer {
 		System.out.println(INPUT_BONUS_NUM_MESSAGE.get());
 	}
 
-	public void printList(List<?> list){
+	public void printList(List<?> list) {
 		String listToStr;
 		listToStr = Arrays.toString(list.toArray());
 		System.out.println(listToStr);

@@ -2,7 +2,9 @@ package machines;
 
 import static config.SettingValues.*;
 import static config.LottoConfig.*;
-import static lotto.UserValues.*;
+import static lotto.UserController.*;
+
+import java.util.List;
 
 import lotto.Lotto;
 import machines.interfaces.JudgeMachine;
@@ -10,11 +12,13 @@ import machines.interfaces.JudgeMachine;
 public class RewardMeasuringMachine implements JudgeMachine {
 
 	LottoCompareMachine compareMachine;
+	List<Lotto> userLottos;
 	long totalReward;
 
 	public RewardMeasuringMachine() {
 		compareMachine = new LottoCompareMachine();
 		totalReward = 0;
+		userLottos = getUserLottos();
 	}
 
 	@Override
@@ -22,7 +26,7 @@ public class RewardMeasuringMachine implements JudgeMachine {
 		compareMachine.run();
 		int winPoint;
 		int ranking;
-		for (Lotto lotto : getUserLottos()) {
+		for (Lotto lotto : userLottos) {
 			winPoint = compareMachine.compare(lotto.getLottoNums());
 			ranking = rank(winPoint);
 			totalReward += getReward(ranking);
