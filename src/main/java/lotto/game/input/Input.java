@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Input {
 
     public Integer getPurchaseMoney() {
-        System.out.println("구입 금액을 입력해 주세요");
+        System.out.println(InputMessage.INPUT_PURCHASE_PRICE.getString());
         String str = Console.readLine();
 
         try {
@@ -23,7 +23,7 @@ public class Input {
     }
 
     public ArrayList<Integer> getWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputMessage.INPUT_NUMBERS.getString());
         String str = Console.readLine();
         String[] split = str.split(",");
 
@@ -36,7 +36,7 @@ public class Input {
     }
 
     public Integer getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getString());
         Integer bonusNumber = Integer.valueOf(Console.readLine());
         System.out.println();
         return bonusNumber;
