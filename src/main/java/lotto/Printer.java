@@ -1,8 +1,10 @@
 package lotto;
 
-import static config.Messages.*;
-import static config.LottoConfig.*;
-import static config.SettingValues.*;
+import static lotto.numberGame.NumConverter.*;
+import static lotto.config.Messages.*;
+import static lotto.config.LottoConfig.*;
+import static lotto.config.SettingValues.*;
+
 import static lotto.UserController.*;
 
 import java.util.Arrays;
@@ -41,10 +43,12 @@ public class Printer {
 
 	public void printRankingResult(int i) {
 		if (i == SECOND.get()) {
-			System.out.printf(WINNING_MESSAGE_FORMAT_SECOND.get(), getPoint(i), getRewardStr(i), getNumOfRanking(i));
+			System.out.printf(WINNING_MESSAGE_FORMAT_SECOND.get(),
+				getPoint(i), intToString(getReward(i))+WON.get(),getNumOfRanking(i));
 			return;
 		}
-		System.out.printf(WINNING_MESSAGE_FORMAT_NORMAL.get(), getPoint(i), getRewardStr(i), getNumOfRanking(i));
+		System.out.printf(WINNING_MESSAGE_FORMAT_NORMAL.get(),
+			getPoint(i),intToString(getReward(i))+WON.get(),getNumOfRanking(i));
 	}
 
 	public void printReceiptTitle() {
@@ -53,7 +57,11 @@ public class Printer {
 
 	public void printProfitRatio(double totalReward, double purchaseAmount) {
 		double profitRatio;
+		String profitRatioStr;
 		profitRatio = (totalReward / purchaseAmount) * getPERCENTAGE();
-		System.out.printf(PROFIT_RATIO_MESSAGE_FORMAT.get(), profitRatio);
+		profitRatioStr = doubleToString(profitRatio,getCutSize());
+		System.out.printf(PROFIT_RATIO_MESSAGE_FORMAT.get(), profitRatioStr);
 	}
+
+
 }
