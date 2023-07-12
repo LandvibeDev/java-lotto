@@ -13,6 +13,10 @@ public class LottoValidator implements Validator {
 		}
 	}
 
+	@Override
+	public void printErrorMessage(IllegalArgumentException e){
+		System.out.println(e);
+	}
 	public boolean isThereSpace(String inStr) {
 		return inStr.contains(" ");
 	}
