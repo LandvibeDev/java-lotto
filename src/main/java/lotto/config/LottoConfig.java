@@ -12,20 +12,20 @@ import lotto.randomNumber.RandomNumberImpl;
 
 public class LottoConfig {
 
-    public RandomNumber getRandomNumber() {
+    public RandomNumber randomNumber() {
         return RandomNumberImpl.getInstance();
     }
 
-    public Input getInput() {
+    public Input input() {
         return InputImpl.getInstance();
     }
 
-    public Print getPrint() {
+    public Print print() {
         return PrintImpl.getInstance();
     }
 
 
     public Game getGame() {
-        return new GameImpl(getRandomNumber(), getInput(), getPrint());
+        return new GameImpl(randomNumber(), input(), print());
     }
 }
