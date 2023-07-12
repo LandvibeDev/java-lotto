@@ -1,4 +1,4 @@
-package config;
+package lotto.config;
 
 public enum Messages {
 
@@ -9,12 +9,8 @@ public enum Messages {
 	RECEIPT_TITLE("당첨 통계\n---"),
 	WINNING_MESSAGE_FORMAT_NORMAL("%d개 일치 (%s) - %d개\n"),
 	WINNING_MESSAGE_FORMAT_SECOND("%d개 일치, 보너스 볼 일치 (%s) - %d개\n"),
-	REWARD_OF_FIRST_STR("2,000,000,000원"),
-	REWARD_OF_SECOND_STR("30,000,000원"),
-	REWARD_OF_THIRD_STR("1,500,000원"),
-	REWARD_OF_FOURTH_STR("50,000원"),
-	REWARD_OF_FIFTH_STR("5,000원"),
-	PROFIT_RATIO_MESSAGE_FORMAT("총 수익률은 %.1f%%입니다.\n"),
+	WON("원"),
+	PROFIT_RATIO_MESSAGE_FORMAT("총 수익률은 %s%%입니다.\n"),
 
 	;
 
