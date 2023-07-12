@@ -77,7 +77,6 @@ public class LottoCompareMachine implements NumberCompareMachine {
 
 		validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
 
-		System.out.println(inStr);
 		bonusNum = Integer.parseInt(inStr);
 
 		validator.handleException(validator.isDuplicatedNum(winningNums, bonusNum), ALREADY_DRAWN_MESSAGE.get());
