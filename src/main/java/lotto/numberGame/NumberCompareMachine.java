@@ -1,4 +1,4 @@
-package machines.interfaces;
+package lotto.numberGame;
 
 import java.util.List;
 
