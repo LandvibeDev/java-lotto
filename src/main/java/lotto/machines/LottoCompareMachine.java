@@ -1,8 +1,8 @@
-package machines;
+package lotto.machines;
 
-import static config.LottoConfig.*;
-import static config.SettingValues.*;
-import static validate.ErrorMessages.*;
+import static lotto.config.LottoConfig.*;
+import static lotto.config.SettingValues.*;
+import static lotto.validator.ErrorMessages.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-import validate.LottoValidator;
+import lotto.validator.LottoValidator;
 import lotto.Printer;
-import machines.interfaces.NumberCompareMachine;
+import lotto.numberGame.NumberCompareMachine;
 
 public class LottoCompareMachine implements NumberCompareMachine {
 	private Lotto winningLotto;
@@ -63,7 +63,6 @@ public class LottoCompareMachine implements NumberCompareMachine {
 			} catch (IllegalArgumentException e) {
 				throw e;
 			}
-
 
 			winningNums.add(cur);
 		}

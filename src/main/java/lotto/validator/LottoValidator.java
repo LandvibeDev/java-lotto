@@ -1,8 +1,10 @@
-package validate;
+package lotto.validator;
 
-import static config.SettingValues.*;
+import static lotto.config.SettingValues.*;
 
 import java.util.List;
+
+import lotto.numberGame.Validator;
 
 public class LottoValidator implements Validator {
 
@@ -14,9 +16,10 @@ public class LottoValidator implements Validator {
 	}
 
 	@Override
-	public void printErrorMessage(IllegalArgumentException e){
+	public void printErrorMessage(IllegalArgumentException e) {
 		System.out.println(e);
 	}
+
 	public boolean isThereSpace(String inStr) {
 		return inStr.contains(" ");
 	}

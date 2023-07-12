@@ -1,14 +1,13 @@
-package machines;
+package lotto.machines;
 
-import static config.SettingValues.*;
-import static config.LottoConfig.*;
+import static lotto.config.SettingValues.*;
+import static lotto.config.LottoConfig.*;
 import static lotto.UserController.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lotto.Lotto;
-import machines.interfaces.JudgeMachine;
+import lotto.numberGame.JudgeMachine;
 
 public class RewardMeasuringMachine implements JudgeMachine {
 
@@ -16,18 +15,17 @@ public class RewardMeasuringMachine implements JudgeMachine {
 	List<Lotto> userLottos;
 	long totalReward;
 
-	public RewardMeasuringMachine() {
+	public RewardMeasuringMachine(List<Lotto> userLottos) {
 		compareMachine = new LottoCompareMachine();
 		totalReward = 0;
-		userLottos = new ArrayList<>();
+		this.userLottos = userLottos;
 	}
 
 	@Override
 	public void run() {
-		userLottos = getUserLottos();
 		try {
 			compareMachine.run();
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			throw e;
 		}
 
@@ -41,7 +39,7 @@ public class RewardMeasuringMachine implements JudgeMachine {
 	}
 
 	@Override
-	public int rank(int winPoint) {
+	public int rank(Integer winPoint) {
 		int ranking = CALCULATOR.get() - winPoint;
 		if (ranking <= MIN_WINNING_RANKING.get()) {
 			increaseNumOfRanking(ranking);

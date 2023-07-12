@@ -1,17 +1,18 @@
 package lotto;
 
-import static config.LottoConfig.*;
-import static validate.ErrorMessages.*;
+import static lotto.config.LottoConfig.*;
+import static lotto.validator.ErrorMessages.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import machines.*;
-import machines.interfaces.Machine;
+import lotto.machines.AutoLottoMachine;
+import lotto.machines.RewardMeasuringMachine;
+import lotto.numberGame.Machine;
 
-import validate.LottoValidator;
+import lotto.validator.LottoValidator;
 
 public class UserController implements Machine {
 
@@ -28,24 +29,25 @@ public class UserController implements Machine {
 		validator = new LottoValidator();
 		printer = new Printer();
 		autoLottoMachine = new AutoLottoMachine();
-		rewardMeasuringMachine = new RewardMeasuringMachine();
-		numOfRanking = new int[6];
 		userLottos = new ArrayList<>();
+		rewardMeasuringMachine = new RewardMeasuringMachine(userLottos);
+		numOfRanking = new int[6];
+
 	}
 
 	@Override
-	public void run() {
+	public void run() throws IllegalArgumentException{
 		try {
 			purchaseLotto();
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			validator.printErrorMessage(e);
 			return;
 		}
 
 		try {
 			rewardMeasuringMachine.run();
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			validator.printErrorMessage(e);
 			return;
 		}
 		totalReward = rewardMeasuringMachine.getTotalReward();
@@ -79,11 +81,7 @@ public class UserController implements Machine {
 		}
 	}
 
-	public static List<Lotto> getUserLottos() {
-		return userLottos;
-	}
-
-	public static void addLotto(Lotto lotto) {
+	private static void addLotto(Lotto lotto) {
 		userLottos.add(lotto);
 	}
 

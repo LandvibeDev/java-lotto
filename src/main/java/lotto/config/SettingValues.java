@@ -1,4 +1,4 @@
-package config;
+package lotto.config;
 
 public enum SettingValues {
 	// config values

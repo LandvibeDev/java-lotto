@@ -1,10 +1,10 @@
 package lotto;
 
-import static validate.ErrorMessages.*;
+import static lotto.validator.ErrorMessages.*;
 
 import java.util.List;
 
-import validate.LottoValidator;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
 	private final List<Integer> numbers;

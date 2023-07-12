@@ -1,6 +1,6 @@
-package machines;
+package lotto.machines;
 
-import static config.SettingValues.*;
+import static lotto.config.SettingValues.*;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.Printer;
-import machines.interfaces.RandomNumsGenerator;
+import lotto.numberGame.RandomNumsGenerator;
 
 public class AutoLottoMachine implements RandomNumsGenerator {
 	Lotto autoLotto;

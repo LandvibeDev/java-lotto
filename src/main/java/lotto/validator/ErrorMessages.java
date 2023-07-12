@@ -1,4 +1,4 @@
-package validate;
+package lotto.validator;
 
 public enum ErrorMessages {
 	INVALID_NUMBER_SIZE_MESSAGE("[ERROR] 숫자는 6개"),
