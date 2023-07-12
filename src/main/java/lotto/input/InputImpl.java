@@ -17,11 +17,13 @@ public class InputImpl implements Input {
         print = PrintImpl.getInstance();
     }
 
-    public static InputImpl getInstance() {
-        if (input == null) {
-            input = new InputImpl();
-        }
-        return input;
+    private static class InstanceHolder {
+        private static Input INSTANCE = new InputImpl();
+    }
+
+
+    public static Input getInstance() {
+        return InstanceHolder.INSTANCE;
     }
 
     @Override
@@ -51,8 +53,8 @@ public class InputImpl implements Input {
         return result;
     }
 
-    @Override
-    public void validatePrice(String input) {
+
+    private void validatePrice(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) < MIN_BOUND_CHAR || input.charAt(i) > MAX_BOUND_CHAR) {
                 throw new IllegalArgumentException("[ERROR]");
@@ -60,8 +62,8 @@ public class InputImpl implements Input {
         }
     }
 
-    @Override
-    public void validateWinningNumber(List<Integer> input) {
+
+    private void validateWinningNumber(List<Integer> input) {
         for (int i = 0; i < input.size(); i++) {
             if (input.get(i) < MIN_BOUND || input.get(i) > MAX_BOUND) {
 

@@ -11,12 +11,14 @@ public class PrintImpl implements Print {
     private PrintImpl() {
     }
 
+    private static class InstanceHolder {
+        private static Print INSTANCE = new PrintImpl();
+    }
 
-    public static PrintImpl getInstance() {
-        if (print == null) {
-            print = new PrintImpl();
-        }
-        return print;
+
+    public static Print getInstance() {
+
+        return InstanceHolder.INSTANCE;
     }
 
     @Override

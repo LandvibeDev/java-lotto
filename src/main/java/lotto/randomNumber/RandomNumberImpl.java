@@ -13,11 +13,13 @@ public class RandomNumberImpl implements RandomNumber {
     private RandomNumberImpl() {
     }
 
-    public static RandomNumberImpl getInstance() {
-        if (randomNumber == null) {
-            randomNumber = new RandomNumberImpl();
-        }
-        return randomNumber;
+    private static class InstanceHolder {
+        private static RandomNumber INSTANCE = new RandomNumberImpl();
+    }
+
+
+    public static RandomNumber getInstance() {
+        return InstanceHolder.INSTANCE;
     }
 
     @Override

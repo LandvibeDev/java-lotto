@@ -8,7 +8,5 @@ public interface Input {
 
     public List<Integer> getWiningNumber();
 
-    public void validatePrice(String input);
 
-    public void validateWinningNumber(List<Integer> input);
 }

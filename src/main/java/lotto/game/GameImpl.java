@@ -27,8 +27,8 @@ public class GameImpl implements Game {
         this.print = print;
     }
 
-    @Override
-    public List<List<Integer>> getRandomNumbers(int amount) {
+
+    private List<List<Integer>> getRandomNumbers(int amount) {
         List<List<Integer>> list = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             List<Integer> randomNumbers = randomNumber.getRandomNumber();
@@ -37,8 +37,8 @@ public class GameImpl implements Game {
         return list;
     }
 
-    @Override
-    public int[] getWinCounts(List<List<Integer>> winCounts) {
+
+    private int[] getWinCounts(List<List<Integer>> winCounts) {
         int[] place = new int[TOTAL_PLACES];
         for (List<Integer> winCount : winCounts) {
             int count = winCount.get(MATCH_COUNT_IDX);//보너스 숫자 제외 맞춘 숫자 갯수
