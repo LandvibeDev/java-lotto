@@ -1,6 +1,8 @@
 package numberManager;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+import lotto.Message;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class LottoList {
     public Lotto[] lottos;
 
     public LottoList(int coin){
-        System.out.println(coin + "개를 구매했습니다.");
+        System.out.println(coin + Message.PURCHASE_MESSAGE.getMessage());
 
         this.lottos = new Lotto[coin];
         setLottoList(coin);

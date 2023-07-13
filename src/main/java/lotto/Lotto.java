@@ -1,4 +1,4 @@
-package numberManager;
+package lotto;
 
 import static validator.ExceptionController.*;
 
