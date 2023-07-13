@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    List<Integer> winningNumberslist = new ArrayList<>();
-    int bonusNumber;
-    String winningNumbers;
+    public List<Integer> winningNumberslist = new ArrayList<>();
+    public int bonusNumber;
+    public String winningNumbers;
 
     WinningNumbers(){
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());

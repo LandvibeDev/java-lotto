@@ -1,5 +1,7 @@
 package lotto;
 
+import calculator.Calculator;
+import calculator.Printer;
 import camp.nextstep.edu.missionutils.Console;
 import static validator.ExceptionController.*;
 
@@ -28,7 +30,9 @@ public class LottoGame {
         winningNumbers = new WinningNumbers();
 
         Calculator calculator = new Calculator(lottoList, winningNumbers);
-        calculator.printResult();
-        calculator.printIncomeRate(coin);
+        calculator.totalCorrectCount();
+
+        Printer.printResult();
+        Printer.printIncomeRate(coin);
     }
 }
