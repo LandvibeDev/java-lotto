@@ -1,7 +1,7 @@
 package calculator;
 
-import lotto.LottoList;
-import lotto.WinningNumbers;
+import numberManager.LottoList;
+import numberManager.WinningNumbers;
 
 public class Calculator extends Printer{
 

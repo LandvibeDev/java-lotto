@@ -1,8 +1,10 @@
 package lotto;
 
-import calculator.Calculator;
-import calculator.Printer;
+import calculator.*;
 import camp.nextstep.edu.missionutils.Console;
+import numberManager.LottoList;
+import numberManager.WinningNumbers;
+
 import static validator.ExceptionController.*;
 
 public class LottoGame {
@@ -20,6 +22,7 @@ public class LottoGame {
         }
         catch (IllegalArgumentException exception){
             System.out.println(exception.getMessage());
+            return;
         }
 
         coin = Integer.parseInt(amount)/1000;
@@ -32,7 +35,8 @@ public class LottoGame {
         Calculator calculator = new Calculator(lottoList, winningNumbers);
         calculator.totalCorrectCount();
 
-        Printer.printResult();
-        Printer.printIncomeRate(coin);
+        Printer printer = new Printer();
+        printer.printResult();
+        printer.printIncomeRate(coin);
     }
 }

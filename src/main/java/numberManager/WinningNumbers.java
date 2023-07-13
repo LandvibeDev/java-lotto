@@ -1,4 +1,4 @@
-package lotto;
+package numberManager;
 
 import camp.nextstep.edu.missionutils.Console;
 import static validator.ExceptionController.*;
@@ -13,7 +13,7 @@ public class WinningNumbers {
     public int bonusNumber;
     public String winningNumbers;
 
-    WinningNumbers(){
+    public WinningNumbers(){
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         winningNumbers = Console.readLine();
         setWinningNumberslist();

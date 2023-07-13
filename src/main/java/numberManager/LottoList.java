@@ -1,4 +1,4 @@
-package lotto;
+package numberManager;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,7 +7,7 @@ import java.util.List;
 public class LottoList {
     public Lotto[] lottos;
 
-    LottoList(int coin){
+    public LottoList(int coin){
         System.out.println(coin + "개를 구매했습니다.");
 
         this.lottos = new Lotto[coin];
