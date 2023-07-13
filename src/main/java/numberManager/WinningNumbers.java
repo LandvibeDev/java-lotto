@@ -38,15 +38,7 @@ public class WinningNumbers {
     private void putCorrectNumber(String correctString){
         int correctInteger = Integer.parseInt(correctString);
 
-        try {
-            noIntegerValueException(correctString);
-            noValidLottoNumberException(correctInteger);
-            overlapNumberException(winningNumberslist, correctInteger);
-        }
-        catch (IllegalArgumentException exception){
-            System.out.println(exception.getMessage());
-            return;
-        }
+        if(validate(correctString, correctInteger)) return;
 
         winningNumberslist.add(correctInteger);
     }
@@ -56,16 +48,21 @@ public class WinningNumbers {
         String bonusNumberstr = Console.readLine();
         int bonusNumberint = Integer.parseInt(bonusNumberstr);
 
+        if(validate(bonusNumberstr, bonusNumberint)) return;
+
+        bonusNumber = bonusNumberint;
+    }
+
+    private boolean validate(String numStr, int numInt){
         try {
-            noIntegerValueException(bonusNumberstr);
-            noValidLottoNumberException(bonusNumberint);
-            overlapNumberException(winningNumberslist, bonusNumberint);
+            noIntegerValueException(numStr);
+            noValidLottoNumberException(numInt);
+            overlapNumberException(winningNumberslist, numInt);
         }
         catch (IllegalArgumentException exception){
             System.out.println(exception.getMessage());
-            return;
+            return true;
         }
-
-        bonusNumber = bonusNumberint;
+        return false;
     }
 }
