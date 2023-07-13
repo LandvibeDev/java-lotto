@@ -28,7 +28,7 @@ public class LottoGame {
     }
 
     private String inputAmount(){
-        System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
+        System.out.println(LottoMessage.INPUT_PURCHASE_AMOUNT.getMessage());
         String amount = Console.readLine();
         return amount;
     }

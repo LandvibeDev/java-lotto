@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Message {
+public enum LottoMessage {
     INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
@@ -8,7 +8,7 @@ public enum Message {
 
     private final String message;
 
-    Message(String message){
+    LottoMessage(String message){
         this.message = message;
     }
 

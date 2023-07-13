@@ -3,7 +3,7 @@ package numberManager;
 import camp.nextstep.edu.missionutils.Console;
 import static validator.ExceptionController.*;
 
-import static lotto.Message.*;
+import static lotto.LottoMessage.*;
 
 import java.util.ArrayList;
 import java.util.List;
