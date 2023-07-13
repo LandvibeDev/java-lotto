@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import static validator.ExceptionController.*;
 
 public class LottoGame {
     LottoList lottoList;
@@ -11,8 +12,13 @@ public class LottoGame {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
         String amount = Console.readLine();
 
-        ExceptionController.noIntegerValueException(amount);
-        ExceptionController.noValidAmountException(amount);
+        try {
+            noIntegerValueException(amount);
+            noValidAmountException(amount);
+        }
+        catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+        }
 
         coin = Integer.parseInt(amount)/1000;
     }

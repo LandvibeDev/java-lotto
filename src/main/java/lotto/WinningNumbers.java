@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import static validator.ExceptionController.*;
+
 import static lotto.Message.*;
 
 import java.util.ArrayList;
@@ -12,10 +14,9 @@ public class WinningNumbers {
     String winningNumbers;
 
     WinningNumbers(){
-        System.out.println(INPUT_PURCHASE_AMOUNT);
+        System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         winningNumbers = Console.readLine();
         setWinningNumberslist();
-        validate(winningNumberslist);
         setBonusNumber();
     }
     private void setWinningNumberslist(){
@@ -28,30 +29,25 @@ public class WinningNumbers {
                 correctString = "";
                 continue;
             }
-
             correctString += tmp;
-            ExceptionController.noIntegerValueException(correctString);
-            if(i == winningNumbers.length()-1){
-                putCorrectNumber(correctString);
-            }
         }
+
+        putCorrectNumber(correctString);
     }
 
     private void putCorrectNumber(String correctString){
         int correctInteger = Integer.parseInt(correctString);
 
-        ExceptionController.noIntegerValueException(correctString);
-        ExceptionController.noValidLottoNumberException(correctInteger);
-        ExceptionController.overlapNumberException(winningNumberslist, correctInteger);
+        try {
+            noIntegerValueException(correctString);
+            noValidLottoNumberException(correctInteger);
+            overlapNumberException(winningNumberslist, correctInteger);
+        }
+        catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+        }
 
         winningNumberslist.add(correctInteger);
-    }
-
-    private void validate(List<Integer> winningNumberslist) {
-        if (winningNumberslist.size() != 6) {
-            System.out.println(INPUT_SIXDIGIT_NUMVER);
-            throw new IllegalArgumentException();
-        }
     }
 
     private void setBonusNumber(){
@@ -59,9 +55,9 @@ public class WinningNumbers {
         String bonusNumberstr = Console.readLine();
         int bonusNumberint = Integer.parseInt(bonusNumberstr);
 
-        ExceptionController.noIntegerValueException(bonusNumberstr);
-        ExceptionController.noValidLottoNumberException(bonusNumberint);
-        ExceptionController.overlapNumberException(winningNumberslist, bonusNumberint);
+        noIntegerValueException(bonusNumberstr);
+        noValidLottoNumberException(bonusNumberint);
+        overlapNumberException(winningNumberslist, bonusNumberint);
 
         bonusNumber = bonusNumberint;
     }
