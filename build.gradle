@@ -9,11 +9,12 @@ repositories {
 
 dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.0.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(14)
+        languageVersion = JavaLanguageVersion.of(11)
     }
 }
 
