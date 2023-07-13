@@ -34,9 +34,7 @@ public class LottoGame {
 
         Calculator calculator = new Calculator(lottoList, winningNumbers);
         calculator.totalCorrectCount();
-
-        Printer printer = new Printer();
-        printer.printResult();
-        printer.printIncomeRate(coin);
+        calculator.printResult();
+        calculator.printIncomeRate(coin);
     }
 }
