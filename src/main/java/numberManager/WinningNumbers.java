@@ -11,7 +11,7 @@ import java.util.List;
 public class WinningNumbers {
     public List<Integer> winningNumberslist = new ArrayList<>();
     public int bonusNumber;
-    public String winningNumbers;
+    private String winningNumbers;
 
     public WinningNumbers(){
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());

@@ -8,13 +8,12 @@ import numberManager.WinningNumbers;
 import static validator.ExceptionController.*;
 
 public class LottoGame {
-    LottoList lottoList;
-    WinningNumbers winningNumbers;
+    private LottoList lottoList;
+    private WinningNumbers winningNumbers;
     int coin;
 
     LottoGame(){
-        System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
-        String amount = Console.readLine();
+        String amount = inputAmount();
 
         try {
             noIntegerValueException(amount);
@@ -26,6 +25,12 @@ public class LottoGame {
         }
 
         coin = Integer.parseInt(amount)/1000;
+    }
+
+    private String inputAmount(){
+        System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
+        String amount = Console.readLine();
+        return amount;
     }
 
     public void run(){

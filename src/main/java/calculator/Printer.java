@@ -2,8 +2,8 @@ package calculator;
 
 public class Printer {
 
-    static int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
-    static int totalIncome = 0;
+    int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
+    int totalIncome = 0;
 
     public void printResult(){
         System.out.println("당첨 통계\n" +
