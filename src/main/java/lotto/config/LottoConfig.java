@@ -25,7 +25,7 @@ public class LottoConfig {
     }
 
 
-    public Game getGame() {
+    public Game game() {
         return new GameImpl(randomNumber(), input(), print());
     }
 }
