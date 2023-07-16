@@ -9,6 +9,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 import lotto.machines.AutoLottoMachine;
+import lotto.machines.LottoCompareMachine;
 import lotto.machines.RewardMeasuringMachine;
 import lotto.numberGame.Machine;
 
@@ -21,6 +22,7 @@ public class UserController implements Machine {
 	long totalReward;
 	AutoLottoMachine autoLottoMachine;
 	RewardMeasuringMachine rewardMeasuringMachine;
+	LottoCompareMachine compareMachine;
 	Printer printer;
 	private static int[] numOfRanking;
 	private static List<Lotto> userLottos;
@@ -30,7 +32,8 @@ public class UserController implements Machine {
 		printer = new Printer();
 		autoLottoMachine = new AutoLottoMachine();
 		userLottos = new ArrayList<>();
-		rewardMeasuringMachine = new RewardMeasuringMachine(userLottos);
+		compareMachine = new LottoCompareMachine();
+		rewardMeasuringMachine = new RewardMeasuringMachine(userLottos,compareMachine);
 		numOfRanking = new int[6];
 
 	}
@@ -58,18 +61,10 @@ public class UserController implements Machine {
 		printer.printInputPurchaseAmountMessage();
 		String inStr = Console.readLine();
 
-		try {
-			validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
-		} catch (IllegalArgumentException e) {
-			throw e;
-		}
+		validator.handleException(validator.isNotInteger(inStr), ONLY_INTEGER_MESSAGE.get());
 
 		purchaseAmount = Long.parseLong(inStr);
-		try {
-			validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
-		} catch (IllegalArgumentException e) {
-			throw e;
-		}
+		validator.handleException(validator.isInvalidUnit(purchaseAmount), INVALID_UNIT_MESSAGE.get());
 		int numOfLotto = (int)(purchaseAmount / getUnitOfPurchase());
 		printer.printNumberOfPurchaseMessage(numOfLotto);
 
@@ -81,7 +76,7 @@ public class UserController implements Machine {
 		}
 	}
 
-	private static void addLotto(Lotto lotto) {
+	public static void addLotto(Lotto lotto) {
 		userLottos.add(lotto);
 	}
 

@@ -21,7 +21,7 @@ public class LottoCompareMachine implements NumberCompareMachine {
 	LottoValidator validator;
 	Printer printer;
 
-	LottoCompareMachine() {
+	public LottoCompareMachine() {
 		winningNums = new ArrayList<>();
 		validator = new LottoValidator();
 		printer = new Printer();
@@ -39,30 +39,18 @@ public class LottoCompareMachine implements NumberCompareMachine {
 		printer.printInputWinningNumMessage();
 		String inStr = Console.readLine();
 
-		try {
-			validator.handleException(validator.isThereSpace(inStr), NO_SPACE_MESSAGE.get());
-		} catch (IllegalArgumentException e) {
-			throw e;
-		}
+		validator.handleException(validator.isThereSpace(inStr), NO_SPACE_MESSAGE.get());
 
 		StringTokenizer tokenizedInStr = new StringTokenizer(inStr, getDELIM());
 
 		while (tokenizedInStr.hasMoreTokens()) {
 			String nextNum = tokenizedInStr.nextToken();
 
-			try {
-				validator.handleException(validator.isNotInteger(nextNum), ONLY_INTEGER_MESSAGE.get());
-			} catch (IllegalArgumentException e) {
-				throw e;
-			}
+			validator.handleException(validator.isNotInteger(nextNum), ONLY_INTEGER_MESSAGE.get());
 
 			Integer cur = Integer.parseInt(nextNum);
 
-			try {
-				validator.handleException(validator.isDuplicatedNum(winningNums, cur), ALREADY_DRAWN_MESSAGE.get());
-			} catch (IllegalArgumentException e) {
-				throw e;
-			}
+			validator.handleException(validator.isDuplicatedNum(winningNums, cur), ALREADY_DRAWN_MESSAGE.get());
 
 			winningNums.add(cur);
 		}

@@ -15,19 +15,15 @@ public class RewardMeasuringMachine implements JudgeMachine {
 	List<Lotto> userLottos;
 	long totalReward;
 
-	public RewardMeasuringMachine(List<Lotto> userLottos) {
-		compareMachine = new LottoCompareMachine();
+	public RewardMeasuringMachine(List<Lotto> userLottos,LottoCompareMachine compareMachine) {
+		this.compareMachine = compareMachine;
 		totalReward = 0;
 		this.userLottos = userLottos;
 	}
 
 	@Override
 	public void run() {
-		try {
-			compareMachine.run();
-		} catch (IllegalArgumentException e) {
-			throw e;
-		}
+		compareMachine.run();
 
 		int winPoint;
 		int ranking;
