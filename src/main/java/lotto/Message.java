@@ -32,6 +32,7 @@ public class Message {
                 6개 일치 (%s원) - %d개""");
 
         private final String outputMessage;
+
         Output(String message) {
             outputMessage = message;
         }
@@ -44,15 +45,6 @@ public class Message {
             DecimalFormat decimalFormat = new DecimalFormat("#.##");
             String roundedNumber = decimalFormat.format(rate);
             return String.format(outputMessage, roundedNumber);
-        }
-
-        public String toContentsFormat(ResultLottoData resultData) {
-            return String.format(outputMessage,
-                    Number.Prize.THREE_MATCH.toDecimalFormat(), resultData.threeMatchCount,
-                    Number.Prize.FOUR_MATCH.toDecimalFormat(), resultData.fourMatchCount,
-                    Number.Prize.FIVE_MATCH.toDecimalFormat(), resultData.fiveMatchCount,
-                    Number.Prize.FIVE_BONUS_MATCH.toDecimalFormat(), resultData.fiveAndBonusMatchCount,
-                    Number.Prize.SIX_MATCH.toDecimalFormat(), resultData.sixMatchCount);
         }
 
         @Override
@@ -72,7 +64,8 @@ public class Message {
             this.errorMessage = input;
         }
 
-        public String toErrorFormat() {
+        @Override
+        public String toString() {
             return "[ERROR] " + errorMessage;
         }
     }
