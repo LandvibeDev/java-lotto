@@ -20,7 +20,8 @@ public class GameController {
         int quantity = money / Number.Rule.PRICE.toNumber();
         List<Lotto> myLottoSet = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
-            Lotto lottoOneSet = lottoManager.generate(Number.Rule.MIN.toNumber(), Number.Rule.MAX.toNumber(), Number.Rule.SIZE.toNumber());
+            Lotto lottoOneSet = lottoManager.generate(Number.Rule.MIN.toNumber(),
+                    Number.Rule.MAX.toNumber(), Number.Rule.SIZE.toNumber());
             myLottoSet.add(lottoOneSet);
         }
 
@@ -34,9 +35,10 @@ public class GameController {
         int bonusNumber = readBonus();
 
         Score score = lottoManager.calculate(myLottoSet, winnerNumber, bonusNumber);
+        double rate = score.calculateRate(money);
         System.out.println(Message.Output.RESULT_STAT);
         System.out.println(score);
-        System.out.println(Message.Output.RESULT_RATE.toRateFormat(score.calculateRate(money)));
+        System.out.println(Message.Output.RESULT_RATE.toRateFormat(rate));
     }
 
     private int readMoney() {

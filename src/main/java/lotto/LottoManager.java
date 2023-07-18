@@ -40,8 +40,8 @@ public class LottoManager {
                 sixMatchCount++;
             }
         }
-        return new Score(threeMatchCount, fourMatchCount, fiveMatchCount,
-                fiveAndBonusMatchCount, sixMatchCount);
+        return new Score(threeMatchCount, fourMatchCount,
+                fiveMatchCount, fiveAndBonusMatchCount, sixMatchCount);
     }
 
     private int countNumberOfLottoMatches(Lotto myLottoOneSet, Lotto winnerLotto) {

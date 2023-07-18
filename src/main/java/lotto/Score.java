@@ -1,7 +1,8 @@
 package lotto;
 
 public class Score {
-    private final int threeMatchCount, fourMatchCount, fiveMatchCount, fiveAndBonusMatchCount, sixMatchCount;
+    private final int threeMatchCount, fourMatchCount,
+            fiveMatchCount, fiveAndBonusMatchCount, sixMatchCount;
 
     public Score(int threeMatchCount, int fourMatchCount,
                  int fiveMatchCount, int fiveAndBonusMatchCount, int sixMatchCount) {
