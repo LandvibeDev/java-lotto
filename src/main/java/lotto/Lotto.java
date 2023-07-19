@@ -1,0 +1,30 @@
+package lotto;
+
+import static lotto.validator.ErrorMessages.*;
+
+import java.util.List;
+
+import lotto.validator.LottoValidator;
+
+public class Lotto {
+	private final List<Integer> numbers;
+	LottoValidator validator;
+
+	public Lotto(List<Integer> numbers) {
+		validator = new LottoValidator();
+		validate(numbers);
+		this.numbers = numbers;
+	}
+
+	private void validate(List<Integer> numbers) {
+		validator.handleException(validator.isInvalidNumberSize(numbers.size()), INVALID_NUMBER_SIZE_MESSAGE.get());
+		for (int n : numbers) {
+			validator.handleException(validator.isOutOfRange(n), OUT_OF_RANGE_MESSAGE.get());
+		}
+	}
+
+	public List<Integer> getLottoNums() {
+		return numbers;
+	}
+
+}
